@@ -1,0 +1,277 @@
+\documentclass{ltjsarticle}
+\usepackage{amsmath}
+\usepackage{amsthm}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{proposition}[definition]{Proposition}
+\newtheorem{example}[definition]{Example}
+\title{リー代数の話 (1)}
+\author{宇佐見 公輔}
+\date{2019年4月3日}
+
+\begin{document}
+
+\maketitle
+
+今回は、リー代数（Lie Algebra）についての話を少しします。
+リー代数は、リー群との関連で語られることも多いのですが、そこには深入りせず、代数的な話をします。
+
+\section{ベクトル空間}
+
+リー代数の定義をする前に、ベクトル空間の定義をおさらいしておきます。
+
+以下、$F$ を体とします。今回の話では任意の体で構いません（特に、標数 $0$ でなくともよい）。
+体についてよく知らない人への補足をすると、体とは加減乗除の四則演算が自由にできる集合です。
+ベクトル空間やリー代数では実数や複素数を考えることが多いので、それを思い浮かべてもらって良いです。
+
+\begin{definition}[ベクトル空間]
+    集合 $V$ が $F$ 上のベクトル空間であるとは、ふたつの演算、加法とスカラー倍
+    \begin{align*}
+        V \times V & \to V         \\
+        (x, y)     & \mapsto x + y
+    \end{align*}
+    \begin{align*}
+        F \times V & \to V      \\
+        (c, x)     & \mapsto cx
+    \end{align*}
+    が定義されていて、以下の条件を満たすことです。
+    \begin{itemize}
+        \item 加法について、結合法則、交換法則、単位元の存在、逆元の存在、が成り立つ（別の言い方をすれば加法群である）。
+        \item スカラー倍について、$1x = x$ 、$(cd)x = c(dx)$ 、$(c + d)x = cx + dx$ 、$c(x + y) = cx + cy$
+              が成り立つ。
+    \end{itemize}
+\end{definition}
+
+\section{リー代数}
+
+では、リー代数の定義です。リー代数はベクトル空間に第3の演算を入れたものです。
+
+\begin{definition}[リー代数]
+    集合 $L$ が $F$ 上のリー代数（Lie algebra）であるとは、
+    $L$ が $F$ 上のベクトル空間であり、さらにもうひとつの演算、ブラケット積
+    \begin{align*}
+        V \times V & \to V          \\
+        (x, y)     & \mapsto [x, y]
+    \end{align*}
+    が定義されていて、以下の条件を満たすことです。
+    \begin{enumerate}
+        \item ブラケット積は双線型写像である。すなわち、$\forall a, b \in F$ 、$\forall x, y, z \in L$ について、
+              \begin{align*}
+                  [ax + by, z] & = a[x, z] + b[y, z] \\
+                  [z, ax + by] & = a[z, x] + b[z, y]
+              \end{align*}
+              が成り立つ。
+        \item \label{comm} $\forall x \in L$ について $[x, x] = 0$ である。
+        \item \label{Jacobi} $\forall x, y, z \in L$ について、
+              \[
+                  [x, [y, z]] + [y, [z, x]] + [z, [x, y]] = 0
+              \]
+              が成り立つ。
+    \end{enumerate}
+\end{definition}
+
+この (\ref{Jacobi}) の式を、ヤコビ恒等式（Jacobi identity）と呼びます。
+
+定義からすぐに導かれる性質として、以下が重要です。
+
+\begin{proposition}[交代性]
+    $L$ を $F$ 上のリー代数とします。
+    $\forall x, y\in L$ について、$[x, y] = -[y, x]$ が成り立ちます。
+\end{proposition}
+
+演算の順序を入れかえると符号が反転する、という性質です。これを交代性と呼びます。
+この性質はリー代数の大きな特徴といえるかと思います。
+
+\begin{proof}
+    $[x + y, x + y]$ を考えます。条件 (\ref{comm}) から $[x + y, x + y] = 0$ になります。
+
+    一方、双線型性から、$[x + y, x + y] = [x, x] + [x, y] + [y, x] + [y, y] = [x, y] + [y, x]$ です。
+
+    したがって、$[x, y] + [y, x] = 0$ となり、$[x, y] = -[y, x]$ が導かれます。
+\end{proof}
+
+実は $F$ の標数が $2$ でない場合には、
+リー代数の定義から条件 (\ref{comm}) を外して代わりに $[x, y] = -[y, x]$ という条件を入れたとき、
+条件 (\ref{comm}) を導くこともできます
+（$y$ のところに $x$ を入れると $[x, x] = -[x, x]$ となり、
+標数が $2$ でないことから $[x, x] = 0$ が導ける）。
+
+したがって、標数が $2$ でない場合のみを考えるなら、
+条件 (\ref{comm}) を $[x, y] = -[y, x]$ で置き換えてリー代数を定義することも可能です。
+しかし普通は、より強い条件である $[x, x] = 0$ を採用します。
+
+\section{結合代数とリー代数}
+
+リー代数の重要な例として、結合代数から導かれるリー代数をみます。まず、結合代数の定義を述べます。
+
+\begin{definition}[結合代数]
+    集合 $A$ が $F$ 上の結合代数（associative algebra）であるとは、
+    $A$ が $F$ 上のベクトル空間であり、さらにもうひとつの演算、乗法
+    \begin{align*}
+        A \times A & \to A      \\
+        (x, y)     & \mapsto xy
+    \end{align*}
+    が定義されていて、以下の条件を満たすことです。
+    \begin{itemize}
+        \item 乗法は双線型写像である。
+        \item 乗法について、結合法則、単位元の存在、が成り立つ。
+    \end{itemize}
+\end{definition}
+
+結合代数は、加法と乗法について環になっていることを注意しておきます。
+ただし、交換法則を要請していないので、可換環とは限りません。
+
+次のようにして結合代数からリー代数を構成することができます。
+
+\begin{example}[結合代数から導かれるリー代数] \label{commutator}
+    $A$ を $F$ 上の結合代数とします。
+    ここにブラケット積を
+    \[
+        [x, y] := xy - yx
+    \]
+    と定義することで、$A$ はリー代数となります。
+\end{example}
+
+このブラケット積を交換子積とも呼びます。定義の右辺の $xy$ や $yx$ は結合代数の乗法です。
+
+\begin{proof}
+    ブラケット積がリー代数の定義の条件を満たしていることを示せば良いです。
+    これは読者への演習問題とします。
+\end{proof}
+
+証明を演習問題としましたが、これはリー代数を学ぶうえでの最初の演習問題としてちょうど良いものだと思います。
+特別難しいことではなく、単純に交換子積の定義を当てはめて計算すればできるので、やってみてください。
+
+特に Jacobi identity を満たすことを示すのが肝心なところです。
+$[x, [y, z]] = [x, yz - zy] = x(yz - zy) - (yz - zy)x$ であることに注意すれば導けます。
+
+リー代数の定義のなかでも、Jacobi identity は初見ではよく分からない式に見えます。
+しかし、上記の証明をやってみると、Jacobi identity がどういうものなのか少し分かった気になれるのではないかと思っています。
+
+\section{Derivation}
+
+もうひとつリー代数の例を挙げます。
+
+\begin{definition}[derivation]
+    $A$ を $F$ 上の結合代数とします。
+    写像 $D : A \to A$ が derivation であるとは、$D$ が線型写像であって、
+    \[
+        D(xy) = D(x)y + xD(y)
+    \]
+    を満たすことです。
+\end{definition}
+
+関数の微分を思い出してください。
+$A$ が関数の集合、乗法が関数の合成、$D$ が微分演算とすると、上記の定義の式は合成関数の微分の法則をあらわしています。
+これを逆に考えて、その性質を満たす写像をなんでも「微分」だと呼ぼうというわけです。
+つまり、derivation は微分の概念の一般化と思うことができます。
+
+\begin{proposition}[derivation のなすベクトル空間]
+    $A$ を $F$ 上の結合代数とします。
+    $\mathrm{Der}(A)$ を $A$ の derivation 全体とします。
+    ここに、加法とスカラー倍を線型写像の加法とスカラー倍で定義すれば、
+    $\mathrm{Der}(A)$ は $F$ 上のベクトル空間になります。
+\end{proposition}
+
+\begin{proof}
+    $\mathrm{Der}(A)$ が各演算で閉じていて、ベクトル空間の定義を満たすことを示せばよいです。
+    これは、定義にしたがって容易に確認できます。
+\end{proof}
+
+なお、「演算で閉じている」とは、演算の結果が再び同じ集合に含まれることです。
+上記の証明でいえば、
+$D, E \in \mathrm{Der}(A)$ について $D + E$ が derivation であること、
+$c \in F$ と $D \in \mathrm{Der}(A)$ について $cD$ が derivation であること、です。
+
+ある集合が演算で閉じていなければ、その集合では「演算が定義できている」とはいえません。
+そのため、上記の証明では演算で閉じていることを示す必要がありました。
+
+ここで、ひとつ注意しておきます。
+derivation の合成 $D \circ E$ は derivation であるとは限りません。
+実際に計算してみると、
+\begin{align*}
+    (D \circ E)(xy) & = D(E(xy))                                                \\
+                    & = D(E(x)y + xE(y))                                        \\
+                    & = D(E(x))y + E(x)D(y) + D(x)E(y) + xD(E(y))               \\
+                    & = (D \circ E)(x)y + E(x)D(y) + D(x)E(y) + x(D \circ E)(y)
+\end{align*}
+となるため、derivation の定義を満たしていません。
+
+そのため、$\mathrm{Der}(A)$ は合成を積としても結合代数とはなりませんが、
+実はリー代数にはなります。
+
+\begin{example}[derivation のなすリー代数]
+    $A$ を $F$ 上の結合代数とします。
+    $\mathrm{Der}(A)$ にブラケット積を、写像の合成を使って
+    \[
+        [D, E] := D \circ E - E \circ D
+    \]
+    と定義することで、$\mathrm{Der}(A)$ はリー代数となります。
+\end{example}
+
+\begin{proof}
+    $(D \circ E)(xy)$ が上記のようになることから、
+    \begin{align*}
+        (D \circ E)(xy) - (E \circ D)(xy) & = (D \circ E)(x)y + x(D \circ E)(y) - (E \circ D)(x)y - x(E \circ D)(y) \\
+                                          & = (D \circ E - E \circ D)(x)y + x(D \circ E - E \circ D)(y)
+    \end{align*}
+    となるため、$[D, E]$ は derivation です。したがって、$\mathrm{Der}(A)$ はブラケット積で閉じています。
+
+    ブラケット積がリー代数の定義の条件を満たしていることは、結合代数の場合と同様にして分かります。
+\end{proof}
+
+\section{線型リー代数}
+
+リー代数のもう少し具体的な例を挙げます。
+
+\begin{example}[一般線型リー代数]
+    $\mathrm{M}(n,F)$ を $F$ を成分とする $n$ 次正方行列の集合とします。
+    ここに、加法、スカラー倍、乗法を、行列の加法、スカラー倍、乗法で定義すれば、
+    $\mathrm{M}(n,F)$ は $F$ 上の結合代数になります。
+
+    したがって、これは \ref{commutator} によってリー代数となります。
+    $\mathrm{M}(n,F)$ をリー代数とみなす場合、
+    一般線型リー代数（general linear Lie algebra）と呼び、$\mathrm{gl}(n,F)$ と書きます。
+\end{example}
+
+余談ですが、一般線型群 $\mathrm{GL}(n,F)$ について知っている人は、それとの定義の違いに注意してください。
+一般線型群は正則行列の集合ですが、一般線型リー代数は正則でない行列も含んでいます。
+
+\begin{definition}[行列のトレース]
+    $x \in \mathrm{M}(n,F)$ について、
+    $x$ のトレース（trace）を、$x$ の対角成分の和で定義し、$\mathrm{tr}(x)$ と書きます。
+\end{definition}
+
+\begin{example}[特殊線型リー代数]
+    $\mathrm{gl}(n,F)$ の部分集合 $\mathrm{sl}(n,F)$ を次で定義します。
+    \[
+        \mathrm{sl}(n,F) := {x \in \mathrm{gl}(n,F) \mid \mathrm{tr}(x) = 0}
+    \]
+    $\mathrm{sl}(n,F)$ はリー代数になります。
+    これを特殊線型リー代数（special linear Lie algebra）と呼びます。
+\end{example}
+
+こちらも、特殊線型群 $\mathrm{SL}(n,F)$ について知っている人は、それとの定義の違いに注意してください。
+実のところ、リー群 $\mathrm{SL}(n,F)$ に付随するリー代数が $\mathrm{sl}(n,F)$ である、
+という関係があります（ここではその関係について詳しくは述べませんが）。
+
+\begin{proof}
+    $\mathrm{sl}(n,F)$ が各演算で閉じていることを示す必要があります。
+    これは読者への演習問題とします。
+\end{proof}
+
+特に $\mathrm{sl}(n,F)$ がブラケット積で閉じているというのが肝心なところなわけですが、
+実のところ、$\forall x,y \in \mathrm{M}(n,F)$ に対して、
+$\mathrm{tr}(xy) = \mathrm{tr}(yx)$ が成り立ちます。
+
+これは線型代数の演習問題としてよく出てくるものです。
+行列 $xy$ の $(i,i)$ 成分を $x$ と $y$ の成分で書きくだしてみれば示せますので、
+自力でやってみてください。
+
+特殊線型リー代数は、$\mathrm{A}$ 型の単純リー代数と呼ばれるものです。
+
+特に $\mathrm{sl}(2,F)$ は $\mathrm{A}_1$ 型と呼ばれ、
+リー代数の理論のなかで重要な役割を果たします。
+
+\end{document}
