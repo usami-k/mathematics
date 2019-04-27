@@ -1,0 +1,280 @@
+\documentclass{ltjsarticle}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{thmtools}
+\declaretheoremstyle[bodyfont=\upshape,notefont=\bfseries,qed=\qedsymbol,spaceabove=1ex,spacebelow=1ex]{mystyle}
+\declaretheorem[style=mystyle,numberwithin=section]{definition}
+\declaretheorem[style=mystyle,sibling=definition]{theorem}
+\declaretheorem[style=mystyle,sibling=definition]{proposition}
+\declaretheorem[style=mystyle,sibling=definition]{example}
+
+\title{リー代数の話 (2)}
+\author{宇佐見 公輔}
+\date{2019年4月5日}
+
+\begin{document}
+
+\maketitle
+
+前回はリー代数の定義と例を述べましたが、今回はリー代数の分類、特に複素数体上の有限次元のリー代数の分類についての話をします。
+
+どのように分類をするのかのストーリーを述べるのが目的であり、今回は各命題の証明は行いません。
+
+前回定義していなかった用語を今回使うので、まずは用語の定義をします。
+
+\section{準同型と同型}
+
+\begin{definition}[準同型写像]
+    $L$ と $L'$ を体 $F$ 上のリー代数とします。
+    写像 $\varphi : L \to L'$ が準同型写像（homomorphism）であるとは、以下を満たすことです。
+    \begin{itemize}
+        \item $\varphi$ は線型写像である。
+        \item $\forall x, y \in L$ に対して $\varphi([x, y]) = [\varphi(x), \varphi(y)]$ が成り立つ。
+    \end{itemize}
+\end{definition}
+
+準同型写像は、ふたつのリー代数の間の演算を保つ写像です。
+
+\begin{definition}[同型]
+    $L$ と $L'$ を体 $F$ 上のリー代数とします。
+    写像 $\varphi : L \to L'$ が準同型かつ全単射であるとき、同型写像（isomorphism）であるといいます。
+    $L$ から $L'$ への同型写像が存在する場合、リー代数 $L$ と $L'$ は同型（isomorphic）であるといいます。
+\end{definition}
+
+代数学の一般的な考え方として、ふたつの代数構造が同型である場合、これらは同じものとみなします。
+そして、同型でない代数構造がどのくらいの種類あるのかを調べることが、今回のテーマである「分類」です。
+
+\section{部分リー代数とイデアル}
+
+\begin{definition}[部分リー代数]
+    $L$ を体 $F$ 上のリー代数とします。
+    $L$ の部分集合 $M$ が $L$ の部分リー代数（Lie subalgebra）であるとは、以下を満たすことです。
+    \begin{itemize}
+        \item $M$ は $L$ の部分ベクトル空間である。
+        \item $\forall x, y \in M$ に対して $[x, y] \in M$ が成り立つ。
+    \end{itemize}
+\end{definition}
+
+部分リー代数は各演算で閉じていることになるので、それ自身がリー代数になっています。
+
+\begin{definition}[イデアル]
+    $L$ を体 $F$ 上のリー代数とします。
+    $L$ の部分集合 $I$ が $L$ のイデアル（ideal）であるとは、以下を満たすことです。
+    \begin{itemize}
+        \item $I$ は $L$ の部分ベクトル空間である。
+        \item $\forall x \in L, y \in I$ に対して $[x, y] \in I$ が成り立つ。
+    \end{itemize}
+\end{definition}
+
+定義からすぐわかるように、イデアルは部分リー代数でもあります。部分リー代数よりも強い条件となっています。
+
+なお、上記の定義のなかの演算の順序を入れ替えた条件「$\forall x \in I, y \in L$ に対して $[x, y] \in I$」も考えられます。
+しかし、ブラケット積の交代性 $[x, y] = -[y, x]$ から、これは上記の定義の条件と同値です。
+つまり、一般の非可換な代数では「左イデアル」「右イデアル」が考えられますが、リー代数の場合はその区別はありません。
+
+前回、リー代数の例として $\mathrm{gl}(n,F)$ や $\mathrm{sl}(n,F)$ を挙げました。
+これが実はイデアルの例でもあります。
+
+\begin{example}[イデアルの例]
+    $\mathrm{sl}(n,F)$ は $\mathrm{gl}(n,F)$ のイデアルです。
+\end{example}
+
+もうひとつ例を挙げておきます。
+
+\begin{example}[上三角行列]\label{uppertriangle}
+    $\mathrm{gl}(n,F)$ の部分集合 $\mathrm{b}(n,F)$ を、上三角行列の集合と定義します。
+    ここで上三角行列とは、$n$ 次正方行列で $i > j$ のとき $(i,j)$ 成分が $0$ である行列のことです。
+    $\mathrm{b}(n,F)$ は $\mathrm{gl}(n,F)$ の部分リー代数です。
+    ただし、イデアルではありません。
+\end{example}
+
+\section{商リー代数と単純リー代数}
+
+線型代数を思い出すと、ベクトル空間 $V$ の部分ベクトル空間 $W$ があるとき、
+商ベクトル空間 $V/W := \{ v + W \mid v \in V \}$ が定義できました。
+
+同じように、商リー代数を定義することができます。
+
+\begin{definition}[商リー代数]
+    $L$ を体 $F$ 上のリー代数、$I$ を $L$ のイデアルとします。
+    ベクトル空間 $L/I := \{ x + I \mid x \in L \}$ にブラケット積を
+    \[
+        [x + I, y + I] := [x, y] + I
+    \]
+    と定義することで、$L/I$ はリー代数になります。
+    この $L/I$ を商リー代数（quotient Lie algebra）と呼びます。
+\end{definition}
+
+なお、$I$ がイデアルでなく部分リー代数の場合は、
+商リー代数 $L/I$ が well-defined にならないことを注意しておきます。
+
+\begin{definition}[単純リー代数]
+    $L$ を体 $F$ 上のリー代数とします。
+    $L$ が単純（simple）であるとは、$L$ が可換ではなく、
+    $L$ が $\{0\}$ と $L$ 以外のイデアルを持たないことです。
+\end{definition}
+
+なお、$L$ が可換とは $\forall x, y \in L$ に対して $[x, y] = 0$ となることをいいます。
+
+$L$ が単純でない場合、つまり $L$ がイデアルを持つなら、商リー代数を使って $L$ は $I$ と $L/I$ のふたつに分解できる、と考えることができます。
+別の言い方をすれば、この方法でそれ以上分解できないものが単純リー代数である、と言うことができます。
+
+\begin{example}[単純リー代数の例]
+    $\mathrm{gl}(n,F)$ は単純ではありません。なぜなら、イデアル $\mathrm{sl}(n,F)$ があるからです。
+    $\mathrm{sl}(n,F)$ は単純です。
+\end{example}
+
+\section{可解と半単純}
+
+\begin{definition}[可解]
+    $L$ を体 $F$ 上のリー代数とします。
+    \begin{align*}
+        L^{(1)} & := [L, L]                 \\
+        L^{(2)} & := [L^{(1)}, L^{(1)}]     \\
+        \dots                               \\
+        L^{(k)} & := [L^{(k-1)}, L^{(k-1)}]
+    \end{align*}
+    と定義します。$\exists m , L^{(m)} = 0$ が成り立つとき、
+    $L$ は可解（solvable）であるといいます。
+\end{definition}
+
+記法についての補足ですが、$[L, L]$ は $\{ [x, y] \mid x, y \in L \}$ を意味します。
+
+リー代数のイデアルで可解であるものを可解イデアルと呼びます。
+可解イデアルについて、次のことが知られています。
+
+\begin{proposition}[極大可解イデアル]
+    $L$ を体 $F$ 上のリー代数とします。
+    $L$ のすべての可解イデアルを含むような可解イデアルが一意に存在します。
+    これを、極大可解イデアル（maximal solvable ideal）または radical と呼びます。
+\end{proposition}
+
+今回は、命題の証明は飛ばして話を進めることにします。
+
+\begin{definition}[半単純]
+    $L$ を体 $F$ 上のリー代数とします。
+    $L$ が半単純（semisimple）であるとは、極大可解イデアルが $0$ であることです。
+\end{definition}
+
+前のセクションで、$L$ がイデアルをもつなら $I$ と $L/I$ とに分解できるという話をしましたが、
+$I$ を極大可解イデアルとした場合に、次のことが知られています。
+
+\begin{proposition}[極大可解イデアルによる商]
+    $L$ を体 $F$ 上のリー代数、$I$ を $L$ の極大可解イデアルとします。
+    このとき、商リー代数 $L/I$ は半単純です。
+\end{proposition}
+
+つまり、任意のリー代数は可解リー代数と半単純リー代数に分解できるわけです。
+
+さらに、半単純リー代数について、次のことが知られています。
+
+\begin{proposition}[単純と半単純]
+    $L$ を体 $F$ 上のリー代数とします。
+    $L$ が半単純（すなわち極大可解イデアルが $0$）であることと、
+    $L$ が単純リー代数の直和であらわされることとは同値です。
+\end{proposition}
+
+したがって、任意のリー代数は可解リー代数と単純リー代数に分解できる、ということになります。
+
+\section{有限次元複素リー代数の分類}
+
+今回の話は、最初に述べたように、リー代数の分類の話です。
+
+前のセクションで、リー代数は可解リー代数と単純リー代数に分解できることがわかりました。
+したがって、可解リー代数の分類と単純リー代数の分類ができれば、リー代数の分類ができたといえます。
+
+ここまでは任意の体のリー代数を考えてきましたが、ここからは複素数体 $\mathbb{C}$ 上のリー代数を考えます。
+また、有限次元のリー代数を考えます（なお、リー代数の次元は、ベクトル空間としての次元と同じです）。
+
+有限次元複素リー代数については、可解リー代数の分類と単純リー代数の分類はすでになされています。
+以下、その結果を述べます。
+
+まずは、可解リー代数についてです。例 \ref{uppertriangle} で挙げた上三角行列を思い出してください。
+
+\begin{theorem}[可解リー代数の分類]
+    $L$ を有限次元複素リー代数とします。
+    $L$ が可解ならば、$L$ は $\mathrm{b}(n,\mathbb{C})$ の部分リー代数のひとつと同型になります。
+\end{theorem}
+
+これは、リーの定理と呼ばれている定理の結果として得られます。
+
+次に、単純リー代数についてです。単純な有限次元複素リー代数は、以下の型に分類されます。
+
+\begin{theorem}[単純リー代数の分類]
+    $L$ を有限次元複素リー代数とします。
+    $L$ が単純ならば、以下で挙げるいずれかと同型になります。
+    \begin{itemize}
+        \item $\mathrm{A}_n$ ($n \geq 1$)
+        \item $\mathrm{B}_n$ ($n \geq 2$)
+        \item $\mathrm{C}_n$ ($n \geq 3$)
+        \item $\mathrm{D}_n$ ($n \geq 4$)
+        \item $\mathrm{E}_n$ ($n = 6,7,8$)
+        \item $\mathrm{F}_4$
+        \item $\mathrm{G}_2$
+    \end{itemize}
+    なお、A, B, C, D 型をまとめて古典型、E, F, G 型をまとめて例外型、と呼びます。
+\end{theorem}
+
+ここに挙げた A, B, C, D, E, F, G 型のそれぞれを定義しなければ不完全ではありますが、
+今回の話では、これだけの種類があるのだという紹介にとどめたいと思います。
+
+ただ、古典型は $\mathrm{gl}(n,\mathbb{C})$ の部分リー代数として書けますので、
+それを以下に書いておきます。
+
+\begin{example}[A型単純リー代数]
+    $\mathrm{sl}(n,\mathbb{C})$ は A 型単純リー代数です。
+\end{example}
+
+\begin{example}[C型単純リー代数]
+    $\mathrm{sp}(2n,F)$ を以下で定義します。
+    これは、シンプレクティックリー代数（symplectic Lie algebra）と呼ばれます。
+    \begin{align*}
+        \mathrm{sp}(2n,F) & := x^{\intercal}s + sx = 0    \\
+        s                 & := \begin{pmatrix}
+            0     & I_n \\
+            - I_n & 0
+        \end{pmatrix}
+    \end{align*}
+    ここで、$x^{\intercal}$ は $x$ の転置行列、$I_n$ は $n$ 次単位行列です。
+
+    $\mathrm{sp}(2n,\mathbb{C})$ は C 型単純リー代数です。
+\end{example}
+
+\begin{example}[B型およびD型単純リー代数]
+    $\mathrm{o}(n,F)$ を以下で定義します。
+    これは、直交リー代数（orthogonal Lie algebra）と呼ばれます。
+    \[
+        \mathrm{o}(n,F) := x^{\intercal} + x = 0
+    \]
+
+    $\mathrm{o}(2n+1,\mathbb{C})$ は B 型単純リー代数です。
+    また、$\mathrm{o}(2n,\mathbb{C})$ は D 型単純リー代数です。
+\end{example}
+
+最後に、単純リー代数の分類がどのように行われるか、おおまかな流れを紹介します。
+
+実は、単純リー代数にはルート集合というものが対応していて、
+ルート空間分解（root space decomposition）という直和分解ができます。
+
+ルート集合は、ルート系（root system）の定義を満たす集合です。
+ここでルート系とは、ベクトル空間の部分集合で、ある特定の公理を満たす集合です。
+（ルート系が何なのかはここでは触れません。別の機会に・・・）
+
+ルート系は、前述の A, B, C, D, E, F, G 型に分類することができます。
+
+したがって、単純リー代数はそれらのどれかに対応することになります。
+さらに、すべてのルート系に対して実際にそれをルート集合とするリー代数を構成することができます。
+こうして、単純リー代数の分類が完了します。
+
+さらに、ルート系からリー代数を構成する方法が主に二通りあります。
+ひとつは、個別に具体的をつくる方法です。
+もうひとつは、リー代数の包絡代数（enveloping algebra）というものを考えて、
+そこに関係式を入れることで構成する方法です。
+わかりやすいのは前者の方法ですが、後者の方法は無限次元にも応用することができます。
+
+今回は有限次元の話をしたのですが、無限次元の世界にも豊かな世界が広がっています。
+この有限次元の分類は、アフィンリー代数、カッツムーディリー代数といった
+無限次元の世界へ一歩を踏み出す足掛かりとなります。
+
+\end{document}
