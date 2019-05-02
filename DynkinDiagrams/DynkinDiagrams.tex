@@ -1,21 +1,15 @@
 \documentclass{beamer}
 \usepackage{luatexja}
-\usepackage{amsmath}
-\usepackage{amsthm}
+\usepackage{amsmath,amsthm}
 \usepackage[mark=o]{dynkin-diagrams}
 \usepackage{rank-2-roots}
-
 \newtheorem{proposition}{Proposition}
 \usetheme{metropolis}
 \title{ディンキン図形を知る \\ （ルート系とディンキン図形）}
 \author{宇佐見 公輔}
 \date{2019年4月13日}
-
 \begin{document}
-
-\begin{frame}
-    \titlepage
-\end{frame}
+\frame{\titlepage}
 
 \begin{frame}
     \frametitle{ディンキン図形とは何か}
@@ -104,21 +98,21 @@
 \begin{frame}
     \frametitle{ルート系の定義の準備：鏡映}
 
-    $E$ を有限次元実ベクトル空間、
-    $v, w \in E$ の内積を $(v|w)$ とします。
+    \(E\) を有限次元実ベクトル空間、
+    \(v, w \in E\) の内積を \((v|w)\) とします。
 
     \begin{definition}[超平面]
-        $v \in E$ に対して
-        $P_v := \{ w \in E \mid (v|w) = 0 \}$
-        と定義し、$v$ と直交する超平面（hyperplane）と呼びます。
+        \(v \in E\) に対して
+        \(P_v := \{ w \in E \mid (v|w) = 0 \} \)
+        と定義し、\(v\) と直交する超平面（hyperplane）と呼びます。
     \end{definition}
 
     \begin{definition}[鏡映]
-        $v \in E$ と $x \in E$ に対して、
+        \(v \in E\) と \(x \in E\) に対して、
         \[c(x,v) := \frac{2(x|v)}{(v|v)}\]
-        と定義し、写像 $\sigma_v : E \to E$ を以下で定義します。
+        と定義し、写像 \(\sigma_v : E \to E\) を以下で定義します。
         \[x \mapsto x - c(x,v) v\]
-        $\sigma_v$ を、超平面 $P_v$ に関する鏡映（reflection）と呼びます。
+        \(\sigma_v\) を、超平面 \(P_v\) に関する鏡映（reflection）と呼びます。
     \end{definition}
 \end{frame}
 
@@ -126,21 +120,21 @@
     \frametitle{ルート系の定義}
 
     \begin{definition}[ルート系]
-        $\Delta \subset E$ がルート系（root system）であるとは、以下を満たすことです。
+        \(\Delta \subset E\) がルート系（root system）であるとは、以下を満たすことです。
 
         \begin{enumerate}
-            \item $\Delta$ は $0$ を含まない有限集合で、$E$ を張る。
-            \item $c \in \mathbb{R}$、$v \in \Delta$、$cv \in \Delta$
-                  のとき、$c = \pm 1$ である。
-            \item $v \in \Delta$ のとき、$\sigma_v(\Delta) = \Delta$ である。
-            \item \label{cartanInt} $v, w \in \Delta$ のとき、$c(v,w) \in \mathbb{Z}$ である。
+            \item \(\Delta \) は \(0\) を含まない有限集合で、\(E\) を張る。
+            \item \(c \in \mathbb{R}\)、\(v \in \Delta \)、\(cv \in \Delta \)
+                  のとき、\(c = \pm 1\) である。
+            \item \(v \in \Delta \) のとき、\(\sigma_v(\Delta) = \Delta \) である。
+            \item\label{cartanInt} \(v, w \in \Delta \) のとき、\(c(v,w) \in \mathbb{Z}\) である。
         \end{enumerate}
 
         また、ルート系の元をルート（root）と呼びます。
     \end{definition}
 
     条件 \ref{cartanInt} が少し分かりにくいですが、言葉でいえば、
-    「$v$ の鏡映 $\sigma_v$ で $w$ を移したときの差分が $v$ の整数倍になる」
+    「\(v\) の鏡映 \(\sigma_v\) で \(w\) を移したときの差分が \(v\) の整数倍になる」
     という感じになります。
 \end{frame}
 
@@ -189,18 +183,18 @@
 \begin{frame}
     \frametitle{2つのルートの関係}
 
-    ベクトル $v,w$ のなす角を $\theta$ とします。
+    ベクトル \(v,w\) のなす角を \(\theta \) とします。
 
-    $c(v,w)$ の定義から $c(v,w) c(w,v) = 4 \cos^2 \theta$ が導けます。
+    \(c(v,w)\) の定義から \(c(v,w) c(w,v) = 4 \cos^2 \theta \) が導けます。
 
-    ここで $v, w$ をルートとし、それらが線型独立とすると、
-    $c(v,w) \in \mathbb{Z}$ から、
+    ここで \(v, w\) をルートとし、それらが線型独立とすると、
+    \(c(v,w) \in \mathbb{Z}\) から、
     \[
         c(v,w) c(w,v) = 0, 1, 2, 3
     \]
     となることが分かります。
 
-    また、$\theta$ のとりうる値は以下です。
+    また、\(\theta \) のとりうる値は以下です。
     \[
         \frac{\pi}{2}, \frac{\pi}{3}, \frac{2\pi}{3},
         \frac{\pi}{4}, \frac{3\pi}{4}, \frac{\pi}{6}, \frac{5\pi}{6}
@@ -213,16 +207,16 @@
     ルート系には、基底のようなものが存在しています。
 
     \begin{proposition}[ルート系の底]
-        $\Delta \subset E$ をルート系とします。
-        以下を満たす $\Pi \subset \Delta$ が存在します。
+        \(\Delta \subset E\) をルート系とします。
+        以下を満たす \(\Pi \subset \Delta \) が存在します。
 
         \begin{enumerate}
-            \item $\Pi$ は $E$ の基底である。
-            \item $v \in \Delta$ を $v = \sum_{e \in \Pi} c_e e$ とすると、
-                  $c_e$ は全て $0$ 以上の整数、または全て $0$ 以下の整数となる。
+            \item \(\Pi \) は \(E\) の基底である。
+            \item \(v \in \Delta \) を \(v = \sum_{e \in \Pi} c_e e\) とすると、
+                  \(c_e\) は全て \(0\) 以上の整数、または全て \(0\) 以下の整数となる。
         \end{enumerate}
 
-        $\Pi$ を $\Delta$ の底（base）と呼びます。
+        \(\Pi \) を \(\Delta \) の底（base）と呼びます。
     \end{proposition}
 \end{frame}
 
@@ -230,21 +224,21 @@
     \frametitle{ディンキン図形の定義}
 
     \begin{definition}[ディンキン図形]
-        $\Delta$ を $n$ 次元空間のルート系、$\Pi$ を $\Delta$ の底とします。
+        \(\Delta \) を \(n\) 次元空間のルート系、\(\Pi \) を \(\Delta \) の底とします。
 
-        以下のように構成されるグラフを $\Delta$ のディンキン図形（Dynkin diagram）と呼びます。
+        以下のように構成されるグラフを \(\Delta \) のディンキン図形（Dynkin diagram）と呼びます。
 
         \begin{enumerate}
-            \item $n$ 個のノードを持つ。各ノードは $\Pi$ の元でラベルづけされる。
+            \item \(n\) 個のノードを持つ。各ノードは \(\Pi \) の元でラベルづけされる。
             \item ノードとノードを何本かの辺で結ぶ。
-                  その本数は $c(v,w) c(w,v)$ とする。
+                  その本数は \(c(v,w) c(w,v)\) とする。
                   （したがって、0〜3本である）
             \item 辺で結ばれたノードについて、
-                  $(v|v)$ と $(w|w)$ が異なる場合、
+                  \((v|v)\) と \((w|w)\) が異なる場合、
                   大きいほうのノードから小さいほうのノードへ矢印をつける。
         \end{enumerate}
 
-        補足：$c(v,w) c(w,v) = 1$ のときは $(v|v) = (w|w)$ であるため、
+        補足：\(c(v,w) c(w,v) = 1\) のときは \((v|v) = (w|w)\) であるため、
         矢印がつくのは辺が2本または3本のときとなります。
     \end{definition}
 \end{frame}
@@ -339,13 +333,13 @@
         また、以下のディンキン図形に対応するルート系が存在する。
 
         \begin{itemize}
-            \item $A_n$ ($n \geq 1$)
-            \item $B_n$ ($n \geq 2$)
-            \item $C_n$ ($n \geq 3$)
-            \item $D_n$ ($n \geq 4$)
-            \item $E_n$ ($n = 6,7,8$)
-            \item $F_4$
-            \item $G_2$
+            \item \(A_n\) (\(n \geq 1\))
+            \item \(B_n\) (\(n \geq 2\))
+            \item \(C_n\) (\(n \geq 3\))
+            \item \(D_n\) (\(n \geq 4\))
+            \item \(E_n\) (\(n = 6,7,8\))
+            \item \(F_4\)
+            \item \(G_2\)
         \end{itemize}
     \end{theorem}
 
@@ -357,19 +351,19 @@
 
     \begin{table}
         \begin{tabular}{cc}
-            $A_n$ &
+            \(A_n\) &
             \scalebox{3}{
                 \dynkin{A}{}
             } \\
-            $B_n$ &
+            \(B_n\) &
             \scalebox{3}{
                 \dynkin{B}{}
             } \\
-            $C_n$ &
+            \(C_n\) &
             \scalebox{3}{
                 \dynkin{C}{}
             } \\
-            $D_n$ &
+            \(D_n\) &
             \scalebox{3}{
                 \dynkin{D}{}
             }
@@ -382,23 +376,23 @@
 
     \begin{table}
         \begin{tabular}{cc}
-            $E_6$ &
+            \(E_6\) &
             \scalebox{2.5}{
                 \dynkin{E}{6}
             } \\
-            $E_7$ &
+            \(E_7\) &
             \scalebox{2.5}{
                 \dynkin{E}{7}
             } \\
-            $E_8$ &
+            \(E_8\) &
             \scalebox{2.5}{
                 \dynkin{E}{8}
             } \\
-            $F_4$ &
+            \(F_4\) &
             \scalebox{2.5}{
                 \dynkin{F}{4}
             } \\
-            $G_2$ &
+            \(G_2\) &
             \scalebox{2.5}{
                 \dynkin{G}{2}
             }
