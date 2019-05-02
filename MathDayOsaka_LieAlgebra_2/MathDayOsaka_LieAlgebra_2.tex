@@ -1,20 +1,15 @@
 \documentclass{ltjsarticle}
-\usepackage{amsmath}
-\usepackage{amssymb}
-\usepackage{amsthm}
-\usepackage{thmtools}
+\usepackage{amsmath,amssymb,amsfonts,amsthm,thmtools,hyperref}
+\usepackage[capitalize]{cleveref}
 \declaretheoremstyle[bodyfont=\upshape,notefont=\bfseries,qed=\qedsymbol,spaceabove=1ex,spacebelow=1ex]{mystyle}
 \declaretheorem[style=mystyle,numberwithin=section]{definition}
 \declaretheorem[style=mystyle,sibling=definition]{theorem}
 \declaretheorem[style=mystyle,sibling=definition]{proposition}
 \declaretheorem[style=mystyle,sibling=definition]{example}
-
 \title{リー代数の話 (2)}
 \author{宇佐見 公輔}
 \date{2019年4月5日}
-
 \begin{document}
-
 \maketitle
 
 前回はリー代数の定義と例を述べましたが、今回はリー代数の分類、特に複素数体上の有限次元のリー代数の分類についての話をします。
@@ -190,7 +185,7 @@ $I$ を極大可解イデアルとした場合に、次のことが知られて�
 有限次元複素リー代数については、可解リー代数の分類と単純リー代数の分類はすでになされています。
 以下、その結果を述べます。
 
-まずは、可解リー代数についてです。例 \ref{uppertriangle} で挙げた上三角行列を思い出してください。
+まずは、可解リー代数についてです。\cref{uppertriangle} で挙げた上三角行列を思い出してください。
 
 \begin{theorem}[可解リー代数の分類]
     $L$ を有限次元複素リー代数とします。

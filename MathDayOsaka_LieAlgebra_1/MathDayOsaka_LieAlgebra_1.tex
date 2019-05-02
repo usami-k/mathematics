@@ -1,19 +1,15 @@
 \documentclass{ltjsarticle}
-\usepackage{amsmath}
-\usepackage{amssymb}
-\usepackage{amsthm}
-\usepackage{thmtools}
+\usepackage{amsmath,amssymb,amsfonts,amsthm,thmtools,hyperref}
+\usepackage[capitalize]{cleveref}
 \declaretheoremstyle[bodyfont=\upshape,notefont=\bfseries,qed=\qedsymbol,spaceabove=1ex,spacebelow=1ex]{mystyle}
 \declaretheorem[style=mystyle,numberwithin=section]{definition}
+\declaretheorem[style=mystyle,sibling=definition]{theorem}
 \declaretheorem[style=mystyle,sibling=definition]{proposition}
 \declaretheorem[style=mystyle,sibling=definition]{example}
-
 \title{リー代数の話 (1)}
 \author{宇佐見 公輔}
 \date{2019年4月3日}
-
 \begin{document}
-
 \maketitle
 
 今回は、リー代数（Lie Algebra）についての話を少しします。
@@ -64,8 +60,8 @@
                   [z, ax + by] & = a[z, x] + b[z, y]
               \end{align*}
               が成り立つ。
-        \item \label{comm} $\forall x \in L$ について $[x, x] = 0$ である。
-        \item \label{Jacobi} $\forall x, y, z \in L$ について、
+        \item\label{comm} $\forall x \in L$ について $[x, x] = 0$ である。
+        \item\label{Jacobi} $\forall x, y, z \in L$ について、
               \[
                   [x, [y, z]] + [y, [z, x]] + [z, [x, y]] = 0
               \]
@@ -73,7 +69,7 @@
     \end{enumerate}
 \end{definition}
 
-この (\ref{Jacobi}) の式を、ヤコビ恒等式（Jacobi identity）と呼びます。
+この条件 \ref{Jacobi} の式を、ヤコビ恒等式（Jacobi identity）と呼びます。
 
 定義からすぐに導かれる性質として、以下が重要です。
 
@@ -86,7 +82,7 @@
 この性質はリー代数の大きな特徴といえるかと思います。
 
 \begin{proof}
-    $[x + y, x + y]$ を考えます。条件 (\ref{comm}) から $[x + y, x + y] = 0$ になります。
+    $[x + y, x + y]$ を考えます。定義の条件 \ref{comm} から $[x + y, x + y] = 0$ になります。
 
     一方、双線型性から、$[x + y, x + y] = [x, x] + [x, y] + [y, x] + [y, y] = [x, y] + [y, x]$ です。
 
@@ -94,13 +90,13 @@
 \end{proof}
 
 実は $F$ の標数が $2$ でない場合には、
-リー代数の定義から条件 (\ref{comm}) を外して代わりに $[x, y] = -[y, x]$ という条件を入れたとき、
-条件 (\ref{comm}) を導くこともできます
+リー代数の定義から条件 \ref{comm} を外して代わりに $[x, y] = -[y, x]$ という条件を入れたとき、
+条件 \ref{comm} を導くこともできます
 （$y$ のところに $x$ を入れると $[x, x] = -[x, x]$ となり、
 標数が $2$ でないことから $[x, x] = 0$ が導ける）。
 
 したがって、標数が $2$ でない場合のみを考えるなら、
-条件 (\ref{comm}) を $[x, y] = -[y, x]$ で置き換えてリー代数を定義することも可能です。
+条件 \ref{comm} を $[x, y] = -[y, x]$ で置き換えてリー代数を定義することも可能です。
 しかし普通は、より強い条件である $[x, x] = 0$ を採用します。
 
 \section{結合代数とリー代数}
@@ -126,7 +122,7 @@
 
 次のようにして結合代数からリー代数を構成することができます。
 
-\begin{example}[結合代数から導かれるリー代数] \label{commutator}
+\begin{example}[結合代数から導かれるリー代数]\label{commutator}
     $A$ を $F$ 上の結合代数とします。
     ここにブラケット積を
     \[
@@ -232,7 +228,7 @@ derivation の合成 $D \circ E$ は derivation であるとは限りません�
     ここに、加法、スカラー倍、乗法を、行列の加法、スカラー倍、乗法で定義すれば、
     $\mathrm{M}(n,F)$ は $F$ 上の結合代数になります。
 
-    したがって、これは \ref{commutator} によってリー代数となります。
+    したがって、これは \cref{commutator} によってリー代数となります。
     $\mathrm{M}(n,F)$ をリー代数とみなす場合、
     一般線型リー代数（general linear Lie algebra）と呼び、$\mathrm{gl}(n,F)$ と書きます。
 \end{example}
