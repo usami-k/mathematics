@@ -1,8 +1,8 @@
 \documentclass{ltjsarticle}
 \usepackage{amsmath,amssymb,amsfonts,amsthm,thmtools,hyperref}
 \usepackage[capitalize]{cleveref}
-\declaretheoremstyle[thmbox=M,bodyfont=\upshape,notefont=\bfseries]{mystyle}
-\declaretheoremstyle[qed=\qedsymbol,bodyfont=\upshape,notefont=\bfseries]{myproofstyle}
+\declaretheoremstyle[thmbox={style=M,bodystyle=\upshape}]{mystyle}
+\declaretheoremstyle[qed=\qedsymbol,bodyfont=\upshape]{myproofstyle}
 \declaretheorem[style=mystyle,numberwithin=section]{definition}
 \declaretheorem[style=mystyle,sibling=definition]{theorem}
 \declaretheorem[style=mystyle,sibling=definition]{proposition}
@@ -27,7 +27,7 @@
 ベクトル空間やリー代数では実数や複素数を考えることが多いので、それを思い浮かべてもらって良いです。
 
 \begin{definition}[ベクトル空間]
-    集合 \(V\) が \(F\) 上のベクトル空間であるとは、ふたつの演算、加法とスカラー倍
+    集合 \(V\) が \(F\) 上のベクトル空間（vector space）であるとは、ふたつの演算、加法とスカラー倍
     \begin{align*}
         V \times V & \to V         \\
         (x, y)     & \mapsto x + y

@@ -1,8 +1,8 @@
 \documentclass{ltjsarticle}
 \usepackage{amsmath,amssymb,amsfonts,amsthm,thmtools,hyperref}
 \usepackage[capitalize]{cleveref}
-\declaretheoremstyle[thmbox=M,bodyfont=\upshape,notefont=\bfseries]{mystyle}
-\declaretheoremstyle[qed=\qedsymbol,bodyfont=\upshape,notefont=\bfseries]{myproofstyle}
+\declaretheoremstyle[thmbox={style=M,bodystyle=\upshape}]{mystyle}
+\declaretheoremstyle[qed=\qedsymbol,bodyfont=\upshape]{myproofstyle}
 \declaretheorem[style=mystyle,numberwithin=section]{definition}
 \declaretheorem[style=mystyle,sibling=definition]{theorem}
 \declaretheorem[style=mystyle,sibling=definition]{proposition}
