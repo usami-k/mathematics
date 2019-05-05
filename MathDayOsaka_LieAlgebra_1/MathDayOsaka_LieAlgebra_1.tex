@@ -1,11 +1,14 @@
 \documentclass{ltjsarticle}
 \usepackage{amsmath,amssymb,amsfonts,amsthm,thmtools,hyperref}
 \usepackage[capitalize]{cleveref}
-\declaretheoremstyle[bodyfont=\upshape,notefont=\bfseries,qed=\qedsymbol,spaceabove=1ex,spacebelow=1ex]{mystyle}
+\declaretheoremstyle[thmbox=M,bodyfont=\upshape,notefont=\bfseries]{mystyle}
+\declaretheoremstyle[qed=\qedsymbol,bodyfont=\upshape,notefont=\bfseries]{myproofstyle}
 \declaretheorem[style=mystyle,numberwithin=section]{definition}
 \declaretheorem[style=mystyle,sibling=definition]{theorem}
 \declaretheorem[style=mystyle,sibling=definition]{proposition}
 \declaretheorem[style=mystyle,sibling=definition]{example}
+\declaretheorem[style=myproofstyle,name=Proof,numbered=no]{myproof}
+\renewenvironment{proof}{\begin{myproof}}{\end{myproof}}
 \title{リー代数の話 (1)}
 \author{宇佐見 公輔}
 \date{2019年4月3日}
@@ -36,7 +39,7 @@
     が定義されていて、以下の条件を満たすことです。
     \begin{itemize}
         \item 加法について、結合法則、交換法則、単位元の存在、逆元の存在、が成り立つ（別の言い方をすれば加法群である）。
-        \item スカラー倍について、\(1x = x\) 、\((cd)x = c(dx)\) 、\((c + d)x = cx + dx\) 、\(c(x + y) = cx + cy\)
+        \item スカラー倍について、\(1x = x\)、 \((cd)x = c(dx)\)、 \((c + d)x = cx + dx\)、 \(c(x + y) = cx + cy\)
               が成り立つ。
     \end{itemize}
 \end{definition}
