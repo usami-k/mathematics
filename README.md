@@ -3,6 +3,7 @@
 ## Onsager代数の話（Generalized Onsager algebras）
 
 * [PDF](OnsagerAlgebra/OnsagerAlgebra.pdf)
+* [第５回 関西日曜数学 友の会](https://kansai-sunday-math.connpass.com/event/130553/) での発表資料。
 
 ## ディンキン図形を知る（ルート系とディンキン図形）
 
