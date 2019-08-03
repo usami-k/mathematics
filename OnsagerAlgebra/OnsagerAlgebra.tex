@@ -61,13 +61,14 @@
     \frametitle{Onsager algebra の定義}
 
     \begin{definition}[Onsager algebra]
-        \( \{A_m, G_m\} \) (\( m \in \mathbb{Z} \)) を基底として持ち、
+        \( \{A_k, G_m\} \) (\( k \in \mathbb{Z} \), \( m \in \mathbb{Z}_{>0} \)) を基底として持ち、
         ブラケット積を以下で定義したリー代数を Onsager algebra という。
         \begin{align*}
-            [A_m, A_n] & = 4G_{m-n}            \\
-            [G_m, A_n] & = 2A_{m+n} - 2A_{m-n} \\
+            [A_k, A_l] & = 4G_{k-l}            \\
+            [G_m, A_k] & = 2A_{k+m} - 2A_{k-m} \\
             [G_m, G_n] & = 0
         \end{align*}
+        （ここで \(G_{-m} := -G_m\), \(G_0 := 0\)）
     \end{definition}
 \end{frame}
 
@@ -116,9 +117,9 @@
             \{ x \in \mathbb{C}[t,t^{-1}] \otimes \mathfrak{sl}(2,\mathbb{C}) \mid \omega(x) = x \}
         \]
         （\(\omega \) による fixed point subalgebra）は Onsager algebra と同型である。
-        また、以下の \( \{A_m, G_m\} \) (\( m \in \mathbb{Z} \)) がその基底である。
+        また、以下の \( \{A_k, G_m\} \) (\( k \in \mathbb{Z} \), \( m \in \mathbb{Z}_{>0} \)) がその基底である。
         \begin{align*}
-            A_m & = 2t^m e + 2t^{-m} f \\
+            A_k & = 2t^k e + 2t^{-k} f \\
             G_m & = (t^m - t^{-m}) h
         \end{align*}
     \end{proposition}
