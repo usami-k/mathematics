@@ -4,6 +4,7 @@
 
 * [PDF](OnsagerAlgebra/OnsagerAlgebra.pdf)
 * [第５回 関西日曜数学 友の会](https://kansai-sunday-math.connpass.com/event/130553/) での発表資料。
+* 関連ブログ記事 : [Generalized Onsager algebras の話をしました #kanmath05](https://usami-k.hatenadiary.jp/entry/2019/08/04/001010)
 
 ## ディンキン図形を知る（ルート系とディンキン図形）
 
