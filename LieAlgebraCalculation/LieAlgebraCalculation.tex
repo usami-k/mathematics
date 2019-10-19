@@ -1,0 +1,277 @@
+\documentclass{beamer}
+\usepackage{luatexja,setspace,listings}
+\usepackage[mark=o]{dynkin-diagrams}
+\usetheme{Luebeck}
+\usecolortheme{seahorse}
+\usefonttheme{structurebold,serif}
+\setbeamertemplate{navigation symbols}{}
+\setstretch{1.5}
+\lstset{basicstyle=\ttfamily,language=Mathematica}
+
+\title{リー代数の計算の楽しみ}
+\author{宇佐見 公輔}
+\date{2019年10月19日}
+\begin{document}
+\maketitle
+
+\begin{frame}
+    \frametitle{自己紹介}
+
+    職業：プログラマ / 趣味：数学
+
+    \bigskip
+
+    関西日曜数学友の会での発表履歴：
+    \begin{itemize}
+        \item Generalized Onsager algebras（第5回 / 2019年8月）
+        \item ルート系とディンキン図形（第4回 / 2019年4月）
+        \item ラムダ計算の話（第3回 / 2018年11月）
+        \item 圏論とHaskell（第2回 / 2018年8月）
+    \end{itemize}
+
+    \bigskip
+
+    執筆参加：
+    \begin{itemize}
+        \item 数学デイズ大阪編：低次元のリー代数をみる \scriptsize{（Kindle 版発売中）}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{リー代数}
+
+    \begin{block}{ベクトル空間とリー代数}
+        ベクトル空間 = 「加法」と「スカラー倍」
+
+        リー代数 = ベクトル空間 + 第3の演算「ブラケット積」
+    \end{block}
+
+    ブラケット積が満たすべき条件
+    \begin{enumerate}
+        \item \([ax + by, z] = a[x, z] + b[y, z]\), \\
+              \([z, ax + by] = a[z, x] + b[z, y]\)（双線型性）
+        \item \([x, x] = 0\) (\(\implies [x, y] = - [y, x]\))（交代性）
+        \item \([x, [y, z]] + [y, [z, x]] + [z, [x, y]] = 0\)（Jacobi identity）
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}
+    \frametitle{抽象的に与えられたリー代数}
+
+    いくつかの「生成元」を用意して、加法、スカラー倍、ブラケット積をほどこして得られるものの集合を考える。
+
+    \begin{block}{\(A_1\)：生成元と関係式で与えられたリー代数}
+        生成元：\(e,\, f,\, h\)
+
+        関係式：\([e, f] = h, \quad [h, e] = 2e, \quad [h, f] = -2f\)
+    \end{block}
+
+    これはどのようなリー代数か？
+\end{frame}
+
+\begin{frame}
+    \frametitle{「どのようなリー代数か」とは}
+
+    何が分かったらいいのか？
+
+    \begin{itemize}
+        \item リー代数はベクトル空間なのだから、基底が知りたい。
+        \item そして、その基底同士のブラケット積が知りたい。
+    \end{itemize}
+
+    \bigskip
+
+    特に、行列のリー代数であらわすことができれば分かりやすい。
+\end{frame}
+
+\begin{frame}
+    \frametitle{行列のリー代数}
+
+    \begin{block}{\(\mathfrak{gl}(n,\mathbb{C})\)}
+        \(\mathbb{C}\) 成分の \(n\) 次正方行列がなすベクトル空間 + 次のブラケット積
+        \[
+            [X, Y] := XY - YX
+        \]
+    \end{block}
+
+    このブラケット積の定義は、リー代数の条件を満たしていることが確認できる。
+\end{frame}
+
+\begin{frame}
+    \frametitle{抽象的なリー代数と行列のリー代数との対応}
+
+    \begin{block}{\(\mathfrak{sl}(2,\mathbb{C})\)}
+        \(\mathfrak{sl}(2,\mathbb{C}) := \{ X \in \mathfrak{gl}(2,\mathbb{C}) \mid \mathrm{tr}(X) = 0 \} \)
+    \end{block}
+
+    これは \(3\) 次元のベクトル空間で、以下の \(E,\, F,\, H\) を基底に持つ。
+    \[
+        E := \begin{pmatrix}
+            0 & 1 \\
+            0 & 0
+        \end{pmatrix}, \quad
+        F := \begin{pmatrix}
+            0 & 0 \\
+            1 & 0
+        \end{pmatrix}, \quad
+        H := \begin{pmatrix}
+            1 & 0  \\
+            0 & -1
+        \end{pmatrix}
+    \]
+    \[
+        [E, F] = H, \quad [H, E] = 2E \quad [H, F] = -2F
+    \]
+
+    \(\mathfrak{sl}(2,\mathbb{C})\) は、生成元と関係式のリー代数 \(A_1\) と同型である。
+\end{frame}
+
+\begin{frame}
+    \frametitle{実際に調べたいリー代数}
+
+    \begin{block}{\(D_n^{(1)}\) 型 Onsager 代数}
+        生成元：\(e_0,\, e_1,\, \dots,\, e_n\)
+
+        関係式：
+        \begin{itemize}
+            \item \([[e_i, e_j], e_j] = e_i\) (\(i\) と \(j\) が \(D_n^{(1)}\) 型 Dynkin 図形で隣り合う)
+            \item \([e_i, e_j] = 0\) (otherwise)
+        \end{itemize}
+    \end{block}
+
+    \scalebox{1.5}{
+        \dynkin[labels={0,1,2,3,,n-2,n-1,n},edge length=1cm]{D}[1]{}
+    }
+\end{frame}
+
+\begin{frame}
+    \frametitle{おおまかな予想}
+
+    \(A_n^{(1)}\) 型 Onsager 代数が、
+    loop 代数 \(\mathbb{C}[t,t^{-1}] \otimes \mathfrak{sl}(n,\mathbb{C})\) の
+    部分代数として具体的に実現できることは、先人の結果で分かっていた。
+
+    \(D_n^{(1)}\) 型 Onsager 代数は、
+    loop 代数 \(\mathbb{C}[t,t^{-1}] \otimes \mathfrak{o}(2n,\mathbb{C})\) の
+    部分代数として書けるだろうと予想できた。
+
+    \bigskip
+
+    （実際、これは正しかった。\\
+    参考：関西日曜数学友の会第5回 Generalized Onsager algebras）
+\end{frame}
+
+\begin{frame}
+    \frametitle{どうやって調べるのか？}
+
+    これを調べる時点で理論的な背景は分からなかったので力技。
+
+    同型になる部分代数を探して、基底を見つけたい。
+    そのために、行列同士のブラケット積をたくさん計算する必要がある。
+
+    行列を直接計算しても良いが、以下の関係を利用してみる。
+
+    \begin{block}{\(\mathfrak{gl}(n,\mathbb{C})\) の基底のブラケット積}
+        \(E_{ij}\)： (\(i,j\)) 成分だけ \(1\) で他は \(0\) の行列
+        \[
+            [E_{ij}, E_{kl}] = \delta_{jk}E_{il} - \delta_{il}E_{kj}
+        \]
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \frametitle{パターンマッチ}
+
+    ある式の中に \([E_{ij}, E_{kl}]\) という形を見つけたら、
+    機械的に \(\delta_{jk}E_{il} - \delta_{il}E_{kj}\) に置き換えることができる。
+
+    このルールだけあれば、\(E_{ij}\) が行列をあらわしたものであることは忘れてしまってもいい。
+
+    \bigskip
+
+    この置き換えは、プログラミングで言う「パターンマッチ」で処理できるのではないか？
+
+    その考えに基づいてプログラムコードを書いてみる。
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Mathematica を使う}
+
+    \begin{exampleblock}{Mathematica によるパターンマッチプログラム}
+        \begin{lstlisting}
+LieBracket[e[i_,j_],e[k_,l_]] :=
+    KroneckerDelta[j,k] e[i,l]
+    - KroneckerDelta[i,l] e[k,j];
+LieBracket[e[1,2],e[2,3]] (* = e[1,3] *)
+LieBracket[e[4,5],e[5,4]]
+(* = e[4,4] - e[5,5] *)
+        \end{lstlisting}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \frametitle{D 型の基底}
+
+    \begin{block}{\(\mathfrak{o}(2n,\mathbb{C})\)}
+        \(\mathfrak{o}(2n,\mathbb{C}) := \{ X \in \mathfrak{gl}(2n,\mathbb{C}) \mid X^{\intercal}S + SX = 0 \} \)
+
+        (\(S\)： (\(i,j\)) 成分が \(i + j = 2n + 1\) のときだけ \(1\) で他は \(0\) の行列)
+    \end{block}
+
+    \begin{block}{\(\mathfrak{o}(2n,\mathbb{C})\) の基底のブラケット積}
+        \(G_{ij} := E_{ij} - E_{2n+1-j,2n+1-i}\)
+        \begin{align*}
+            [G_{ij}, G_{kl}] = & \delta_{jk}G_{il} - \delta_{il}G_{kj} \\
+                               & + \delta_{2n+1-j,l}G_{k,2n+1-i} - \delta_{2n+1-i,k}G_{2n+1-j,l}
+        \end{align*}
+    \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{D 型の計算}
+
+    \begin{exampleblock}{D 型を計算するパターンマッチプログラム}
+        \begin{lstlisting}
+G[i_,j_] := 0 /; i+j == 2n+1;
+G[i_,j_] := - G[2n+1-j,2n+1-i] /; i+j > 2n+1;
+LieBracket[G[i_,j_],G[k_,l_]] :=
+    KroneckerDelta[j,k] G[i,l]
+    - KroneckerDelta[i,l] G[k,j]
+    + KroneckerDelta[2n+1-j,l] G[k,2n+1-i]
+    - KroneckerDelta[2n+1-k,i] G[2n+1-j,l];
+LieBracket[G[1,2],G[2,3]] (* = G[1,3] *)
+        \end{lstlisting}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}[fragile]
+    \begin{exampleblock}{例：生成元の表現を探す}
+        \begin{lstlisting}
+e[i_]:= t[1]G[2n-1,1] + t[-1]G[1,2n-1] /;i==0;
+e[i_]:= G[i,i+1] + G[i+1,i] /;1<=i<=n-1;
+e[i_]:= G[n-1,n+1] + G[n+1,n-1] /;i==n;
+LieBracket[e[1],e[2]]
+(* = G[1,2] + G[2,1] *)
+LieBracket[e[1],e[2],e[3]]
+(* = G[1,3] - G[3,1] *)
+LieBracket[e[1],e[2],e[3],e[4]]
+(* = G[1,4] + G[4,1] *)
+        \end{lstlisting}
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}
+    \frametitle{まとめ}
+
+    リー代数の計算の手助けとして、Mathematica プログラミングを活用した。
+
+    行列を計算する代わりにパターンマッチを活用することで、計算の見通しも良くなった。
+    様々な組み合わせを試した結果、生成元と基底をローラン多項式＋行列で表現できた。
+    （Date, Usami, On an analog of the Onsager algebra of Type \(D_n^{(1)}\)）
+
+    \bigskip
+
+    プログラミングを数学研究に活用するのも楽しい！
+\end{frame}
+
+\end{document}
