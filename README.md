@@ -1,5 +1,11 @@
 # mathematics
 
+## リー代数の計算の楽しみ
+
+* [PDF](LieAlgebraCalculation/LieAlgebraCalculation.pdf)
+* [マスパーティ](https://mathparty.localinfo.jp) の中の日曜数学会での発表資料。
+* 関連ブログ記事 : [マスパーティに参加してリー代数の計算の話をしました #日曜数学会 #マスパーティ](https://usami-k.hatenadiary.jp/entry/2019/10/20/213753)
+
 ## Onsager代数の話（Generalized Onsager algebras）
 
 * [PDF](OnsagerAlgebra/OnsagerAlgebra.pdf)
