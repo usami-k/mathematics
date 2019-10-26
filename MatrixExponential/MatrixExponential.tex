@@ -1,0 +1,421 @@
+\documentclass[a5paper]{ltjsarticle}
+\usepackage{amsmath,amssymb,amsfonts,amsthm,thmtools,hyperref}
+\declaretheoremstyle[thmbox={style=M,bodystyle=\upshape}]{usmstyle}
+\declaretheoremstyle[qed=\qedsymbol,bodyfont=\upshape]{usmproofstyle}
+\declaretheorem[style=usmstyle,numberwithin=section,name=Definition]{usmdefinition}
+\declaretheorem[style=usmstyle,sibling=usmdefinition,name=Theorem]{usmtheorem}
+\declaretheorem[style=usmstyle,sibling=usmdefinition,name=Proposition]{usmproposition}
+\declaretheorem[style=usmstyle,sibling=usmdefinition,name=Lemma]{usmlemma}
+\declaretheorem[style=usmstyle,sibling=usmdefinition,name=Example]{usmexample}
+\declaretheorem[style=usmproofstyle,numbered=no,name=Proof]{usmproof}
+
+\title{行列の指数関数}
+\author{宇佐見 公輔}
+\date{第12回 関西すうがく徒のつどい\\2019年10月26日}
+\begin{document}
+\maketitle
+
+\section{はじめに}
+
+行列の指数関数 \(e^X\) を初めて見たときは、「行列『乗』ってなんだ？」と思ったものです。
+数の「\(n\) 乗」はその数を \(n\) 個だけ乗算することだ、という感覚だと、
+数の「行列『乗』」というのは何ともとらえづらいものに思えます。
+
+しかし考えてみると、整数乗や有理数乗あたりまでならまだしも、実数の指数関数 \(e^x\) あたりになってくると、
+「実数『乗』」という感覚でとらえるのは何となくあやしげになってきます。
+さらに、複素数の指数関数 \(e^{x + yi}\) になると、
+「複素数『乗』」という感覚はもはや当てはまらないと思えてきます。
+
+指数関数を複素数に拡張するときの方法として、指数関数を冪級数で定義するというのがひとつのやり方です。
+実のところ、この発想を応用して、指数関数を行列にも拡張することができます。
+
+\section{指数関数}
+
+まず、指数関数について確認しておきましょう。
+
+実数の指数関数の定義のしかたはいろいろあります。
+ひとつには、数の自然数乗の定義から始める以下の方法があります。
+
+\begin{usmdefinition}[実数の指数関数]\label{実数の指数関数}
+    実数 \(a > 0\) を固定します。
+    \begin{itemize}
+        \item 正の整数 \(n\) に対して、\(a^n := a \cdot a \cdots a\)（右辺は \(n\) 個の積）と定義します。
+        \item \(a^0 := 1\) と定義します。
+        \item 正の整数 \(n\) に対して、\(a^{-n} := \frac{1}{a^n}\) と定義します。
+        \item 有理数 \(x = \frac{m}{n}\)（\(m\) は整数、\(n\) は正の整数）に対して、\(a^x := \sqrt[n]{a^m}\) と定義します。
+        \item 実数 \(x \in \mathbb{R}\) に対して、\(x\) に収束する有理数列 \( \{x_k\} \) を選び、
+              \(\displaystyle a^x := \lim_{k \to \infty} a^{x_k}\) と定義します。
+    \end{itemize}
+
+    このとき、\(\mathbb{R}\) から \(\mathbb{R}\) への関数 \(x \mapsto a^x\) を \(a\) を底とする指数関数と定義します。
+\end{usmdefinition}
+
+実数の場合の定義は有理数列の取り方によらず well-defined であることが分かります。これで実数の指数関数が定義できます。
+
+特に、ネイピア数 \(e\) を底とする指数関数を \(\exp \) と書くことにします。つまり、\(\exp x := e^x\) です。
+これ以降は、指数関数と言えばこの \(\exp \) のことを指します。
+
+指数関数の性質を確認しておきましょう。指数関数は、次の指数法則を満たします
+（上記の定義は、指数法則を満たすように拡張していました）。
+
+\begin{usmproposition}[指数法則]\label{指数法則}
+    \[
+        \exp(x + y) = (\exp x) (\exp y)
+    \]
+\end{usmproposition}
+
+また、微分しても変わらないという性質を持ちます。
+
+\begin{usmproposition}[指数関数の微分]\label{指数関数の微分}
+    \[
+        \frac{d}{dx} \exp x = \exp x
+    \]
+\end{usmproposition}
+
+さらに、次のように冪級数展開することが可能です。
+
+\begin{usmproposition}[指数関数の冪級数展開]
+    \[
+        \exp x = \sum_{k=0}^{\infty} \frac{1}{k!} x^k
+        = 1 + x + \frac{1}{2!}x^2 + \frac{1}{3!}x^3 + \cdots + \frac{1}{k!}x^k + \cdots
+    \]
+\end{usmproposition}
+
+特に、右辺の無限級数は \(x\) がどのような実数であっても収束します（さらに、単に収束するだけでなく絶対収束します）。
+
+さて、実数の指数関数の定義は \autoref{実数の指数関数} で良かったのですが、この方法で複素数に拡張するのは難しいです。
+そこで、冪級数展開を定義として採用します。
+
+\begin{usmdefinition}[複素数の指数関数]\label{複素数の指数関数}
+    指数関数 \(\exp : \mathbb{C} \to \mathbb{C}\) を次で定義します。
+    \[
+        \exp z := \sum_{k=0}^{\infty} \frac{1}{k!} z^k
+        = 1 + z + \frac{1}{2!}z^2 + \frac{1}{3!}z^3 + \cdots + \frac{1}{k!}z^k + \cdots
+    \]
+\end{usmdefinition}
+
+これが定義として成り立っているためには、右辺の無限級数が収束している必要があります。
+実際のところ、\(z\) がどのような複素数であっても収束します（さらに、絶対収束します）。
+
+複素数の指数関数も、指数法則（\autoref{指数法則}）や指数関数の微分（\autoref{指数関数の微分}）の性質を持ちます。
+
+\section{行列の指数関数}
+
+本題である行列の指数関数に入りましょう。
+
+定義のしかたは、実数の指数関数を複素数の指数関数に拡張したときのように、冪級数を使った方法を使います。
+ところで、数の無限級数は分かるとして、行列の無限級数とは何でしょうか。
+そのあたりの言葉を整理しておきましょう。
+
+まずは、\(m \times n\) 行列 \(X = (x_{ij})\) で考えます（\(x_{ij}\) は行列 \(X\) の \((i,j)\) 成分）。
+なお、行列の成分体 \(\mathbb{F}\) は実数体 \(\mathbb{R}\) または 複素数体 \(\mathbb{C}\) としておきます。
+
+数に対して数列を考えるときのように、行列に対して行列の列を考えます。
+つまり、\(X_1, X_2, \dots, X_k, \dots \) という行列の集まりです。
+ここで、行列の列を考える場合は、各行列 \(X_k\) は同じサイズである（\(m \times n\) 行列である）としておきます。
+
+\begin{usmdefinition}[行列の極限]
+    \(m \times n\) 行列の列 \( \{X_k = (x^{(k)}_{ij})\} \) が \(m \times n\) 行列 \(Y = (y_{ij})\) に収束するとは、
+    各 \((i,j)\) 成分ごとの数列 \( \{x^{(k)}_{ij} \} \) が \(y_{ij}\) に収束することです。
+\end{usmdefinition}
+
+つまり、\(mn\) 個の数列がそれぞれ収束する、ということです。
+
+\begin{usmdefinition}[行列の級数]
+    \(m \times n\) 行列の列 \( \{X_k = (x^{(k)}_{ij})\} \) に対して、
+    部分和 \(\displaystyle S_k := \sum_{l=0}^k X_l\) を考えます。
+    行列の列 \( \{S_k\} \) が行列 \(Y\) に収束するとき、
+    行列の級数 \( \displaystyle \sum_{k=0}^{\infty} X_k \) は行列 \(Y\) に収束するといいます。
+\end{usmdefinition}
+
+実のところ、行列の列や級数は、数の数列や級数と同様の概念で、特に何か違いがあるわけではありません。
+
+さてここからは、\(n \times n\) の正方行列で考えていきます。
+
+正方行列 \(X\) に対しては、\(X^2, X^3, \dots \) を、\(X^k := X \cdot X \cdots X\)（右辺は \(k\) 個の積）と定義できます。
+また、\(X^0 := I\)（\(I\) は単位行列）と定義します。
+\(X^k\) が定義できるのですから、行列の列
+\[
+    I, X, \frac{1}{2!} X^2, \frac{1}{3!} X^3, \dots, \frac{1}{k!} X^k, \dots
+\]
+を考えることができ、行列の級数
+\[
+    \sum_{k=0}^{\infty} \frac{1}{k!} X^k
+    = I + X + \frac{1}{2!}X^2 + \frac{1}{3!}X^3 + \cdots + \frac{1}{k!}X^k + \cdots
+\]
+を考えることができます。
+
+この無限級数は収束するでしょうか。
+実数や複素数で収束するのだし、収束は成分ごとの数列で考えるのだから、これも収束しそうに思えます。
+ただ注意がいるのは、行列の積の値は他の成分の影響を受ける、という点です。
+例えば、\(X^2\) の \((i,j)\) 成分は \( \sum_{k=1}^{n} x_{ik} x_{kj} \) であり、
+\(X\) の \((i,j)\) 成分 \(x_{ij}\) だけでは表されません。
+とはいえ、実際にはちゃんと収束してくれます。
+
+\begin{usmproposition}
+    任意の \(n \times n\) 行列 \(X\) に対して、級数
+    \[
+        \sum_{k=0}^{\infty} \frac{1}{k!} X^k
+        = I + X + \frac{1}{2!}X^2 + \frac{1}{3!}X^3 + \cdots + \frac{1}{k!}X^k + \cdots
+    \]
+    は収束します（さらに、ノルム収束します）。
+\end{usmproposition}
+
+なお、ノルム収束については今回の話では詳しくは触れませんが、絶対収束の行列版にあたります。
+
+証明はそれほど難しくはありませんが、各種の教科書にゆずります。
+例えば、\cite{Satake} には、帰納法による証明が示されています（ただしノルム収束には触れられていません）。
+また、\cite{Saito} や \cite{Inoguchi} には、ノルム収束の証明が示されています。
+
+この命題によって、行列の指数関数が定義できます。
+\(\mathbb{F}\) 成分の \(n \times n\) 正方行列の全体を \(\mathbf{M}(n,\mathbb{F})\) と書くことにします
+（\(\mathbb{F}\) は \(\mathbb{R}\) または \(\mathbb{C}\)）。
+
+\begin{usmdefinition}[行列の指数関数]\label{行列の指数関数}
+    指数関数 \(\exp : \mathbf{M}(n,\mathbb{F}) \to \mathbf{M}(n,\mathbb{F})\) を次で定義します。
+    \[
+        \exp X := \sum_{k=0}^{\infty} \frac{1}{k!} X^k
+        = I + X + \frac{1}{2!}X^2 + \frac{1}{3!}X^3 + \cdots + \frac{1}{k!}X^k + \cdots
+    \]
+\end{usmdefinition}
+
+特に、\(\exp X\) は行列であることに注意しておきます。
+最初に「行列『乗』ってなんだ？」と書きましたが、「行列『乗』」は行列になるというわけです。
+
+\section{指数法則}
+
+指数関数を \autoref{実数の指数関数} のように定義する場合は、定義を組み立てる時点で、指数法則を満たすように配慮しながら拡張していきました。
+一方、指数関数を \autoref{複素数の指数関数} や \autoref{行列の指数関数} のように冪級数で定義した場合、
+指数法則が成り立つかどうかは改めて確認する必要があります。
+
+ここで、指数関数の冪級数は（絶対収束あるいはノルム収束することから）級数の項の順番の入れかえが可能です。
+このことを使うと、冪級数による定義から指数法則を導くことができます。
+
+まずは、実数または複素数の指数関数で見てみましょう。
+
+\begin{align*}
+    \exp (x+y) & = \sum_{k=0}^{\infty} \frac{1}{k!} {(x+y)}^k                                & \text{（定義どおり）}           \\
+               & = \sum_{k=0}^{\infty} \frac{1}{k!} \sum_{p+q=k} \frac{k!}{p!q!} x^p y^q     & \text{（二項定理）}             \\
+               & = \sum_{k=0}^{\infty} \sum_{p+q=k} \frac{1}{p!q!} x^p y^q                   & \text{（約分）}                 \\
+               & = \sum_{p=0}^{\infty} \sum_{q=0}^{\infty} \frac{1}{p!q!} x^p y^q            & \text{（和の取り方を変更）}     \\
+               & = \sum_{p=0}^{\infty} \frac{1}{p!} x^p \sum_{q=0}^{\infty} \frac{1}{q!} y^q & \text{（\(p\)と\(q\)で分ける）} \\
+               & = (\exp x) (\exp y)
+\end{align*}
+
+これで、指数関数の冪級数から、指数法則（\autoref{指数法則}）が導けました。
+
+これと同じことが、行列の場合でもできるでしょうか？ 事情が大きく異なるのが、行列の場合は積が可換ではないという点です。
+上記の証明（式変形）の中で、可換でない場合に問題が起こるのは二項定理です。
+行列の積が可換であれば二項定理は成り立つので、上記の証明のやり方で指数法則が導けます。
+
+\begin{usmproposition}[行列の指数法則]\label{行列の指数法則}
+    行列 \(X, Y\) について \(XY = YX\) が成り立つとき、
+    \[
+        \exp(X + Y) = (\exp X) (\exp Y)
+    \]
+\end{usmproposition}
+
+積が可換でない場合は、指数法則が成り立つとは限りません。
+一般には、次のような公式が知られています。
+
+\begin{usmproposition}[Baker-Campbell-Hausdorffの公式]\label{Baker-Campbell-Hausdorff}
+    \[
+        \exp Z = (\exp X) (\exp Y)
+    \]
+    ここで \(Z\) は以下で与えられます（なお、\([X,Y] := XY - YX\)）。
+    \[
+        Z = X + Y + \frac{1}{2} [X,Y] + \frac{1}{12} ([X,[X,Y]]-[Y,[X,Y]]) + \cdots
+    \]
+    （これ以降の項もすべて \([X,Y]\) の組み合わせであらわされる）
+\end{usmproposition}
+
+積が可換な場合は \([X,Y] = 0\) になるので、指数法則に一致します。
+
+\section{指数関数と微分方程式}
+
+次に、微分について考えてみましょう。
+とは言っても「行列で微分する」というような概念を考えるわけではありません。
+実数変数を入れて、その変数で微分することを考えます。
+
+実数変数 \(t\) を持つ関数 \(f_1(t), f_2(t), \dots, f_n(t)\) に関する微分方程式
+\begin{align*}
+    \frac{d}{dt} f_1(t) & = a_{11}f_1(t) + a_{12}f_2(t) + \cdots + a_{1n}f_n(t) \\
+    \frac{d}{dt} f_2(t) & = a_{21}f_1(t) + a_{22}f_2(t) + \cdots + a_{2n}f_n(t) \\
+    \cdots                                                                      \\
+    \frac{d}{dt} f_n(t) & = a_{n1}f_1(t) + a_{n2}f_2(t) + \cdots + a_{nn}f_n(t) \\
+\end{align*}
+を考えます。
+これは、行列 \(A = (a_{ij})\) とベクトル値関数 \(\boldsymbol{f}(t) = (f_1(t), f_2(t), \dots, f_n(t))\) を使えば、
+次のように書けます。
+\[
+    \frac{d}{dt} \boldsymbol{f}(t) = A \boldsymbol{f}(t)
+\]
+
+いま、\(n = 1\) の場合を考えると、これは微分方程式
+\[
+    \frac{d}{dt} f(t) = a f(t)
+\]
+であり、その解は \(f(t) = \exp (ta) c\) です（ここで \(c := f(0)\)）。
+
+このことから、\(n > 2\) の場合でも \(\boldsymbol{f}(t) = \exp (tA) \boldsymbol{c}\)
+（ここで \(\boldsymbol{c} := \boldsymbol{f}(0)\)）が解であると予想できます。
+
+これを確認するため、\(\frac{d}{dt} \exp (tA)\) を求めます。
+
+いま、\(A^k\) の \((i,j)\) 成分を \(a^{(k)}_{ij}\) とし、\(\exp (tA)\) の \((i,j)\) 成分を \(b_{ij}(t)\) とすると、
+\[
+    b_{ij}(t) = \sum_{k=0}^{\infty} \frac{1}{k!} a^{(k)}_{ij} t^k
+\]
+です。これは \(t\) についての冪級数ですが、収束する冪級数は項別微分できるので、
+\begin{align*}
+    \frac{d}{dt} b_{ij}(t) & = \sum_{k=0}^{\infty} \frac{d}{dt} \frac{1}{k!} a^{(k)}_{ij} t^k \\
+                           & = \sum_{k=1}^{\infty} \frac{1}{(k-1)!} a^{(k)}_{ij} t^{k-1}
+\end{align*}
+です。ここで、\(A^k = A A^{k-1}\) から \(a^{(k)}_{ij} = \sum_{l=1}^{n} a_{il}a^{(k-1)}_{lj}\) なので、
+\begin{align*}
+    \frac{d}{dt} b_{ij}(t) & = \sum_{k=1}^{\infty} \frac{1}{(k-1)!} \sum_{l=1}^{n} a_{il}a^{(k-1)}_{lj} t^{k-1}  \\
+                           & = \sum_{l=1}^{n} a_{il} \sum_{k=1}^{\infty} \frac{1}{(k-1)!} a^{(k-1)}_{lj} t^{k-1} \\
+                           & = \sum_{l=1}^{n} a_{il} b_{lj}(t)
+\end{align*}
+となります。したがって、次の結果が導けました。
+
+\begin{usmproposition}
+    \[
+        \frac{d}{dt} \exp (tA) = A \exp (tA)
+    \]
+\end{usmproposition}
+
+このことから、このセクション最初の微分方程式の解が分かります。
+
+\begin{usmproposition}
+    連立線型微分方程式
+    \[
+        \frac{d}{dt} \boldsymbol{f}(t) = A \boldsymbol{f}(t)
+    \]
+    の、初期条件 \(\boldsymbol{c} = \boldsymbol{f}(0)\) を満たす解は
+    \[
+        \boldsymbol{f}(t) = \exp (tA) \boldsymbol{c}
+    \]
+    で与えられる（しかもこれのみである）。
+\end{usmproposition}
+
+解がこれのみであることの証明は難しくありませんが、ここでは省略します。
+
+こうして、微分方程式の解としての観点から見て、実数や複素数の指数関数と行列の指数関数は同様の性質を持つことが言えました。
+
+\section{指数関数が与える対応関係}
+
+行列の指数関数は、ある行列の集合からある行列の集合への対応を与えますが、その対応の例を見てみます。
+
+まず、指数関数の性質をひとつ挙げておきます。
+
+\begin{usmproposition}\label{det-tr}
+    任意の行列 \(X \in \mathbf{M}(n,\mathbb{F})\) に対して、
+    \[
+        \det (\exp X) = \exp (\mathrm{tr} X)
+    \]
+    が成り立ちます。
+\end{usmproposition}
+
+これの証明はここではしません。なお、上記の式は両辺とも数であることを注意しておきます。
+
+\begin{usmproposition}[正則性]
+    任意の行列 \(X \in \mathbf{M}(n,\mathbb{F})\) に対して、\(\exp X\) は正則行列になります。
+\end{usmproposition}
+\begin{usmproof}
+    上記の \autoref{det-tr} から、特に \(\det (\exp X)\) は \(0\) にはなりません（右辺は実数または複素数の指数関数の値であるため）。
+    したがって、\(\exp X\) は正則行列になります。
+\end{usmproof}
+
+このことから、\(\exp \) は \(\mathbf{M}(n,\mathbb{F})\) から正則行列の全体 \(\mathit{GL}(n,\mathbb{F})\) への対応を与えています。
+実は \(\mathbf{M}(n,\mathbb{F})\) はブラケット積演算を入れることでリー代数 \(\mathfrak{gl}(n,\mathbb{F})\) となり、
+\(\mathit{GL}(n,\mathbb{F})\) はリー群です。
+つまり、\(\exp \) がリー代数からリー群への対応を与える例となっています。
+
+といっても、これだけでは何だかよくわからない話ですので、次に、別の対応関係を見てみます。
+
+まず、次のような行列の群を考えます。
+
+\begin{usmdefinition}[回転群]
+    \(X \in \mathbf{M}(n,\mathbb{R})\) が
+    \[
+        X^{\intercal}X = I
+    \]
+    （ここで、\(X^{\intercal}\) は \(X\) の転置行列）を満たすとき、\(X\) を直交行列と呼びます。
+
+    直交行列で行列式が \(1\) になるもの全体
+    \[
+        \mathit{SO}(n) := \{ X \in \mathbf{M}(n,\mathbb{R}) \mid X^{\intercal}X = I, \det X = 1 \}
+    \]
+    は行列の積に関して群になります。これを回転群と呼びます。
+\end{usmdefinition}
+
+回転群もリー群の一種です（ここでは詳しい説明はしません）。
+
+\begin{usmdefinition}[交代行列]
+    \(X \in \mathbf{M}(n,\mathbb{R})\) が
+    \[
+        X^{\intercal} + X = O
+    \]
+    を満たすとき、\(X\) を交代行列と呼びます。
+\end{usmdefinition}
+
+\begin{usmproposition}[交代行列と直交行列]
+    \(X \in \mathbf{M}(n,\mathbb{R})\) を交代行列とします。
+
+    このとき、\(\exp X\) は直交行列になります。
+    また、\(\det (\exp X) = 1\) となります。
+\end{usmproposition}
+\begin{usmproof}
+    \({(\exp X)}^{\intercal} = \exp (X^{\intercal})\) に注意すると、
+    \begin{align*}
+        {(\exp X)}^{\intercal} (\exp X) & = (\exp (X^{\intercal})) (\exp X) \\
+                                        & = \exp (X^{\intercal} + X)        \\
+                                        & = \exp O                          \\
+                                        & = I
+    \end{align*}
+    したがって、\(\exp X\) は直交行列です。
+
+    交代行列は、その定義から対角成分はすべて \(0\) でなくてはなりません。
+    したがって、\(\mathrm{tr} X = 0\) です。
+    \autoref{det-tr} を使うと、
+    \[
+        \det (\exp X) = \exp (\mathrm{tr} X) = \exp 0 = 1
+    \]
+    となり、\(\det (\exp X) = 1\) です。
+\end{usmproof}
+
+行列の指数関数の性質がうまく効いていることが見てとれます。
+
+上記の命題から、\(\exp \) は交代行列の全体から回転群 \(\mathit{SO}(n)\) への対応を与えています。
+交代行列の全体はブラケット積を入れることでリー代数 \(\mathfrak{so}(n)\) になります。
+つまりこれも、\(\exp \) がリー代数からリー群への対応を与える例となっています。
+
+リー群は幾何的な側面と代数的な側面を持ちますが、リー代数は代数的な側面が強く、
+リー群を直接調べるよりも議論が簡単になることがあります。
+それを可能にしているのが、行列の指数関数（および対数関数）だというわけです。
+
+\section{おわりに}
+
+行列の指数関数に興味が出てきた人のために、本をいくつか紹介しておきます。
+
+行列の指数関数については、線型代数の本のうちのいくつかでも見かけることができます。
+\cite{Satake} や \cite{Matsuzaka} あたりがまとまっているかと思います。
+
+また、線型代数学の本の続編のような位置付けの \cite{Saito} では、この行列の指数関数がメインテーマとなっています。
+大学初年度で微分積分と線型代数を勉強したあとで、その復習を兼ねつつ発展的な話題にも触れることができてちょうど良いと思います。
+今回は扱いませんでしたが、行列の対数関数についても書かれています。
+
+行列の指数関数とリー群やリー代数（リー環）は大きな関連があります。
+リー群やリー代数は、線型代数の次に学ぶ内容としておすすめの題材です。
+\cite{Inoguchi} や \cite{Inoguchi2} は、線型代数の内容をはさみながら書かれているため、読みやすいと思います。
+
+\begin{thebibliography}{9}
+    \bibitem{Satake} 佐武一郎, 線型代数学, 裳華房, 2015.（新装版）
+    \bibitem{Matsuzaka} 松坂和夫, 線形代数入門, 岩波書店, 2018.（新装版）
+    \bibitem{Saito} 齋藤正彦, 数学講義 行列の解析学, 東京図書, 2017.
+    \bibitem{Inoguchi} 井ノ口順一, はじめて学ぶリー群, 現代数学社, 2017.
+    \bibitem{Inoguchi2} 井ノ口順一, はじめて学ぶリー環, 現代数学社, 2018.
+\end{thebibliography}
+
+\end{document}
