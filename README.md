@@ -1,5 +1,11 @@
 # mathematics
 
+## 行列の指数関数
+
+* [PDF](MatrixExponential/MatrixExponential.pdf)
+* [第12回 関西すうがく徒のつどい](https://kansaimath.tenasaku.com/?page_id=1595) での発表資料。
+* 関連ブログ記事 : [行列の指数関数の話をしました #kansaimath](https://usami-k.hatenadiary.jp/entry/2019/10/27/214152)
+
 ## リー代数の計算の楽しみ
 
 * [PDF](LieAlgebraCalculation/LieAlgebraCalculation.pdf)
