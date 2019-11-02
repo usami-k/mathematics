@@ -1,0 +1,332 @@
+\documentclass{beamer}
+\usepackage{luatexja,setspace}
+\usetheme{Luebeck}
+\usecolortheme{seahorse}
+\usefonttheme{structurebold,serif}
+\setbeamertemplate{navigation symbols}{\usebeamerfont{footline}\insertframenumber/\inserttotalframenumber}
+\setstretch{1.5}
+\theoremstyle{definition}
+\newtheorem{proposition}{Proposition}
+
+\title{回転群のはなし}
+\author{宇佐見 公輔}
+\date{第6回 関西日曜数学 友の会}
+\begin{document}
+\maketitle
+
+\begin{frame}
+    \frametitle{最近の趣味数学}
+
+    関西日曜数学 友の会：
+    \begin{itemize}
+        \item Generalized Onsager algebras（第5回 / 2019年8月）
+        \item ルート系とディンキン図形（第4回 / 2019年4月）
+    \end{itemize}
+
+    日曜数学会：
+    \begin{itemize}
+        \item リー代数の計算の楽しみ（マスパーティ / 2019年10月）
+    \end{itemize}
+
+    関西すうがく徒のつどい：
+    \begin{itemize}
+        \item 行列の指数関数（第12回 / 2019年10月）
+    \end{itemize}
+
+    執筆参加：
+    \begin{itemize}
+        \item 数学デイズ大阪編：低次元のリー代数をみる \scriptsize{（Kindle 版発売中）}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{2次元回転行列}
+
+    2次元平面 \(\mathbb{R}^2\) を考えます。
+
+    ある点を、原点を中心として反時計回りに角度 \(t\) だけ回転させる作用は、
+    次の行列であらわされます。
+
+    \begin{definition}
+        \[
+            R(t) :=
+            \begin{pmatrix}
+                \cos t & - \sin t \\
+                \sin t & \cos t
+            \end{pmatrix}
+        \]
+    \end{definition}
+\end{frame}
+
+\begin{frame}
+    \frametitle{2次元回転行列の積}
+
+    \begin{proposition}
+        2次元回転行列について次が成り立ちます。
+        \[
+            R(t_1) R(t_2) = R(t_1 + t_2)
+        \]
+    \end{proposition}
+
+    これは計算すれば確認できます。
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{2次元の回転群}
+
+    \(R(t_1) R(t_2) = R(t_1 + t_2)\) という関係から、
+    \(\mathit{SO}(2) := \{R(t) \mid t \in \mathbb{R}\} \) が可換群であることが分かります。
+
+    \begin{proposition}
+        \begin{itemize}
+            \item 積で閉じている：\(R(t_1) R(t_2) \in \mathit{SO}(2)\)
+            \item 結合法則：\(R(t_1) (R(t_2) R(t_3)) = (R(t_1) R(t_2)) R(t_3)\)
+            \item 交換法則：\(R(t_1) R(t_2) = R(t_2) R(t_1)\)
+            \item 単位元：\(R(0)\) は単位元
+            \item 逆元：\(R(t)\) の逆元は \(R(- t)\)
+        \end{itemize}
+    \end{proposition}
+\end{frame}
+
+\begin{frame}
+    \frametitle{無限小の回転}
+
+    回転角 \(t\) を「無限小」にとることを考えます。つまり、
+    \begin{align*}
+        \cos t & = 1 - \frac{1}{2!}t^2 + \frac{1}{4!}t^4 - \cdots \\
+        \sin t & = t - \frac{1}{3!}t^3 + \frac{1}{5!}t^5 - \cdots
+    \end{align*}
+    のうち、2次以上の項を無視することを考えます。すると、
+    \[
+        R(t) =
+        \begin{pmatrix}
+            1 & - t \\
+            t & 1
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            1 & 0 \\
+            0 & 1
+        \end{pmatrix}
+        + t
+        \begin{pmatrix}
+            0 & - 1 \\
+            1 & 0
+        \end{pmatrix}
+    \]
+    となります。
+\end{frame}
+
+\begin{frame}
+    \frametitle{無限小回転の生成行列}
+
+    先ほどの観察から、次の行列が重要そうに見えてきます。
+    \[
+        J :=
+        \begin{pmatrix}
+            0 & - 1 \\
+            1 & 0
+        \end{pmatrix}
+    \]
+    これを使って、\(R(t)\) は以下のように書けます。
+    \begin{align*}
+        R(t) & =
+        \begin{pmatrix}
+            1 & 0 \\
+            0 & 1
+        \end{pmatrix}
+        + t
+        \begin{pmatrix}
+            0 & - 1 \\
+            1 & 0
+        \end{pmatrix} + O(t^2) \\
+             & = I + t J + O(t^2)
+    \end{align*}
+\end{frame}
+
+\begin{frame}
+    \frametitle{行列の指数関数}
+
+    \begin{definition}
+        行列 \(X\) の指数関数を次のように定義します。
+        \[
+            \exp X := \sum_{k=0}^{\infty} \frac{1}{k!} X^k
+            = I + X + \frac{1}{2!}X^2 + \frac{1}{3!}X^3 + \cdots + \frac{1}{k!}X^k + \cdots
+        \]
+    \end{definition}
+
+    （これについては、第12回 関西すうがく徒のつどいで話しました）
+\end{frame}
+
+\begin{frame}
+    \frametitle{回転行列と指数関数}
+
+    \(R(t) = I + t J + O(t^2)\) と述べましたが、
+    実は指数関数を使って次のように書けます。
+
+    \begin{proposition}
+        回転行列 \(R(t)\) は次のように書けます。
+        \begin{align*}
+            R(t) & = \exp (tJ)                                                                                     \\
+                 & = I + tJ + \frac{1}{2!}{(tJ)}^2 + \frac{1}{3!}{(tJ)}^3 + \cdots + \frac{1}{k!}{(tJ)}^k + \cdots
+        \end{align*}
+    \end{proposition}
+\end{frame}
+
+\begin{frame}
+    \frametitle{指数関数と三角関数}
+
+    回転行列は \(R(t) = (\cos t) I + (\sin t) J\) とも書けるので、
+    以下が分かります。
+
+    \begin{proposition}
+        次が成り立ちます。
+        \[
+            \exp (tJ) = (\cos t) I + (\sin t) J
+        \]
+    \end{proposition}
+\end{frame}
+
+\begin{frame}
+    \frametitle{3次元の回転}
+
+    3次元空間 \(\mathbb{R}^3\) での回転はもう少し複雑になります。
+
+    2次元の場合は、原点を通る回転軸（回転面に対して垂直な直線）がひとつだけでした。
+    2次元の回転は回転角という1パラメータであらわせました。
+
+    3次元の場合は、原点を通る回転軸がひとつではありません。
+    回転軸の向きを決めるためにパラメータを2つ使うため、
+    回転角と合わせて3つのパラメータが必要になります。
+\end{frame}
+
+\begin{frame}
+    \frametitle{3次元回転行列}
+
+    \begin{definition}
+        第1軸、第2軸、第3軸のまわりの回転行列
+        \begin{align*}
+            R_1(t) & :=
+            \begin{pmatrix}
+                1 & 0 & 0 \\
+                0 & \cos t & - \sin t \\
+                0 & \sin t & \cos t
+            \end{pmatrix} &
+            R_2(t) & :=
+            \begin{pmatrix}
+                \cos t & 0 & \sin t \\
+                0 & 1 & 0 \\
+                - \sin t & 0 & \cos t
+            \end{pmatrix} \\
+            R_3(t) & :=
+            \begin{pmatrix}
+                \cos t & - \sin t & 0 \\
+                \sin t & \cos t & 0 \\
+                0 & 0 & 1
+            \end{pmatrix}
+        \end{align*}
+    \end{definition}
+\end{frame}
+
+\begin{frame}
+    \frametitle{3次元の回転の行列表示}
+
+    3次元の回転をひとつの行列で具体的に書こうとすると、少しややこしい式になります。
+
+    しかし、3次元の回転は \(R_1(t), R_2(t), R_3(t)\) の積であらわすことができます。
+
+    そのため、この3つの回転行列をおさえることで3次元の回転群の本質を知ることができます。
+\end{frame}
+
+\begin{frame}
+    \frametitle{再び無限小の回転}
+
+    回転角 \(t\) の「無限小」を考えます（\(t\) の2次以上を無視）。
+    \begin{align*}
+        R_3(t) =
+        \begin{pmatrix}
+            1 & - t & 0 \\
+            t & 1 & 0 \\
+            0 & 0 & 1
+        \end{pmatrix}
+        & =
+        \begin{pmatrix}
+            1 & 0 & 0 \\
+            0 & 1 & 0 \\
+            0 & 0 & 1
+        \end{pmatrix}
+        + t
+        \begin{pmatrix}
+            0 & - 1 & 0 \\
+            1 & 0 & 0 \\
+            0 & 0 & 0
+        \end{pmatrix} \\
+        & = I + t J_3
+    \end{align*}
+
+    （\(J_3\) をそのように定義する）
+\end{frame}
+
+\begin{frame}
+    \frametitle{再び回転行列と指数関数}
+
+    \begin{proposition}
+        回転行列 \(R_1(t), R_2(t), R_3(t)\) は次のように書けます。
+        \[
+            R_1(t) = \exp (tJ_1), \quad
+            R_2(t) = \exp (tJ_2), \quad
+            R_3(t) = \exp (tJ_3)
+        \]
+        \begin{footnotesize}
+            ここで
+            \[
+                J_1 :=
+                \begin{pmatrix}
+                    0 & 0 & 0 \\
+                    0 & 0 & -1 \\
+                    0 & 1 & 0
+                \end{pmatrix}, \quad
+                J_2 :=
+                \begin{pmatrix}
+                    0 & 0 & 1 \\
+                    0 & 0 & 0 \\
+                    -1 & 0 & 0
+                \end{pmatrix}, \quad
+                J_3 :=
+                \begin{pmatrix}
+                    0 & -1 & 0 \\
+                    1 & 0 & 0 \\
+                    0 & 0 & 0
+                \end{pmatrix}
+            \]
+        \end{footnotesize}
+    \end{proposition}
+\end{frame}
+
+\begin{frame}
+    \frametitle{3次元回転の生成行列の関係}
+
+    \begin{proposition}
+        \(J_1, J_2, J_3\) の間には次の関係があります。
+        \begin{align*}
+            [J_1, J_2] & = - J_3 \\
+            [J_2, J_3] & = - J_1 \\
+            [J_3, J_1] & = - J_2
+        \end{align*}
+
+        （ここで \([X, Y] := XY - YX\)）
+    \end{proposition}
+\end{frame}
+
+\begin{frame}
+    \frametitle{さらなる話題}
+
+    \begin{itemize}
+        \item 回転行列は、簡単な形の行列から指数関数で生成される
+        \item 生成行列には、交代子積によってリー代数の構造がある
+        \item そのリー代数を調べることで回転群のことがわかる
+    \end{itemize}
+\end{frame}
+
+\end{document}
