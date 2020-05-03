@@ -1,0 +1,440 @@
+\documentclass{beamer}
+\usepackage{luatexja,tcolorbox}
+\usetheme{Luebeck}
+\usecolortheme{seahorse}
+\usefonttheme{structurebold,serif}
+\setbeamertemplate{navigation symbols}{\usebeamerfont{footline}\insertframenumber/\inserttotalframenumber}
+
+\newcommand{\ii}{\mathrm{i}}
+\newcommand{\jj}{\mathrm{j}}
+\newcommand{\kk}{\mathrm{k}}
+
+\title{四元数のはなし}
+\author{宇佐見 公輔}
+\date{第6.5回 関西日曜数学 友の会}
+\begin{document}
+\maketitle
+
+{
+    \setbeamercolor{background canvas}{bg=black}
+    \begin{frame}
+        \frametitle{今回はオンライン開催}
+
+        \begin{center}
+            \begin{tcolorbox}[hbox,colback=black,colframe=white,coltext=white]
+                ＊ いえのなかにいる ＊
+            \end{tcolorbox}
+        \end{center}
+    \end{frame}
+}
+
+\begin{frame}
+    \frametitle{自己紹介}
+
+    職業：プログラマ / 趣味：数学
+
+    \bigskip
+
+    最近の活動（登壇・ブログ・Twitter）：
+    \begin{itemize}
+        \item はじめて学ぶリー環 勉強ノート（4月19日〜）
+        \item Ising 模型 勉強ノート（3月29日〜4月18日）
+        \item Onsager 代数の話（3月22日 / 京都某所）
+        \item はじめて学ぶリー群 勉強ノート（1月11日〜3月28日）
+        \item リー代数と結合法則（2019年12月 / Advent Calendar）
+        \item 回転群のはなし（2019年11月 / 関西日曜数学友の会）
+        \item 行列の指数関数（2019年10月 / 関西数学徒のつどい）
+        \item リー代数の計算の楽しみ（2019年10月 / マスパーティ）
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{今回の内容}
+
+    \begin{itemize}
+        \item 四元数とは
+        \item なぜ四元数というものが考えられたのか
+        \item なぜ三元数はないのか
+        \item なぜ四元数は交換法則を満たさないのか
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{四元数とは}
+
+    次の形であらわされる数を四元数（しげんすう / quaternion）と呼びます（\(a_0, a_1, a_2, a_3 \in \mathbb{R}\)）。
+    \[
+        a_0 + a_1 \ii + a_2 \jj + a_3 \kk
+    \]
+
+    \begin{block}{虚数単位の積の規則}
+        \(\ii, \jj, \kk\) （これらを虚数単位と呼ぶ）の積を以下で定義します。
+        \begin{align*}
+            \ii^2   & = -1,             & \jj^2   & = -1,             & \kk^2   & = -1             \\
+            \ii \jj & = -\jj \ii = \kk, & \jj \kk & = -\kk \jj = \ii, & \kk \ii & = -\ii \kk = \jj
+        \end{align*}
+    \end{block}
+
+    また、虚数単位と \(\mathbb{R}\) とは可換とします。分配法則や結合法則は通常どおり使えるものとします。
+\end{frame}
+
+\begin{frame}
+    \frametitle{ハミルトンの関係式}
+
+    1843年にハミルトンが四元数を考え出しました。
+
+    \bigskip
+
+    ハミルトンが四元数のアイデアをひらめいたとき、嬉しさのあまり、
+    そのとき渡っていた橋（アイルランドのダブリンにあるブルーム橋）に以下の式を刻んだといいます。
+
+    \begin{block}{ハミルトンがブルーム橋に刻んだ関係式}
+        \[
+            \ii^2 = \jj^2 = \kk^2 = \ii \jj \kk = -1
+        \]
+    \end{block}
+
+    この関係式は、先ほどの「虚数単位の積の規則」と同値です。
+\end{frame}
+
+\begin{frame}
+    \frametitle{素朴な疑問}
+
+    四元数は複素数の拡張ですが、定義を見て、以下のような素朴な疑問が浮かびます。
+
+    \begin{block}{疑問1}
+        なぜ、複素数の拡張を考えたのでしょうか。
+    \end{block}
+
+    \begin{block}{疑問2}
+        なぜ、「四元数」なのでしょうか。「三元数」ではダメなのでしょうか。
+    \end{block}
+
+    \begin{block}{疑問3}
+        なぜ、四元数は交換法則を満たさない定義になったのでしょうか。
+        交換法則を満たすような定義にはできないのでしょうか。
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \frametitle{複素数と平面}
+
+    複素数は、平面上の点との対応づけが考えられます。
+    \[
+        a_0 + a_1 \ii \longleftrightarrow (a_0, a_1)
+    \]
+
+    ある複素数に対して、別の複素数をたしたりかけたりする操作は、
+    平面上で考えると、点を移動する操作と考えられます。
+
+    \bigskip
+
+    ここでは、特に複素数をかける操作に注目します。
+    つまり、複素数 \(\alpha\) に複素数 \(\beta\) をかける操作が、
+    平面上の点をどのように移動させる操作なのかを考えてみます。
+\end{frame}
+
+\begin{frame}
+    \frametitle{複素数の積と大きさ}
+
+    複素数の大きさは \(|\alpha| = \sqrt{a_0^2 + a_1^2}\) で定義されます。
+    平面上で考えると、原点からの距離にあたります。
+
+    \begin{block}{複素数の積と大きさ}
+        複素数 \(\alpha\) と複素数 \(\beta\) について以下が成り立ちます。
+        \[
+            |\alpha \beta| = |\alpha| |\beta|
+        \]
+    \end{block}
+
+    特に、大きさ \(1\) の複素数をかける操作は、平面上で考えると、
+    原点からの距離を変えない操作であることが分かります。
+    実のところ、平面上の回転変換になります。
+
+    また、大きさが \(1\) でない複素数の場合は、回転と拡大縮小とを組み合わせた変換になります。
+\end{frame}
+
+\begin{frame}
+    \frametitle{複素数の拡張の動機}
+
+    2次元平面上の回転変換が、複素数の積で表現できることが分かりました。
+    ここで「3次元空間について同じようなことができないか？」という発想が、ハミルトンが複素数の拡張を考えた動機だったようです。
+
+    \bigskip
+
+    つまり、3次元空間の点に対応する何らかの「数」を考えようということです。
+    そして、その「数」の積が空間上の回転や拡大縮小の変換を表現するようにしたいわけです。
+    そのためには、以下の性質を持っていてほしいと考えられます。
+    \begin{block}{新しい「数」に期待する性質}
+        \[
+            |\alpha \beta| = |\alpha| |\beta|
+        \]
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \frametitle{三元数の構想}
+
+    仮に、三元数を考えてみます（\(a_0, a_1, a_2 \in \mathbb{R}\)）。
+    \[
+        a_0 + a_1 \ii + a_2 \jj
+    \]
+    虚数単位について \(\ii^2 = -1\), \(\jj^2 = -1\) で、積は可換とします。
+
+    \bigskip
+
+    \(\alpha = a_0 + a_1 \ii + a_2 \jj\) の大きさを
+    \[
+        |\alpha| = \sqrt{a_0^2 + a_1^2 + a_2^2}
+    \]
+    で定義します。\(|\alpha|\) は3次元空間上で、原点から点 \((a_0, a_1, a_2)\) への距離にあたります。
+\end{frame}
+
+\begin{frame}
+    \frametitle{三元数の積}
+
+    2つの三元数の積を計算してみます。
+    \begin{align*}
+        \alpha \beta & = (a_0 + a_1 \ii + a_2 \jj) (b_0 + b_1 \ii + b_2 \jj)                                   \\
+                     & = a_0 b_0 - a_1 b_1 - a_2 b_2                                                           \\
+                     & \quad + (a_0 b_1 + a_1 b_0) \ii + (a_0 b_2 + a_2 b_0) \jj + (a_1 b_2 + a_2 b_1) \ii \jj
+    \end{align*}
+    ここで \(\ii \jj\) という項が出てきます。
+
+    \bigskip
+
+    積が三元数で閉じているためには、\(\ii \jj = x_0 + x_1 \ii + x_2 \jj\) と書ける必要があります。
+    \(\ii \jj\) をどのように定義するべきかが悩みどころです。
+
+    \bigskip
+
+    特に、\(|\alpha \beta| = |\alpha| |\beta|\) を満たすようにしたい、という観点で考えてみます。
+\end{frame}
+
+\begin{frame}
+    \frametitle{三元数の大きさについて考える 1}
+
+    \(\alpha^2\)（つまり \(\alpha = \beta\) の場合）を考えてみます。
+    \begin{align*}
+        \alpha^2 & = (a_0 + a_1 \ii + a_2 \jj)^2                                               \\
+                 & = a_0^2 - a_1^2 - a_2^2 + 2 a_0 a_1 \ii + 2 a_0 a_2 \jj + 2 a_1 a_2 \ii \jj
+    \end{align*}
+    ここで仮に、\(2 a_1 a_2 \ii \jj\) の項がなければ、
+    \begin{align*}
+        |\alpha^2| & = \sqrt{(a_0^2 - a_1^2 - a_2^2)^2 + (2 a_0 a_1)^2 + (2 a_0 a_2)^2}                        \\
+                   & = \sqrt{(a_0^2)^2 + (a_1^2)^2 + (a_2^2)^2 + 2 a_0^2 a_1^2 + 2 a_0^2 a_2^2 + 2a_1^2 a_2^2} \\
+                   & = \sqrt{(a_0^2 + a_1^2 + a_2^2)^2}                                                        \\
+                   & = |\alpha|^2
+    \end{align*}
+    となって綺麗におさまります。ということは、\(\ii \jj = 0\) ではないかと思えてきます。
+\end{frame}
+
+\begin{frame}
+    \frametitle{三元数の大きさについて考える 2}
+
+    \(\alpha \beta\) についても考えてみます。先ほどのように \(\ii \jj\) の項を無視してみます。
+    \begin{align*}
+        (|\alpha \beta|)^2   & = (a_0 b_0 - a_1 b_1 - a_2 b_2)^2                                                 \\
+                             & \quad + (a_0 b_1 + a_1 b_0)^2 + (a_0 b_2 + a_2 b_0)^2                             \\
+                             & = (a_0 b_0)^2 + (a_1 b_1)^2 + (a_2 b_2)^2                                         \\
+                             & \quad + (a_0 b_1)^2 + (a_1 b_0)^2 + (a_0 b_2)^2 + (a_2 b_0)^2 + 2 a_1 b_1 a_2 b_2 \\
+        (|\alpha| |\beta|)^2 & = (a_0^2 + a_1^2 + a_2^2)(b_0^2 + b_1^2 + b_2^2)
+    \end{align*}
+    残念ながら、\(|\alpha \beta| = |\alpha| |\beta|\) とはならないようです。
+
+    \bigskip
+
+    積 \(\alpha \beta\) の \(\ii \jj\) の係数に \(a_1\) や \(b_2\) が出てきていたので、これをうまく絡められればという雰囲気もあります。
+    実のところ、上の \((|\alpha \beta|)^2\) の式に \((a_1 b_2 - a_2 b_1)^2\) を足すことができればうまくいきます。
+\end{frame}
+
+\begin{frame}
+    \frametitle{交換法則をあきらめる}
+
+    \(\alpha^2\) を考えたときに \(2 a_1 a_2 \ii \jj\) の項に消えてほしかったわけですが、
+    そのためのアイデアとして、\(\ii \jj = 0\) とする代わりに、\(\ii \jj = - \jj \ii\) とする方法があります。
+
+    この場合、\((a_1 \ii)(a_2 \jj) + (a_2 \jj)(a_1 \ii)\) が \(2 a_1 a_2 \ii \jj\) ではなく \(0\) になります。
+
+    \bigskip
+
+    こうして、交換法則をあきらめる代わりに、\(|\alpha^2| = |\alpha|^2\) が成り立つようになります。
+
+    \bigskip
+
+    また、先ほどは触れませんでしたが、\(\ii \jj = 0\) という規則では
+    「\(\alpha \beta = 0\) であるにもかかわらず \(\alpha\) も \(\beta\) も \(0\) ではない」
+    という現象が起こることを許してしまっていました。
+    \(\ii \jj = - \jj \ii\) という規則ならば、この点は問題ありません。
+\end{frame}
+
+\begin{frame}
+    \frametitle{第3の虚数単位}
+
+    \(\ii \jj = - \jj \ii\) という規則を入れて、\(|\alpha \beta| = |\alpha| |\beta|\) はどうなるでしょうか。
+
+    \bigskip
+
+    この場合、\((a_1 \ii)(b_2 \jj) + (b_2 \jj)(a_1 \ii) = (a_1 b_2 - b_1 a_2)\ii \jj\) となります。
+    係数に \((a_1 b_2 - b_1 a_2)\) が出てくるのは良さげな雰囲気です。
+
+    しかし、\(\ii \jj = x_0 + x_1 \ii + x_2 \jj\) と書けなければならないのが障害となります。
+    実数項や \(\ii\), \(\jj\) の係数と衝突してしまって、\(|\alpha \beta| = |\alpha| |\beta|\) となる形は見つかりそうにありません。
+
+    \bigskip
+
+    そこで三元数の枠をこえて、第3の虚数単位 \(\kk = \ii \jj\) の導入が必要になりました。
+\end{frame}
+
+\begin{frame}
+    \frametitle{四元数の積}
+
+    三元数（と呼んでいたもの）で発生していた問題が、四元数の世界で解決されていることを確かめておきます。
+
+    \bigskip
+
+    \(\kk\) の係数が \(0\) の四元数を考えます。その積は以下のようになります。
+    \begin{align*}
+        \alpha \beta & = (a_0 + a_1 \ii + a_2 \jj) (b_0 + b_1 \ii + b_2 \jj)                               \\
+                     & = a_0 b_0 - a_1 b_1 - a_2 b_2                                                       \\
+                     & \quad + (a_0 b_1 + a_1 b_0) \ii + (a_0 b_2 + a_2 b_0) \jj + (a_1 b_2 - a_2 b_1) \kk
+    \end{align*}
+\end{frame}
+
+\begin{frame}
+    \frametitle{四元数の大きさについて考える 1}
+
+    \(\alpha^2\)（つまり \(\alpha = \beta\) の場合）について見ます。
+    \begin{align*}
+        \alpha^2 & = (a_0 + a_1 \ii + a_2 \jj)^2                           \\
+                 & = a_0^2 - a_1^2 - a_2^2 + 2 a_0 a_1 \ii + 2 a_0 a_2 \jj
+    \end{align*}
+    \(\kk\) の係数が \(0\) になってくれています。したがって、
+    \begin{align*}
+        |\alpha^2| & = \sqrt{(a_0^2 - a_1^2 - a_2^2)^2 + (2 a_0 a_1)^2 + (2 a_0 a_2)^2} \\
+                   & = \sqrt{(a_0^2 + a_1^2 + a_2^2)^2}                                 \\
+                   & = |\alpha|^2
+    \end{align*}
+    となって問題ありません。
+\end{frame}
+
+\begin{frame}
+    \frametitle{四元数の大きさについて考える 2}
+
+    \(\alpha \beta\) について見ます。
+    \begin{align*}
+        (|\alpha \beta|)^2 & = (a_0 b_0 - a_1 b_1 - a_2 b_2)^2                                             \\
+                           & \quad + (a_0 b_1 + a_1 b_0)^2 + (a_0 b_2 + a_2 b_0)^2 + (a_1 b_2 - a_2 b_1)^2 \\
+                           & = (a_0 b_0)^2 + (a_1 b_1)^2 + (a_2 b_2)^2                                     \\
+                           & \quad + (a_0 b_1)^2 + (a_1 b_0)^2 + (a_0 b_2)^2 + (a_2 b_0)^2                 \\
+                           & \quad + (a_1 b_2)^2 + (a_2 b_1)^2                                             \\
+                           & = (a_0^2 + a_1^2 + a_2^2)(b_0^2 + b_1^2 + b_2^2)                              \\
+                           & = (|\alpha| |\beta|)^2
+    \end{align*}
+    となって問題ありません。
+\end{frame}
+
+\begin{frame}
+    \frametitle{四元数の大きさ}
+
+    \(\kk\) の項も含めた2つの四元数の積を計算してみます。
+    \begin{align*}
+        \alpha \beta & = (a_0 + a_1 \ii + a_2 \jj + a_3 \kk) (b_0 + b_1 \ii + b_2 \jj + b_3 \kk) \\
+                     & = a_0 b_0 - a_1 b_1 - a_2 b_2 - a_3 b_3                                   \\
+                     & \quad + (a_0 b_1 + a_1 b_0 + a_2 b_3 - a_3 b_2) \ii                       \\
+                     & \quad + (a_0 b_2 - a_1 b_3 + a_2 b_0 + a_3 b_1) \jj                       \\
+                     & \quad + (a_0 b_3 + a_1 b_2 - a_2 b_1 + a_3 b_0) \kk
+    \end{align*}
+
+    \bigskip
+
+    項の数が多くて大変ではありますが、直接計算することで \(|\alpha \beta| = |\alpha| |\beta|\) が成り立つことを確認できます。
+\end{frame}
+
+\begin{frame}
+    \frametitle{四元数と4次元空間との対応}
+
+    こうして、複素数の拡張として四元数がえられました。
+
+    \bigskip
+
+    ところで、複素数を拡張する動機を振り返ると、3次元空間の回転を記述する数が欲しいというものでした。
+    しかし、実際にえられた四元数は、4次元空間と対応するものになっています。
+    \[
+        a_0 + a_1 \ii + a_2 \jj + a_3 \kk \longleftrightarrow (a_0, a_1, a_2, a_3)
+    \]
+
+    四元数に四元数をかける操作は、4次元空間での回転にあたります。
+\end{frame}
+
+\begin{frame}
+    \frametitle{純虚四元数と3次元の回転}
+
+    3次元空間と対応させるためには、四元数の虚数部分のみを使います（純虚四元数）。
+    \[
+        a_1 \ii + a_2 \jj + a_3 \kk \longleftrightarrow (a_1, a_2, a_3)
+    \]
+    純虚四元数は積について閉じていません。このため、扱いに注意が必要です。
+
+    \bigskip
+
+    純虚四元数を使った3次元空間の回転は、積ではなく以下の操作（随伴）であらわされます。
+    \[
+        \alpha \mapsto \beta \alpha \beta^{-1}
+    \]
+    （\(\alpha\) は純虚四元数、\(\beta\) は純虚に限らない四元数）
+\end{frame}
+
+\begin{frame}
+    \frametitle{四元数のオイラーの公式}
+
+    回転の話題に関連して、オイラーの公式の四元数バージョンを紹介しておきます。
+
+    \bigskip
+
+    複素数の場合は、以下でした。
+    \[
+        e^{\ii \theta} = \cos \theta + \ii \sin \theta
+    \]
+
+    四元数の場合は、以下のようになります。
+    \begin{align*}
+        e^{\ii \theta + \jj \phi + \kk \psi} & = \cos \sqrt{\theta^2 + \phi^2 + \psi^2}                                                                                  \\
+                                             & \quad + \frac{\ii \theta + \jj \phi + \kk \psi}{\sqrt{\theta^2 + \phi^2 + \psi^2}} \sin \sqrt{\theta^2 + \phi^2 + \psi^2}
+    \end{align*}
+\end{frame}
+
+\begin{frame}
+    \frametitle{発展的な話題}
+
+    四元数の先には、さらに八元数もあります。
+    \begin{itemize}
+        \item 実数を2つ使って、複素数を構成することができます。
+        \item 複素数を2つ使って、四元数を構成することができます。四元数では交換法則が崩れます。
+        \item 四元数を2つ使って、八元数を構成することができます。八元数では結合法則が崩れます。
+    \end{itemize}
+
+    \bigskip
+
+    四元数や八元数の応用のひとつとして、リー群やリー代数があります。
+    \begin{itemize}
+        \item 四元数や八元数は、リー群やリー代数の構成に使われます。
+        \item 特に、例外型（\(G_2\)、\(F_4\)、\(E_6\)、\(E_7\)、\(E_8\)）リー群やリー代数の構成では八元数が重要です。
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{参考文献}
+
+    最近出た、以下の本を参考にさせていただきました。良い本だと思います。おすすめ。
+
+    \bigskip
+
+    \begin{tcolorbox}
+        松岡 学 \\
+        「数の世界 自然数から実数、複素数、そして四元数へ」 \\
+        講談社ブルーバックス
+    \end{tcolorbox}
+\end{frame}
+
+\end{document}
