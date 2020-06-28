@@ -1,5 +1,10 @@
 # mathematics
 
+## 平面の敷き詰めとルート系
+
+* [PDF](TilingAndRootSystem/TilingAndRootSystem.pdf)
+* [第18回日曜数学会](https://live2.nicovideo.jp/watch/lv326638395) での発表資料。（2020-06-28）
+
 ## 四元数のはなし
 
 * [PDF](Quaternion/Quaternion.pdf)
