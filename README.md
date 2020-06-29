@@ -4,6 +4,7 @@
 
 * [PDF](TilingAndRootSystem/TilingAndRootSystem.pdf)
 * [第18回日曜数学会](https://live2.nicovideo.jp/watch/lv326638395) での発表資料。（2020-06-28）
+* 関連ブログ記事 : [平面の敷き詰めとルート系の話をしました #日曜数学会](https://usami-k.hatenadiary.jp/entry/2020/06/29/001824)
 
 ## 四元数のはなし
 
