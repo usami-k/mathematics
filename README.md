@@ -4,6 +4,7 @@
 
 * [PDF](TilingAndRootSystem/TilingAndRootSystem.pdf)
 * [第18回日曜数学会](https://live2.nicovideo.jp/watch/lv326638395) での発表資料。（2020-06-28）
+* 動画 : [平面の敷き詰めとルート系　＠第18回日曜数学会 - ニコニコ動画](https://www.nicovideo.jp/watch/sm37214964)
 * 関連ブログ記事 : [平面の敷き詰めとルート系の話をしました #日曜数学会](https://usami-k.hatenadiary.jp/entry/2020/06/29/001824)
 
 ## 四元数のはなし
@@ -28,6 +29,7 @@
 
 * [PDF](LieAlgebraCalculation/LieAlgebraCalculation.pdf)
 * [マスパーティ](https://mathparty.localinfo.jp) の中の日曜数学会での発表資料。（2019-10-19）
+* 動画 : [リー代数の計算の楽しみ　＠第16回日曜数学会 - ニコニコ動画](https://www.nicovideo.jp/watch/sm36329327)
 * 関連ブログ記事 : [マスパーティに参加してリー代数の計算の話をしました #日曜数学会 #マスパーティ](https://usami-k.hatenadiary.jp/entry/2019/10/20/213753)
 
 ## Onsager代数の話（Generalized Onsager algebras）
