@@ -1,5 +1,10 @@
 # mathematics
 
+## ルービックキューブと群論
+
+* [PDF](RubiksCubeAndGroupTheory/RubiksCubeAndGroupTheory.pdf)
+* [第7回 関西日曜数学 友の会](https://kansai-sunday-math.connpass.com/event/189660/) での発表資料。（2020-10-03）
+
 ## 平面の敷き詰めとルート系
 
 * [PDF](TilingAndRootSystem/TilingAndRootSystem.pdf)
