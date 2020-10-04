@@ -4,6 +4,7 @@
 
 * [PDF](RubiksCubeAndGroupTheory/RubiksCubeAndGroupTheory.pdf)
 * [第7回 関西日曜数学 友の会](https://kansai-sunday-math.connpass.com/event/189660/) での発表資料。（2020-10-03）
+* 関連ブログ記事 : [ルービックキューブと群論の話をしました #kanmath07](https://usami-k.hatenadiary.jp/entry/2020/10/03/211645)
 
 ## 平面の敷き詰めとルート系
 
