@@ -1,66 +1,15 @@
 # mathematics
 
-## ルービックキューブと群論
-
-* [PDF](RubiksCubeAndGroupTheory/RubiksCubeAndGroupTheory.pdf)
-* [第7回 関西日曜数学 友の会](https://kansai-sunday-math.connpass.com/event/189660/) での発表資料。（2020-10-03）
-* 関連ブログ記事 : [ルービックキューブと群論の話をしました #kanmath07](https://usami-k.hatenadiary.jp/entry/2020/10/03/211645)
-
-## 平面の敷き詰めとルート系
-
-* [PDF](TilingAndRootSystem/TilingAndRootSystem.pdf)
-* [第18回日曜数学会](https://live2.nicovideo.jp/watch/lv326638395) での発表資料。（2020-06-28）
-* 動画 : [平面の敷き詰めとルート系　＠第18回日曜数学会 - ニコニコ動画](https://www.nicovideo.jp/watch/sm37214964)
-* 関連ブログ記事 : [平面の敷き詰めとルート系の話をしました #日曜数学会](https://usami-k.hatenadiary.jp/entry/2020/06/29/001824)
-
-## 四元数のはなし
-
-* [PDF](Quaternion/Quaternion.pdf)
-* [第6.5回 関西日曜数学 友の会](https://kansai-sunday-math.connpass.com/event/171981/) での発表資料。（2020-05-02）
-* 関連ブログ記事 : [四元数のはなしをしました #kanmath6_5](https://usami-k.hatenadiary.jp/entry/2020/05/02/223234)
-
-## 回転群のはなし
-
-* [PDF](RotationGroup/RotationGroup.pdf)
-* [第6回 関西日曜数学 友の会](https://kansai-sunday-math.connpass.com/event/150313/) での発表資料。（2019-11-02）
-* 関連ブログ記事 : [回転群のはなしをしました #kanmath06](https://usami-k.hatenadiary.jp/entry/2019/11/02/233536)
-
-## 行列の指数関数
-
-* [PDF](MatrixExponential/MatrixExponential.pdf)
-* [第12回 関西すうがく徒のつどい](https://kansaimath.tenasaku.com/?page_id=1595) での発表資料。（2019-10-26）
-* 関連ブログ記事 : [行列の指数関数の話をしました #kansaimath](https://usami-k.hatenadiary.jp/entry/2019/10/27/214152)
-
-## リー代数の計算の楽しみ
-
-* [PDF](LieAlgebraCalculation/LieAlgebraCalculation.pdf)
-* [マスパーティ](https://mathparty.localinfo.jp) の中の日曜数学会での発表資料。（2019-10-19）
-* 動画 : [リー代数の計算の楽しみ　＠第16回日曜数学会 - ニコニコ動画](https://www.nicovideo.jp/watch/sm36329327)
-* 関連ブログ記事 : [マスパーティに参加してリー代数の計算の話をしました #日曜数学会 #マスパーティ](https://usami-k.hatenadiary.jp/entry/2019/10/20/213753)
-
-## Onsager代数の話（Generalized Onsager algebras）
-
-* [PDF](OnsagerAlgebra/OnsagerAlgebra.pdf)
-* [第５回 関西日曜数学 友の会](https://kansai-sunday-math.connpass.com/event/130553/) での発表資料。（2019-08-03）
-* 関連ブログ記事 : [Generalized Onsager algebras の話をしました #kanmath05](https://usami-k.hatenadiary.jp/entry/2019/08/04/001010)
-
-## ディンキン図形を知る（ルート系とディンキン図形）
-
-* [PDF](DynkinDiagrams/DynkinDiagrams.pdf)
-* [第４回 関西日曜数学 友の会](https://kansai-sunday-math.connpass.com/event/112125/) での発表資料。（2019-04-13）
-* 関連ブログ記事 : [ディンキン図形を知る](https://usami-k.hatenadiary.jp/entry/2019/04/14/125012)
-
-## リー代数の話 (2)
-
-* [PDF](MathDayOsaka_LieAlgebra_2/MathDayOsaka_LieAlgebra_2.pdf)
-* [第19回 数学デー in 大阪](https://osaka-dtc.connpass.com/event/126201/) で話した内容。（2019-04-05）
-* 関連ブログ記事 : [リー代数の話 (2) #数学デーin大阪](https://usami-k.hatenadiary.jp/entry/2019/04/28/005601)
-
-## リー代数の話 (1)
-
-* [PDF](MathDayOsaka_LieAlgebra_1/MathDayOsaka_LieAlgebra_1.pdf)
-* [第18回 数学デー in 大阪](https://osaka-dtc.connpass.com/event/126200/) で話した内容。（2019-04-03）
-* 関連ブログ記事 : [リー代数の話 (1) #数学デーin大阪](https://usami-k.hatenadiary.jp/entry/2019/04/20/154857)
+- [ルービックキューブと群論](RubiksCubeAndGroupTheory) / [スライド](https://speakerdeck.com/usamik26/rubik-cube-and-group-theory) / [第7回 関西日曜数学 友の会](https://kansai-sunday-math.connpass.com/event/189660/)（2020-10-03）
+- [平面の敷き詰めとルート系](TilingAndRootSystem) / [スライド](https://speakerdeck.com/usamik26/tiling-and-root-system) / [第18回日曜数学会](https://live2.nicovideo.jp/watch/lv326638395)（2020-06-28）
+- [四元数のはなし](Quaternion) / [スライド](https://speakerdeck.com/usamik26/quaternion) / [第6.5回 関西日曜数学 友の会](https://kansai-sunday-math.connpass.com/event/171981/)（2020-05-02）
+- [回転群のはなし](RotationGroup) / [スライド](https://speakerdeck.com/usamik26/rotation-group) / [第6回 関西日曜数学 友の会](https://kansai-sunday-math.connpass.com/event/150313/)（2019-11-02）
+- [行列の指数関数](MatrixExponential) / [資料](MatrixExponential/MatrixExponential.pdf) / [第12回 関西すうがく徒のつどい](https://kansaimath.tenasaku.com/?page_id=1595)（2019-10-26）
+- [リー代数の計算の楽しみ](LieAlgebraCalculation) / [スライド](https://speakerdeck.com/usamik26/lie-algebra-calculation) / [マスパーティ](https://mathparty.localinfo.jp)（2019-10-19）
+- [Onsager代数の話（Generalized Onsager algebras）](OnsagerAlgebra) / [スライド](https://speakerdeck.com/usamik26/generalized-onsager-algebras) / [第５回 関西日曜数学 友の会](https://kansai-sunday-math.connpass.com/event/130553/)（2019-08-03）
+- [ディンキン図形を知る（ルート系とディンキン図形）](DynkinDiagrams) / [スライド](https://speakerdeck.com/usamik26/dynkin-diagrams) / [第４回 関西日曜数学 友の会](https://kansai-sunday-math.connpass.com/event/112125/)（2019-04-13）
+- [リー代数の話 (2)](MathDayOsaka_LieAlgebra_2) / [資料](MathDayOsaka_LieAlgebra_2/MathDayOsaka_LieAlgebra_2.pdf) / [第19回 数学デー in 大阪](https://osaka-dtc.connpass.com/event/126201/)（2019-04-05）
+- [リー代数の話 (1)](MathDayOsaka_LieAlgebra_1) / [資料](MathDayOsaka_LieAlgebra_1/MathDayOsaka_LieAlgebra_1.pdf) / [第18回 数学デー in 大阪](https://osaka-dtc.connpass.com/event/126200/)（2019-04-03）
 
 ## ライセンス
 
