@@ -1,5 +1,6 @@
 # mathematics
 
+- [ルービックキューブ群を SageMath で見る](RubiksCubeAndSageMath)（[スライド](https://speakerdeck.com/usamik26/rubiks-cube-and-sagemath)） / [第19回日曜数学会](https://live2.nicovideo.jp/watch/lv328715485)（2020-10-31）
 - [ルービックキューブと群論](RubiksCubeAndGroupTheory)（[スライド](https://speakerdeck.com/usamik26/rubik-cube-and-group-theory)） / [第7回 関西日曜数学 友の会](https://kansai-sunday-math.connpass.com/event/189660/)（2020-10-03）
 - [平面の敷き詰めとルート系](TilingAndRootSystem)（[スライド](https://speakerdeck.com/usamik26/tiling-and-root-system)） / [第18回日曜数学会](https://live2.nicovideo.jp/watch/lv326638395)（2020-06-28）
 - [四元数のはなし](Quaternion)（[スライド](https://speakerdeck.com/usamik26/quaternion)） / [第6.5回 関西日曜数学 友の会](https://kansai-sunday-math.connpass.com/event/171981/)（2020-05-02）
