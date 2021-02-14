@@ -1,12 +1,12 @@
 # mathematics
 
-## 文書
+## 講演資料
 
 - [行列の指数関数](MatrixExponential/MatrixExponential.pdf)（[第12回 関西すうがく徒のつどい](https://kansaimath.tenasaku.com/?page_id=1595) / 2019-10-26）
 - [リー代数の話 (2)](MathDayOsaka_LieAlgebra_2/MathDayOsaka_LieAlgebra_2.pdf)（[第19回 数学デー in 大阪](https://osaka-dtc.connpass.com/event/126201/) / 2019-04-05）
 - [リー代数の話 (1)](MathDayOsaka_LieAlgebra_1/MathDayOsaka_LieAlgebra_1.pdf)（[第18回 数学デー in 大阪](https://osaka-dtc.connpass.com/event/126200/) / 2019-04-03）
 
-## プレゼン
+## プレゼン資料
 
 - [ペントミノ牧場パズル](https://speakerdeck.com/usamik26/pentomino-farm)（第20回日曜数学会 / 2021-01-24）（[PentominoFarm](PentominoFarm)）
 - [ルービックキューブ群を SageMath で見る](https://speakerdeck.com/usamik26/rubiks-cube-and-sagemath)（第19回日曜数学会 / 2020-10-31）（[RubiksCubeAndSageMath](RubiksCubeAndSageMath)）
