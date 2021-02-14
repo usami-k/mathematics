@@ -1,7 +1,7 @@
 # mathematics
 
-- [ペントミノ牧場パズル](PentominoFarm)（[Speaker Deck](https://speakerdeck.com/usamik26/pentomino-farm)） / [第20回日曜数学会](https://live2.nicovideo.jp/watch/lv330088172)（2021-01-24）
-- [ルービックキューブ群を SageMath で見る](RubiksCubeAndSageMath)（[Speaker Deck](https://speakerdeck.com/usamik26/rubiks-cube-and-sagemath)） / [第19回日曜数学会](https://live2.nicovideo.jp/watch/lv328715485)（2020-10-31）
+- [ペントミノ牧場パズル](https://speakerdeck.com/usamik26/pentomino-farm)（第20回日曜数学会 / 2021-01-24）[PentominoFarm](PentominoFarm)
+- [ルービックキューブ群を SageMath で見る](https://speakerdeck.com/usamik26/rubiks-cube-and-sagemath)（第19回日曜数学会 / 2020-10-31）[RubiksCubeAndSageMath](RubiksCubeAndSageMath)
 - [ルービックキューブと群論](RubiksCubeAndGroupTheory)（[Speaker Deck](https://speakerdeck.com/usamik26/rubik-cube-and-group-theory)） / [第7回 関西日曜数学 友の会](https://kansai-sunday-math.connpass.com/event/189660/)（2020-10-03）
 - [平面の敷き詰めとルート系](TilingAndRootSystem)（[Speaker Deck](https://speakerdeck.com/usamik26/tiling-and-root-system)） / [第18回日曜数学会](https://live2.nicovideo.jp/watch/lv326638395)（2020-06-28）
 - [四元数のはなし](Quaternion)（[Speaker Deck](https://speakerdeck.com/usamik26/quaternion)） / [第6.5回 関西日曜数学 友の会](https://kansai-sunday-math.connpass.com/event/171981/)（2020-05-02）
