@@ -2,11 +2,20 @@
 
 ## 講演・プレゼン資料
 
+### 2021
+
+- [ルート系とディンキン図形](https://speakerdeck.com/usamik26/root-system-and-dynkin-diagram)（すうがく徒のつどい＠オンライン / 2021-03-20）
 - [ペントミノ牧場パズル](https://speakerdeck.com/usamik26/pentomino-farm)（第20回日曜数学会 / 2021-01-24）（[2021/PentominoFarm](2021/PentominoFarm)）
+
+### 2020
+
 - [ルービックキューブ群を SageMath で見る](https://speakerdeck.com/usamik26/rubiks-cube-and-sagemath)（第19回日曜数学会 / 2020-10-31）（[2020/RubiksCubeAndSageMath](2020/RubiksCubeAndSageMath)）
 - [ルービックキューブと群論](https://speakerdeck.com/usamik26/rubik-cube-and-group-theory)（第7回 関西日曜数学 友の会 / 2020-10-03）（[2020/RubiksCubeAndGroupTheory](2020/RubiksCubeAndGroupTheory)）
 - [平面の敷き詰めとルート系](https://speakerdeck.com/usamik26/tiling-and-root-system)（第18回日曜数学会 / 2020-06-28）（[2020/TilingAndRootSystem](2020/TilingAndRootSystem)）
 - [四元数のはなし](https://speakerdeck.com/usamik26/quaternion)（第6.5回 関西日曜数学 友の会 / 2020-05-02）（[2020/Quaternion](2020/Quaternion)）
+
+### 2019
+
 - [回転群のはなし](https://speakerdeck.com/usamik26/rotation-group)（第6回 関西日曜数学 友の会 / 2019-11-02）（[2019/RotationGroup](2019/RotationGroup)）
 - [行列の指数関数](MatrixExponential/MatrixExponential.pdf)（[第12回 関西すうがく徒のつどい](https://kansaimath.tenasaku.com/?page_id=1595) / 2019-10-26）（[2019/MatrixExponential](2019/MatrixExponential)）
 - [リー代数の計算の楽しみ](https://speakerdeck.com/usamik26/lie-algebra-calculation)（日曜数学会 in マスパーティ / 2019-10-19）（[2019/LieAlgebraCalculation](2019/LieAlgebraCalculation)）
