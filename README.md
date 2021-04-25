@@ -13,6 +13,7 @@
 - [ルービックキューブと群論](https://speakerdeck.com/usamik26/rubik-cube-and-group-theory)（第7回 関西日曜数学 友の会 / 2020-10-03）（[2020/RubiksCubeAndGroupTheory](2020/RubiksCubeAndGroupTheory)）
 - [平面の敷き詰めとルート系](https://speakerdeck.com/usamik26/tiling-and-root-system)（第18回日曜数学会 / 2020-06-28）（[2020/TilingAndRootSystem](2020/TilingAndRootSystem)）
 - [四元数のはなし](https://speakerdeck.com/usamik26/quaternion)（第6.5回 関西日曜数学 友の会 / 2020-05-02）（[2020/Quaternion](2020/Quaternion)）
+- [Onsager algebra](2020/OnsagerAlgebra/Onsager\ algebra.pdf)（[数学カフェ関西](https://usami-k.hatenadiary.jp/entry/2020/03/22/215921) / 2020-03-22）（[2020/OnsagerAlgebra](2020/OnsagerAlgebra)）
 
 ### 2019
 
