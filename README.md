@@ -4,7 +4,7 @@
 
 ### 2021
 
-- [ルート系とディンキン図形](https://speakerdeck.com/usamik26/root-system-and-dynkin-diagram)（すうがく徒のつどい＠オンライン / 2021-03-20）
+- [ルート系とディンキン図形](https://speakerdeck.com/usamik26/root-system-and-dynkin-diagram)（すうがく徒のつどい＠オンライン / 2021-03-20）（[2021/RootSystemAndDynkinDiagram](2021/RootSystemAndDynkinDiagram)）
 - [ペントミノ牧場パズル](https://speakerdeck.com/usamik26/pentomino-farm)（第20回日曜数学会 / 2021-01-24）（[2021/PentominoFarm](2021/PentominoFarm)）
 
 ### 2020
