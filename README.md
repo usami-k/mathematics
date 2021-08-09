@@ -2,6 +2,8 @@
 
 ## 講演・プレゼン資料
 
+※ プログラミング関連のプレゼン資料は [technote](https://github.com/usami-k/technote/blob/main/README.md) にまとめています。
+
 ### 2021
 
 - [差分：離散的な世界の微分](https://speakerdeck.com/usamik26/finite-difference-method)（第21回日曜数学会 / 2021-06-13）（[2021/FiniteDifferenceMethod](2021/FiniteDifferenceMethod)）
