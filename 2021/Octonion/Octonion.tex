@@ -1,0 +1,280 @@
+\documentclass{beamer}
+\usetheme{Luebeck}
+\usecolortheme{seahorse}
+\usefonttheme{structurebold,serif}
+\setbeamertemplate{navigation symbols}{\usebeamerfont{footline}\insertframenumber/\inserttotalframenumber}
+\usepackage{luatexja-fontspec}
+\setmainfont{DejaVu Serif}[Scale=0.9]
+\setsansfont{DejaVu Sans}[Scale=0.9]
+\setmonofont{DejaVu Sans Mono}[Scale=0.9]
+\setmainjfont{YuKyo_Yoko-Medium}[BoldFont=YuKyo_Yoko-Bold]
+\setsansjfont{YuGo-Medium}[BoldFont=YuGo-Bold]
+\usepackage{hyperref}
+\usepackage[bold-style=ISO]{unicode-math}
+\usepackage{ulem}
+
+\newcommand{\ii}{\mathrm{i}}
+\newcommand{\jj}{\mathrm{j}}
+\newcommand{\kk}{\mathrm{k}}
+\newcommand{\ee}{\mathrm{e}}
+
+\title{八元数のはなし}
+\subtitle{何を「数」と呼ぶのか？}
+\author{宇佐見 公輔}
+\date{2021年10月23日}
+\begin{document}
+\maketitle
+
+\begin{frame}
+    \frametitle{数の拡張}
+
+    \begin{block}{普通の数の拡張}
+        \begin{itemize}
+            \item 自然数 \(\mathbb{N}\)
+            \item 整数 \(\mathbb{Z}\)
+            \item 有理数 \(\mathbb{Q}\)
+            \item 実数 \(\mathbb{R}\)
+            \item 複素数 \(\mathbb{C}\)
+        \end{itemize}
+    \end{block}
+
+    \begin{block}{さらなる数の拡張}
+        \begin{itemize}
+            \item 四元数 \(\mathbb{H}\)
+            \item 八元数 \(\mathbb{O}\)
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \frametitle{複素数と四元数}
+
+    \begin{block}{複素数}
+        \(a_0 + a_1 \ii\)
+        とあらわされる数（\(a_i \in \mathbb{R}\)）。
+        \[
+            \ii^2 = -1
+        \]
+    \end{block}
+
+    \begin{block}{四元数}
+        \(a_0 + a_1 \ii + a_2 \jj + a_3 \kk\)
+        とあらわされる数（\(a_i \in \mathbb{R}\)）。
+        \begin{gather*}
+            \ii^2 = \jj^2 = \kk^2 = -1 \\
+            \ii \jj = -\jj \ii = \kk, \quad \jj \kk = -\kk \jj = \ii, \quad \kk \ii = -\ii \kk = \jj
+        \end{gather*}
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \frametitle{八元数}
+
+    \begin{block}{八元数}
+        \(a_0 + a_1 \ee_1 + a_2 \ee_2 + a_3 \ee_3 + a_4 \ee_4 + a_5 \ee_5 + a_6 \ee_6 + a_7 \ee_7\) \\
+        とあらわされる数（\(a_i \in \mathbb{R}\)）。
+        \begin{gather*}
+            \ee_1^2 = \ee_2^2 = \ee_3^2 = \ee_4^2 = \ee_5^2 = \ee_6^2 = \ee_7^2 = -1 \\
+            \ee_1 \ee_2 = -\ee_2 \ee_1 = \ee_3, \quad \ee_2 \ee_3 = -\ee_3 \ee_2 = \ee_1, \quad \ee_3 \ee_1 = -\ee_1 \ee_3 = \ee_2 \\
+            \ee_1 \ee_4 = -\ee_4 \ee_1 = \ee_5, \quad \ee_4 \ee_5 = -\ee_5 \ee_4 = \ee_1, \quad \ee_5 \ee_1 = -\ee_1 \ee_5 = \ee_4 \\
+            \ee_2 \ee_4 = -\ee_4 \ee_2 = \ee_6, \quad \ee_4 \ee_6 = -\ee_6 \ee_4 = \ee_2, \quad \ee_6 \ee_2 = -\ee_2 \ee_6 = \ee_4 \\
+            \ee_3 \ee_4 = -\ee_4 \ee_3 = \ee_7, \quad \ee_4 \ee_7 = -\ee_7 \ee_4 = \ee_3, \quad \ee_7 \ee_3 = -\ee_3 \ee_7 = \ee_4 \\
+            \ee_5 \ee_3 = -\ee_3 \ee_5 = \ee_6, \quad \ee_3 \ee_6 = -\ee_6 \ee_3 = \ee_5, \quad \ee_6 \ee_5 = -\ee_5 \ee_6 = \ee_3 \\
+            \ee_6 \ee_1 = -\ee_1 \ee_6 = \ee_7, \quad \ee_1 \ee_7 = -\ee_7 \ee_1 = \ee_6, \quad \ee_7 \ee_6 = -\ee_6 \ee_7 = \ee_1 \\
+            \ee_7 \ee_2 = -\ee_2 \ee_7 = \ee_5, \quad \ee_2 \ee_5 = -\ee_5 \ee_2 = \ee_7, \quad \ee_5 \ee_7 = -\ee_7 \ee_5 = \ee_2
+        \end{gather*}
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \frametitle{結合法則の崩れ}
+
+    \begin{block}{交換法則の崩れ}
+        四元数と八元数は交換法則が成り立たない。
+        \begin{gather*}
+            \ee_1 \ee_2 \neq \ee_2 \ee_1 \\
+            \ee_1 \ee_2 = \ee_3, \qquad \ee_2 \ee_1 = - \ee_3
+        \end{gather*}
+    \end{block}
+
+    \begin{block}{結合法則の崩れ}
+        八元数は結合法則が成り立たない。
+        \begin{gather*}
+            (\ee_1 \ee_2) \ee_4 \neq \ee_1 (\ee_2 \ee_4) \\
+            (\ee_1 \ee_2) \ee_4 = \ee_3 \ee_4 = \ee_7, \qquad \ee_1 (\ee_2 \ee_4) = \ee_1 \ee_6 = - \ee_7
+        \end{gather*}
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \frametitle{余談：「結合的」という言葉}
+
+    グレイブスが八元数を発見してハミルトンに伝えたとき、ハミルトンが結合法則が成り立たないことを指摘した。
+    このとき初めて「結合的（associative）」という言葉が使われた。
+
+    \bigskip
+
+    なお、結合的でない代数構造は、八元数のほかに、リー代数やジョルダン代数などがある。
+\end{frame}
+
+\begin{frame}
+    \frametitle{何を「数」と呼ぶのか？}
+
+    \begin{block}{疑問1}
+        四元数や八元数のように、交換法則や結合法則が成り立たないものを「数」と呼んでいいのか？
+    \end{block}
+
+    \begin{block}{疑問2}
+        四元数や八元数を「数」と認めるとして、それ以外のものは「数」とは呼ばないのか？
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \frametitle{数っぽさ}
+
+    有理数や実数が持っている「数っぽさ」は何か？
+
+    \begin{itemize}
+        \item ものの量をあらわす
+              \begin{itemize}
+                  \item 大きさがある
+                  \item 大小比較ができる
+              \end{itemize}
+        \item 加減乗除ができる
+              \begin{itemize}
+                  \item 加法で閉じる、結合法則、交換法則
+                  \item 減法で閉じる（加法の逆元がある）
+                  \item 乗法で閉じる、結合法則、交換法則、分配法則
+                  \item 除法で閉じる（乗法の逆元がある）
+              \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{複素数はどうか？}
+
+    先ほどの「数っぽさ」を複素数は持っているか？
+
+    \bigskip
+
+    複素数どうしの大小比較はできない。
+    ただし、絶対値は定義できる。\(a = a_0 + a_1 \ii\) に対して、
+    \[
+        |a| := \sqrt{a_0^2 + a_1^2}
+    \]
+
+    \bigskip
+
+    加減乗除は問題ない。特に、乗法の逆元は次のようになる。
+    \[
+        a \overline{a} = a_0^2 + a_1^2 = |a|^2
+    \]
+    より、\(a \neq 0\) のとき
+    \[
+        a^{-1} = \frac{\overline{a}}{|a|^2}
+    \]
+\end{frame}
+
+\begin{frame}
+    \frametitle{絶対値に期待する性質}
+
+    複素数は、実数のような「大小比較ができる」という性質は持たなくなった。
+    この点はあきらめるが、「絶対値」はまだ持っている。
+
+    この「絶対値」と「加減乗除」との関連を考えてみる。
+
+    \bigskip
+
+    絶対値は「原点からの距離」にあたるものだから、距離として次の性質は持っていてほしい。
+    \[
+        |a + b| \leq |a| + |b|
+    \]
+
+    また乗法は、大きさに関しては「拡大縮小」であってほしいから、次の性質は持っていてほしい。
+    \[
+        |ab| = |a||b|
+    \]
+
+    複素数の絶対値はこれらを満たしている。
+\end{frame}
+
+\begin{frame}
+    \frametitle{四元数や八元数はどうか？}
+
+    四元数も絶対値は定義できる。\(a = a_0 + a_1 \ii + a_2 \jj + a_3 \kk\) に対して、
+    \[
+        |a| := \sqrt{a_0^2 + a_1^2 + a_2^2 + a_3^2}
+    \]
+
+    八元数も同様に定義できる。
+    \[
+        |a| := \sqrt{a_0^2 + a_1^2 + a_2^2 + a_3^2 + a_4^2 + a_5^2 + a_6^2 + a_7^2}
+    \]
+
+    これらは、\(|a + b| \leq |a| + |b|\) や \(|ab| = |a||b|\) を満たす。
+
+    \bigskip
+
+    加減乗除は問題ない。乗法の逆元は、\(a \neq 0\) のとき
+    \[
+        a^{-1} = \frac{\overline{a}}{|a|^2}
+    \]
+\end{frame}
+
+\begin{frame}
+    \frametitle{数の性質}
+
+    「数」に期待する性質は以下で、実数、複素数、四元数、八元数はこれらを満たす。
+
+    \begin{itemize}
+        \item 絶対値がある
+              \begin{itemize}
+                  \item \(|a + b| \leq |a| + |b|\)
+                  \item \(|ab| = |a||b|\)
+              \end{itemize}
+        \item 加減乗除ができる
+              \begin{itemize}
+                  \item 加法で閉じる、結合法則、交換法則
+                  \item 減法で閉じる（加法の逆元がある）
+                  \item 乗法で閉じる、分配法則
+                  \item 除法で閉じる（乗法の逆元がある）
+              \end{itemize}
+    \end{itemize}
+
+    なお、代数の言葉を使えば、（実数体上の）「ノルム付き可除代数（normed division algebra）」である
+    （乗法的なノルムを持ち、零元以外が乗法の逆元を持つ \(\mathbb{R}\) 代数）。
+\end{frame}
+
+\begin{frame}
+    \frametitle{これ以外の「数」はないのか？}
+
+    \begin{block}{定理}
+        実数体上のノルム付き可除代数は、\(\mathbb{R}\)、\(\mathbb{C}\)、\(\mathbb{H}\)、\(\mathbb{O}\) の4種類しかない。
+    \end{block}
+
+    八元数を拡張して十六元数を構成することはできる。
+    しかし、十六元数は以下の性質を持ち、「数」ではなくなる。
+
+    \begin{itemize}
+        \item \(|ab| = |a||b|\) とは限らない。
+        \item 乗法の逆元が存在するとは限らない。特に、零因子が存在する。
+    \end{itemize}
+
+    零因子とは、\(a \neq 0\), \(b \neq 0\), \(ab = 0\) を満たす \(a\), \(b\) のこと。
+    零因子は乗法の逆元を持たない。
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{参考文献}
+
+    他にもありますが、読みやすい本として。
+
+    \begin{block}{参考文献}
+        松岡 学 \\
+        「数の世界 自然数から実数、複素数、そして四元数へ」 \\
+        講談社ブルーバックス
+    \end{block}
+\end{frame}
+
+\end{document}
