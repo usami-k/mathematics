@@ -6,6 +6,7 @@
 
 ### 2021
 
+- [八元数のはなし](https://speakerdeck.com/usamik26/octonion)（第22回日曜数学会 / 2021-10-23）（[2021/Octonion](2021/Octonion)）
 - [差分：離散的な世界の微分](https://speakerdeck.com/usamik26/finite-difference-method)（第21回日曜数学会 / 2021-06-13）（[2021/FiniteDifferenceMethod](2021/FiniteDifferenceMethod)）
 - [ルート系とディンキン図形](https://speakerdeck.com/usamik26/root-system-and-dynkin-diagram)（すうがく徒のつどい＠オンライン / 2021-03-20）（[2021/RootSystemAndDynkinDiagram](2021/RootSystemAndDynkinDiagram)）
 - [ペントミノ牧場パズル](https://speakerdeck.com/usamik26/pentomino-farm)（第20回日曜数学会 / 2021-01-24）（[2021/PentominoFarm](2021/PentominoFarm)）
