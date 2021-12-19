@@ -22,7 +22,7 @@
 ### 2019
 
 - [回転群のはなし](https://speakerdeck.com/usamik26/rotation-group)（第6回 関西日曜数学 友の会 / 2019-11-02）（[2019/RotationGroup](2019/RotationGroup)）
-- [行列の指数関数](MatrixExponential/MatrixExponential.pdf)（[第12回 関西すうがく徒のつどい](https://kansaimath.tenasaku.com/?page_id=1595) / 2019-10-26）（[2019/MatrixExponential](2019/MatrixExponential)）
+- [行列の指数関数](2019/MatrixExponential/MatrixExponential.pdf)（[第12回 関西すうがく徒のつどい](https://kansaimath.tenasaku.com/?page_id=1595) / 2019-10-26）（[2019/MatrixExponential](2019/MatrixExponential)）
 - [リー代数の計算の楽しみ](https://speakerdeck.com/usamik26/lie-algebra-calculation)（日曜数学会 in マスパーティ / 2019-10-19）（[2019/LieAlgebraCalculation](2019/LieAlgebraCalculation)）
 - [Onsager代数の話（Generalized Onsager algebras）](https://speakerdeck.com/usamik26/generalized-onsager-algebras)（第５回 関西日曜数学 友の会 / 2019-08-03）（[2019/OnsagerAlgebra](2019/OnsagerAlgebra)）
 - [ディンキン図形を知る（ルート系とディンキン図形）](https://speakerdeck.com/usamik26/dynkin-diagrams)（第４回 関西日曜数学 友の会 / 2019-04-13）（[2019/DynkinDiagrams](2019/DynkinDiagrams)）
