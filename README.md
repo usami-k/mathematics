@@ -2,8 +2,6 @@
 
 ## 講演・プレゼン資料
 
-※ プログラミング関連のプレゼン資料は [technote](https://github.com/usami-k/technote/blob/main/README.md) にまとめています。
-
 ### 2022
 
 - [四元数と回転](https://speakerdeck.com/usamik26/quaternion-rotation)（第23回日曜数学会 / 2022-01-22）（[2022/QuaternionRotation](2022/QuaternionRotation)）
