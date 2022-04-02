@@ -4,6 +4,7 @@
 
 ### 2022
 
+- 四元数と回転（第三回すうがく徒のつどい＠オンライン / 2022-04-30）（[2022/QuaternionRotationTsudoi](2022/QuaternionRotationTsudoi)）
 - [四元数と回転](https://speakerdeck.com/usamik26/quaternion-rotation)（第23回日曜数学会 / 2022-01-22）（[2022/QuaternionRotation](2022/QuaternionRotation)）
 
 ### 2021
