@@ -1,0 +1,379 @@
+\documentclass{jlreq}
+\usepackage[pdfusetitle]{hyperref}
+\hypersetup{hidelinks}
+\usepackage{luatexja-fontspec}
+\setmainjfont{YuKyo_Yoko-Medium}[BoldFont=YuKyo_Yoko-Bold]
+\setsansjfont{YuGo-Medium}[BoldFont=YuGo-Bold]
+\usepackage{stix2}
+\usepackage[scaled]{helvet}
+\usepackage{inconsolata}
+\usepackage{mathtools}
+\mathtoolsset{showonlyrefs=true}
+\numberwithin{equation}{section}
+\usepackage{amsthm,thmtools}
+\declaretheoremstyle[thmbox={style=M,bodystyle=\upshape}]{usmstyle}
+\declaretheoremstyle[qed=\qedsymbol,bodyfont=\upshape]{usmproofstyle}
+\declaretheorem[style=usmstyle,numberwithin=section,name=Definition]{definition}
+\declaretheorem[style=usmstyle,sibling=definition,name=Theorem]{theorem}
+\declaretheorem[style=usmstyle,sibling=definition,name=Lemma]{lemma}
+\declaretheorem[style=usmstyle,sibling=definition,name=Example]{example}
+\declaretheorem[style=usmproofstyle,numbered=no,name=Proof]{usmproof}
+\renewenvironment{proof}{\begin{usmproof}}{\end{usmproof}}
+\usepackage{tikz}
+\usepackage{tikz-3dplot}
+\usetikzlibrary{arrows.meta,calc}
+
+\newcommand{\ii}{\mathrm{i}}
+\newcommand{\jj}{\mathrm{j}}
+\newcommand{\kk}{\mathrm{k}}
+
+\title{四元数と回転}
+\author{宇佐見 公輔}
+\date{第三回 すうがく徒のつどい＠オンライン}
+\begin{document}
+\maketitle
+
+\section{四元数の定義}
+
+まず、今回のテーマのひとつである四元数について述べます。以下、\(\mathbb{R}\)を実数の集合とします。
+
+\begin{definition}
+    \(x_0+x_1\ii+x_2\jj+x_3\kk\)（\(x_i\in\mathbb{R}\)）とあらわされる数を、四元数（しげんすう、quarternion）と呼びます。ここで、\(\ii\)、\(\jj\)、\(\kk\)は実数とは異なる数であり、四元数の虚数単位と呼びます。
+\end{definition}
+
+四元数の加法を次で定義します。
+\begin{align}
+     & (x_0+x_1\ii+x_2\jj+x_3\kk)+(y_0+y_1\ii+y_2\jj+y_3\kk) \\
+     & :=(x_0+y_0)+(x_1+y_1)\ii+(x_2+y_2)\jj+(x_3+y_3)\kk
+\end{align}
+例えば次のようになります。
+\begin{align}
+    (2+3\ii-4\jj)+(1+2\ii-4\jj+2\kk) & =(2+1)+(3+2)\ii+(-4-4)\jj+2\kk \\
+                                     & =3+5\ii-8\jj+2\kk
+\end{align}
+
+四元数の乗法は以下のように定義します。
+
+まず、実数どうしの積はそのまま実数の積で定義します。
+実数と虚数単位との積は、次のように定義します（\(r\in\mathbb{R}\)）。
+\[
+    \ii r=r\ii,\quad\jj r=r\jj,\quad\kk r=r\kk
+\]
+
+\begin{definition}
+    四元数の虚数単位どうしの積を次で定義します。
+    \begin{gather}
+        \ii^2=\jj^2=\kk^2=-1\\
+        \ii\jj=-\jj\ii=\kk,\quad\jj\kk=-\kk\jj=\ii,\quad\kk\ii=-\ii\kk=\jj
+    \end{gather}
+\end{definition}
+
+実数どうしの積や実数と虚数単位との積は順序を交換できますが、虚数単位どうしの積は順序を交換できないことに注意してください。
+積の結合法則は使用できます。
+
+一般の四元数の乗法は、分配法則\((x+y)z=xz+yz\)、\(x(y+z)=xy+xz\)が成り立つように拡張することで定義します。
+例えば次のようになります。
+\begin{align}
+    (2+3\jj)(4\ii-\kk) & =2(4\ii-\kk)+3\jj(4\ii-\kk)                \\
+                       & =2(4\ii)+2(-\kk)+(3\jj)(4\ii)+(3\jj)(-\kk) \\
+                       & =8\ii-2\kk+12\jj\ii-3\jj\kk                \\
+                       & =8\ii-2\kk-12\kk-3\ii                      \\
+                       & =5\ii-14\kk
+\end{align}
+
+この加法と乗法の定義のしかたから、次が成り立ちます。
+
+\begin{theorem}
+    四元数の集合\(\mathbb{H}\)は上述の加法と乗法で環（非可換環）です。
+    すなわち、次の条件を満たします。
+    \begin{itemize}
+        \item \((x+y)+z=x+(y+z)\)（加法の結合法則）
+        \item \(x+0=0+x=x\)（加法の単位元の存在）
+        \item \(x+(-x)=(-x)+x=0\)（加法の逆元の存在）
+        \item \(x+y=y+x\)（加法の交換法則）
+        \item \((xy)z=x(yz)\)（乗法の結合法則）
+        \item \(x\cdot 1=1\cdot x=x\)（乗法の単位元の存在）
+        \item \((x+y)z=xz+yz\)、\(x(y+z)=xy+xz\)（分配法則）
+    \end{itemize}
+\end{theorem}
+
+乗法の交換法則は成り立ちませんが、乗法の逆元は存在します。
+
+\begin{theorem}\label{quarternion_inverse}
+    四元数の集合\(\mathbb{H}\)は次の条件を満たします。
+    \begin{itemize}
+        \item \(0\)でない\(x\in\mathbb{H}\)に対し、\(x\)に対応する\(x'\in\mathbb{H}\)で\(xx'=x'x=1\)を満たすものが存在する（乗法の逆元の存在）
+    \end{itemize}
+    この\(x'\)を\(x\)の逆数と呼び、\(x^{-1}\)と書きます。
+\end{theorem}
+
+以下、\autoref{quarternion_inverse}の証明として、\(x^{-1}\)を具体的に記述します。
+まず準備として\(x\)の共役を定義します。
+
+\begin{definition}
+    \(x=x_0+x_1\ii+x_2\jj+x_3\kk\)に対して、\(\overline{x}\)を次で定義し、\(x\)の共役と呼びます。
+    \[
+        \overline{x}:=x_0-x_1\ii-x_2\jj-x_3\kk
+    \]
+\end{definition}
+
+積\(x\overline{x}\)を計算すると次のようになります。
+\begin{align}
+    x\overline{x} & =(x_0+x_1\ii+x_2\jj+x_3\kk)(x_0-x_1\ii-x_2\jj-x_3\kk) \\
+                  & =x_0^2-x_0x_1\ii-x_0x_2\jj-x_0x_3\kk                  \\
+                  & \quad +x_1x_0\ii+x_1^2-x_1x_2\kk+x_1x_3\jj            \\
+                  & \quad +x_2x_0\jj+x_2x_1\kk+x_2^2-x_2x_3\ii            \\
+                  & \quad +x_3x_0\kk-x_3x_1\jj+x_3x_2\ii+x_3^2            \\
+                  & =x_0^2+x_1^2+x_2^2+x_3^2
+\end{align}
+同様にして、\(\overline{x}x=x_0^2+x_1^2+x_2^2+x_3^2\)も得られます。
+
+\begin{definition}
+    \(x=x_0+x_1\ii+x_2\jj+x_3\kk\)に対して、\(|x|\)を次で定義し、\(x\)の大きさと呼びます。
+    \[
+        |x|:=\sqrt{x_0^2+x_1^2+x_2^2+x_3^2}
+    \]
+\end{definition}
+
+これを使うと、次の等式が得られます。
+\[
+    x\overline{x}=\overline{x}x=|x|^2
+\]
+すなわち、\(x\)が\(0\)でないとき次の等式が成り立ちます。
+\[
+    x\left(\frac{1}{|x|^2}\overline{x}\right)=\left(\frac{1}{|x|^2}\overline{x}\right)x=1
+\]
+したがって、\(x\)の逆元\(x^{-1}\)は次のようになります。
+\[
+    x^{-1}=\frac{1}{|x|^2}\overline{x}
+\]
+以上で\autoref{quarternion_inverse}が証明できました。
+
+\autoref{quarternion_inverse}により、\(\mathbb{H}\)は単に環であるだけでなく、斜体（非可換体）であることが分かります。
+
+四元数の性質にひとつ触れておきます。
+
+\begin{theorem}
+    四元数の乗法は大きさを保ちます。
+    すなわち、次の等式を満たします（\(x,y\in\mathbb{H}\)）。
+    \[
+        |xy|=|x||y|
+    \]
+\end{theorem}
+
+証明するには、愚直に計算します。積\(xy\)は次のようになります。
+\begin{align}
+    xy & =(x_0+x_1\ii+x_2\jj+x_3\kk)(y_0+y_1\ii+y_2\jj+y_3\kk) \\
+       & =(x_0y_0-x_1y_1-x_2y_2-x_3y_3)                        \\
+       & \quad +(x_0y_1+x_1y_0+x_2y_3-x_3y_2)\ii               \\
+       & \quad +(x_0y_2-x_1y_3+x_2y_0+x_3y_1)\jj               \\
+       & \quad +(x_0y_3+x_1y_2-x_2y_1+x_3y_0)\kk
+\end{align}
+したがって、\(|xy|^2\)は次のようになります。
+\begin{align}
+    |xy|^2 & =(x_0y_0-x_1y_1-x_2y_2-x_3y_3)^2+(x_0y_1+x_1y_0+x_2y_3-x_3y_2)^2       \\
+           & \quad +(x_0y_2-x_1y_3+x_2y_0+x_3y_1)^2+(x_0y_3+x_1y_2-x_2y_1+x_3y_0)^2
+\end{align}
+これが、次の\(|x|^2|y|^2\)と等しくなることを展開して確かめることができます。
+\[
+    |x|^2|y|^2=(x_0^2+x_1^2+x_2^2+x_3^2)(y_0^2+y_1^2+y_2^2+y_3^2)
+\]
+
+\section{3次元空間の回転}
+
+今回のテーマのもうひとつである回転について述べます。
+3次元空間上の回転の素朴なイメージとして、丸いボールがあったとして、それをくるくる回す操作が回転です。
+ただ、ボールの回し方はいろいろありそうで、なんとなく捉えどころがない感じです。
+そこで、もう少しきちんとした捉えかたを考えます。
+
+3次元空間上の変換\(\mathbb{R}^3\to\mathbb{R}^3\)を考えます。
+回転もこの3次元空間上の変換の一種であるという捉えかたで考えていきます。
+実は回転変換は、次のような変換として特徴づけることができます。
+
+\begin{definition}\label{rotation}
+    3次元空間上で、長さを保ち、向きを反転させない線型変換を、回転（rotation）と呼びます。
+\end{definition}
+
+変換\(f\)が長さを保つとは、点\(X\)と点\(Y\)について、線分\(XY\)の長さと線分\(f(X)f(Y)\)の長さが等しくなることです。
+
+長さを保つ変換は、角度も保ちます。
+実際、3点\(X\)、\(Y\)、\(Z\)を考えるとき、三角形\(XYZ\)と三角形\(f(X)f(Y)f(Z)\)は各辺の長さが等しいため合同です。
+したがって、\(X\)、\(Y\)、\(Z\)がなす角と\(f(X)\)、\(f(Y)\)、\(f(Z)\)がなす角も等しくなります。
+
+このため、長さを保つ変換は、図形の形と大きさを保つ変換であるともいえます。
+
+また、変換\(f\)が線型変換であるとは、次を満たすことです。
+\begin{gather}
+    f(x+y)=f(x)+f(y)\\
+    f(cx)=cf(x)
+\end{gather}
+線型変換は原点を動かさない変換です。
+平行移動は線型変換ではありませんので、\autoref{rotation}から除外されます。
+
+最後に、向きを反転させないという言葉の定義については本稿では説明を省略しますが、鏡映ではないという意味です。
+鏡映は\autoref{rotation}から除外されます。
+
+つまり、図形の形と大きさを保ち、平行移動と鏡映を含まない変換が回転です。
+こうして特徴づけられる回転ですが、実は次の定理が成り立ちます。
+
+\begin{theorem}
+    3次元空間上の任意の回転は、原点を通るある回転軸\(l\)の周りの、ある回転角\(\theta\)の回転になります。
+\end{theorem}
+
+これは3次元空間の回転についてのオイラーの定理と呼ばれています。
+本稿ではこの定理の証明は省略します。
+例えば、参考文献\cite{kanatani}を参照してください。
+
+\section{ベクトルによる回転の記述}
+
+ある回転軸の周りにある回転角だけ回転する、という変換をベクトルを使って具体的に記述してみます。
+
+準備として、3次元ベクトル空間\(\mathbb{R}^3\)の内積と外積を定義しておきます。
+
+\begin{definition}
+    \(\mathbb{R}^3\)のベクトル\(\vec{x}=(x_1,x_2,x_3)\)と\(\vec{y}=(y_1,y_2,y_3)\)に対して、内積\(\langle\vec{x}|\vec{y}\rangle\in\mathbb{R}\)を次で定義します。
+    \[
+        \langle\vec{x}|\vec{y}\rangle:=x_1y_1+x_2y_2+x_3y_3
+    \]
+\end{definition}
+
+\(\vec{x}\)と\(\vec{y}\)のなす角を\(\theta\)とするとき、次の関係が成り立ちます。
+\[
+    \langle\vec{x}|\vec{y}\rangle=|\vec{x}||\vec{y}|\cos\theta
+\]
+
+\begin{definition}
+    \(\mathbb{R}^3\)のベクトル\(\vec{x}=(x_1,x_2,x_3)\)と\(\vec{y}=(y_1,y_2,y_3)\)に対して、外積\(\vec{x}\times\vec{y}\in\mathbb{R}^3\)を次で定義します。
+    \[
+        \vec{x}\times\vec{y}:=(x_2y_3-x_3y_2,x_3y_1-x_1y_3,x_1y_2-x_2y_1)
+    \]
+\end{definition}
+
+\(\vec{x}\times\vec{y}\)は、\(\vec{x}\)と\(\vec{y}\)に直交するベクトルで、その大きさは\(\vec{x}\)と\(\vec{y}\)がつくる平行四辺形の面積と等しくなります。
+式で書くと、\(\vec{x}\)と\(\vec{y}\)のなす角を\(\theta\)とするとき、次の関係が成り立ちます。
+\[
+    |\vec{x}\times\vec{y}|=|\vec{x}||\vec{y}|\sin\theta
+\]
+
+内積と外積を使って、3次元空間の回転を次のように記述できます。
+
+\begin{theorem}\label{rotation_formula}
+    大きさ\(1\)のベクトル\(\vec{n}\)があるとします。
+    点\(X\)を\(\vec{n}\)の周りに角\(\theta\)だけ回転した点を\(X'\)とします。
+    \(X\)の位置ベクトルを\(\vec{x}\)、\(X'\)の位置ベクトルを\(\vec{x'}\)とするとき、次が成り立ちます。
+    \[
+        \vec{x'}=\cos\theta\vec{x}+(1-\cos\theta)\langle\vec{n}|\vec{x}\rangle\vec{n}+\sin\theta(\vec{n}\times\vec{x})
+    \]
+\end{theorem}
+
+これはロドリゲス（ロドリーグ）の回転公式と呼ばれます。
+\(\vec{x'}\)を、\(\vec{x}\)、\(\vec{n}\)、\(\vec{n}\times\vec{x}\)の3つのベクトルの和の形で記述しています。
+
+以下、\autoref{rotation_formula}を証明します。
+
+まず、\(\vec{x}\)を\(\vec{n}\)と平行な方向\(\vec{x}_\parallel\)と垂直な方向\(\vec{x}_\perp\)に分解します。
+\[
+    \vec{x}=\vec{x}_\parallel+\vec{x}_\perp
+\]
+このとき、\(\vec{x}_\parallel=\langle\vec{n}|\vec{x}\rangle\vec{n}\)となります。
+
+\(\vec{x'}\)も同様に分解します。
+\[
+    \vec{x'}=\vec{x'}_\parallel+\vec{x'}_\perp
+\]
+このとき、点\(X'\)は点\(X\)を\(\vec{n}\)の周りに回転した点であることから、\(\vec{x}\)と\(\vec{x'}\)について、\(\vec{n}\)と平行な方向の成分は等しくなります。つまり\(\vec{x'}_\parallel=\vec{x}_\parallel\)です。
+
+外積\(\vec{n}\times\vec{x}_\perp\)を考えます。
+外積の大きさは平行四辺形の面積でしたから、これは実は\(\vec{n}\times\vec{x}\)と等しいです。
+
+\(\vec{n}\)と\(\vec{x}_\perp\)は直交していることから、次が成り立ちます。
+\[
+    |\vec{n}\times\vec{x}_\perp|=|\vec{n}||\vec{x}_\perp|=|\vec{x}_\perp|
+\]
+
+\(\vec{x'}_\perp\)を\(\vec{x}_\perp\)方向と\(\vec{n}\times\vec{x}_\perp\)方向に分解します。
+\(\vec{x}_\perp\)と\(\vec{x'}_\perp\)のなす角は\(\theta\)なので、次のようになります。
+\[
+    \vec{x'}_\perp=\cos\theta\vec{x}_\perp+\sin\theta(\vec{n}\times\vec{x}_\perp)
+\]
+
+したがって、次が成り立ちます。
+\begin{align}
+    \vec{x'} & =\vec{x'}_\parallel+\vec{x'}_\perp                                                                     \\
+             & =\vec{x}_\parallel+\cos\theta\vec{x}_\perp+\sin\theta(\vec{n}\times\vec{x}_\perp)                      \\
+             & =\vec{x}_\parallel+\cos\theta(\vec{x}-\vec{x}_\parallel)+\sin\theta(\vec{n}\times\vec{x})              \\
+             & =\cos\theta\vec{x}+(1-\cos\theta)\langle\vec{n}|\vec{x}\rangle\vec{n}+\sin\theta(\vec{n}\times\vec{x})
+\end{align}
+以上で\autoref{rotation_formula}が証明できました。
+
+\section{四元数による回転の記述}
+
+ロドリゲスの回転公式は、四元数を使うと簡潔な形になります。
+
+まず、四元数と3次元空間との対応をみます。
+
+\begin{definition}
+    実部を持たない四元数、すなわち次の形の四元数を純虚四元数と呼びます（\(x_i\in\mathbb{R}\)）。
+    \[
+        x_1\ii+x_2\jj+x_3\kk
+    \]
+\end{definition}
+
+純虚四元数と3次元ベクトル空間のベクトルを、次のように対応させます。
+\[
+    x_1\ii+x_2\jj+x_3\kk\leftrightarrow(x_1,x_2,x_3)
+\]
+
+純虚四元数の内積や外積も同様の対応で定義できます。
+\begin{gather}
+    \langle x|y\rangle:=x_1y_1+x_2y_2+x_3y_3\\
+    x\times y:=(x_2y_3-x_3y_2)\ii+(x_3y_1-x_1y_3)\jj+(x_1y_2-x_2y_1)\kk
+\end{gather}
+
+四元数を使って、3次元空間の回転を次のように記述できます。
+
+\begin{theorem}\label{quarternion_rotation}
+    大きさ\(1\)のベクトル\(\vec{n}\)があるとします。
+    点\(X\)を\(\vec{n}\)の周りに角\(\theta\)だけ回転した点を\(X'\)とします。
+    \(X\)の位置ベクトルに対応する純虚四元数を\(x\)、\(X'\)の位置ベクトルに対応する純虚四元数を\(x'\)とするとき、次が成り立ちます。
+    \[
+        x'=qx\overline{q}
+    \]
+    ただし、\(q\)は次の四元数です（\(n\)は\(\vec{n}\)に対応する純虚四元数）。
+    \[
+        q=\cos\frac{\theta}{2}+\left(\sin\frac{\theta}{2}\right)n
+    \]
+\end{theorem}
+
+なお、\(q\)は大きさ\(1\)の四元数です。
+\(n=n_1\ii+n_2\jj+n_3\kk\)とすると、次のように計算できます。
+\begin{align}
+    |q| & =\left(\cos\frac{\theta}{2}\right)^2+\left(\sin\frac{\theta}{2}\right)^2(n_1^2+n_2^2+n_3^2) \\
+        & =\left(\cos\frac{\theta}{2}\right)^2+\left(\sin\frac{\theta}{2}\right)^2                    \\
+        & =1
+\end{align}
+また、\(|q|=1\)より\(q^{-1}=\overline{q}\)となるので、\(x'=qxq^{-1}\)とも書けることも分かります。
+
+\autoref{quarternion_rotation}の証明は、\(qx\overline{q}\)を地道に計算していくことでできます。
+計算結果は次のようになります。
+\[
+    qx\overline{q}=(\cos\theta)x+(1-\cos\theta)\langle n|x\rangle n+\sin\theta(n\times x)
+\]
+つまり、ロドリゲスの回転公式と同じ形になるため、\(qx\overline{q}\)は回転であることが分かります。
+
+実際の計算では、\(q\)の実部を\(q_0\)、虚部（純虚四元数部）を\(q_1\)として、次のように展開すると見通しよく計算できます。
+\begin{align}
+    qx\overline{q} & =(q_0+q_1)x(q_0-q_1)               \\
+                   & =q_0xq_0+(q_1xq_0-q_0xq_1)-q_1xq_1
+\end{align}
+
+\begin{thebibliography}{99}
+    \bibitem{matsuoka} 松岡学, 数の世界 自然数から実数、複素数、そして四元数へ, 講談社ブルーバックス, 2020
+    \bibitem{yano} 矢野忠, 四元数の発見, 海鳴社, 2014
+    \bibitem{konno} 今野紀雄, 四元数, 森北出版, 2016
+    \bibitem{kanatani} 金谷健一, 3次元回転 パラメータ計算とリー代数による最適化, 共立出版, 2019
+    \bibitem{inoguchu} 井ノ口順一, はじめて学ぶリー群, 現代数学社, 2017
+    \bibitem{yokota} 横田一郎, 古典型単純リー群, 現代数学社, 1990
+\end{thebibliography}
+
+\end{document}
