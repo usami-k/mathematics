@@ -4,6 +4,8 @@
 
 ### 2022
 
+- [四元数による回転の記述](https://mathlog.info/articles/3197)（Mathlog / 2022-05-06）（[2022/mathlog_QuaternionRotation](2022/mathlog_QuaternionRotation)）
+- [ロドリゲスの回転公式](https://mathlog.info/articles/3190)（Mathlog / 2022-05-05）（[2022/mathlog_RodriguesRotationFormula](2022/mathlog_RodriguesRotationFormula)）
 - [四元数と回転](https://github.com/usami-k/mathematics/blob/master/2022/QuaternionRotationTsudoi/QuaternionRotationTsudoi.pdf)（[第三回すうがく徒のつどい＠オンライン](https://tsudoionline.netlify.app/03/) / 2022-04-30）（[2022/QuaternionRotationTsudoi](2022/QuaternionRotationTsudoi)）
 - [四元数と回転](https://speakerdeck.com/usamik26/quaternion-rotation)（第23回日曜数学会 / 2022-01-22）（[2022/QuaternionRotation](2022/QuaternionRotation)）
 
