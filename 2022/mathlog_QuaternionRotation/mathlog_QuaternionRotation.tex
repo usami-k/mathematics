@@ -1,14 +1,44 @@
-3次元の回転変換を四元数で記述する方法を紹介します。なお、この内容は先日開催された[第3回すうがく徒のつどい](https://tsudoionline.netlify.app/03/)の「四元数と回転」で話した内容の一部です。その際の[講演資料](https://github.com/usami-k/mathematics/blob/master/2022/QuaternionRotationTsudoi/QuaternionRotationTsudoi.pdf)では計算を省略しましたが、今回は計算も書きます。
+\documentclass{jlreq}
+\usepackage[pdfusetitle]{hyperref}
+\hypersetup{hidelinks}
+\usepackage{luatexja-fontspec}
+\setmainjfont{YuKyo_Yoko-Medium}[BoldFont=YuKyo_Yoko-Bold]
+\setsansjfont{YuGo-Medium}[BoldFont=YuGo-Bold]
+\usepackage{stix2}
+\usepackage[scaled]{helvet}
+\usepackage{inconsolata}
+\usepackage{mathtools}
+\mathtoolsset{showonlyrefs=true}
+\numberwithin{equation}{section}
+\usepackage{amsthm,thmtools}
+\declaretheoremstyle[thmbox={style=M,bodystyle=\upshape}]{usmstyle}
+\declaretheoremstyle[qed=\qedsymbol,bodyfont=\upshape]{usmproofstyle}
+\declaretheorem[style=usmstyle,numberwithin=section,name=Definition]{definition}
+\declaretheorem[style=usmstyle,sibling=definition,name=Theorem]{theorem}
+\declaretheorem[style=usmstyle,sibling=definition,name=Lemma]{lemma}
+\declaretheorem[style=usmstyle,sibling=definition,name=Example]{example}
+\declaretheorem[style=usmproofstyle,numbered=no,name=Proof]{usmproof}
+\renewenvironment{proof}{\begin{usmproof}}{\end{usmproof}}
+\newcommand{\ii}{\mathrm{i}}
+\newcommand{\jj}{\mathrm{j}}
+\newcommand{\kk}{\mathrm{k}}
+\title{四元数による回転の記述}
+\author{宇佐見 公輔}
+\date{2022年5月6日}
+\begin{document}
+\maketitle
 
-## 四元数の定義
+3次元の回転変換を四元数で記述する方法を紹介します。なお、この内容は先日開催された\href{https://tsudoionline.netlify.app/03/}{第3回すうがく徒のつどい}の「四元数と回転」で話した内容の一部です。その際の\href{https://github.com/usami-k/mathematics/blob/master/2022/QuaternionRotationTsudoi/QuaternionRotationTsudoi.pdf}{講演資料}では計算を省略しましたが、今回は計算も書きます。
 
-&&&def 四元数
-$x_0+x_1\ii+x_2\jj+x_3\kk$（$x_i\in\mathbb{R}$）とあらわされる数を、四元数と呼びます。ここで、$\ii$、$\jj$、$\kk$は実数とは異なる数であり、次の関係式を満たすものです。四元数の虚数単位と呼ばれます。
-\begin{gather}
-    \ii^2=\jj^2=\kk^2=-1\\
-    \ii\jj=-\jj\ii=\kk,\quad\jj\kk=-\kk\jj=\ii,\quad\kk\ii=-\ii\kk=\jj
-\end{gather}
-&&&
+\section{四元数の定義}
+
+\begin{definition}[四元数]
+    $x_0+x_1\ii+x_2\jj+x_3\kk$（$x_i\in\mathbb{R}$）とあらわされる数を、四元数と呼びます。ここで、$\ii$、$\jj$、$\kk$は実数とは異なる数であり、次の関係式を満たすものです。四元数の虚数単位と呼ばれます。
+    \begin{gather}
+        \ii^2=\jj^2=\kk^2=-1\\
+        \ii\jj=-\jj\ii=\kk,\quad\jj\kk=-\kk\jj=\ii,\quad\kk\ii=-\ii\kk=\jj
+    \end{gather}
+\end{definition}
 
 四元数の乗法は非可換である点に注意してください。実数と実数の積や実数と虚数との積は可換です。しかし、虚数と虚数の積は可換とは限りません。
 
@@ -37,14 +67,14 @@ $x_0+x_1\ii+x_2\jj+x_3\kk$（$x_i\in\mathbb{R}$）とあらわされる数を、
     x\overline{y}+y\overline{x}=2\langle x|y\rangle
 \end{equation}
 
-## 四元数と3次元空間の対応
+\section{四元数と3次元空間の対応}
 
-&&&def 純虚四元数
-実部を持たない四元数、すなわち次の形の四元数を純虚四元数と呼びます（$x_i\in\mathbb{R}$）。
-\begin{equation}
-    x_1\ii+x_2\jj+x_3\kk
-\end{equation}
-&&&
+\begin{definition}[純虚四元数]
+    実部を持たない四元数、すなわち次の形の四元数を純虚四元数と呼びます（$x_i\in\mathbb{R}$）。
+    \begin{equation}
+        x_1\ii+x_2\jj+x_3\kk
+    \end{equation}
+\end{definition}
 
 純虚四元数と3次元ベクトル空間のベクトルを、次のように対応させます。
 \begin{equation}
@@ -66,20 +96,20 @@ $x_0+x_1\ii+x_2\jj+x_3\kk$（$x_i\in\mathbb{R}$）とあらわされる数を、
     xy-yx=2(x\times y)
 \end{equation}
 
-## 四元数による回転
+\section{四元数による回転}
 
 四元数を使って、3次元空間の回転を次のように記述できます。
 
-&&&thm 四元数による回転
-大きさ$1$のベクトル$\vec{n}$があるとします。点$X$を$\vec{n}$の周りに角$\theta$だけ回転した点を$X'$とします。$X$の位置ベクトルに対応する純虚四元数を$x$、$X'$の位置ベクトルに対応する純虚四元数を$x'$とするとき、次が成り立ちます。
-\begin{equation}
-    x'=qx\overline{q}
-\end{equation}
-ただし、$q$は次の四元数です（$n$は$\vec{n}$に対応する純虚四元数）。
-\begin{equation}
-    q=\cos\frac{\theta}{2}+\left(\sin\frac{\theta}{2}\right)n
-\end{equation}
-&&&
+\begin{theorem}[四元数による回転]
+    大きさ$1$のベクトル$\vec{n}$があるとします。点$X$を$\vec{n}$の周りに角$\theta$だけ回転した点を$X'$とします。$X$の位置ベクトルに対応する純虚四元数を$x$、$X'$の位置ベクトルに対応する純虚四元数を$x'$とするとき、次が成り立ちます。
+    \begin{equation}
+        x'=qx\overline{q}
+    \end{equation}
+    ただし、$q$は次の四元数です（$n$は$\vec{n}$に対応する純虚四元数）。
+    \begin{equation}
+        q=\cos\frac{\theta}{2}+\left(\sin\frac{\theta}{2}\right)n
+    \end{equation}
+\end{theorem}
 
 なお、$q$は大きさ$1$の四元数です。実際、$n=n_1\ii+n_2\jj+n_3\kk$とすると、次のようになります。
 \begin{align}
@@ -88,9 +118,9 @@ $x_0+x_1\ii+x_2\jj+x_3\kk$（$x_i\in\mathbb{R}$）とあらわされる数を、
         & =1
 \end{align}
 
-## ロドリゲスの回転公式への帰着
+\section{ロドリゲスの回転公式への帰着}
 
-「四元数による回転」の定理の証明ですが、実は「[ロドリゲスの回転公式](https://mathlog.info/articles/3190)」に帰着できます。
+「四元数による回転」の定理の証明ですが、実は「\href{https://mathlog.info/articles/3190}{ロドリゲスの回転公式}」に帰着できます。
 
 $qx\overline{q}$を計算すると、実は次のようになります。
 \begin{equation}
@@ -106,7 +136,7 @@ $qx\overline{q}$を計算すると、実は次のようになります。
 
 あとは、$qx\overline{q}$の計算結果が確かに上述のとおりであることを示せば証明が完了します。
 
-## 四元数による回転の証明
+\section{四元数による回転の証明}
 
 $q$の実部を$q_0$、虚部（純虚四元数部）を$q_1$とすると、次のように展開できます。
 \begin{align}
@@ -159,3 +189,5 @@ $-q_1xq_1$の部分は次のようになります。
 最後の変形は2倍角の公式$\cos 2\phi=(\cos\phi)^2-(\sin\phi)^2$と半角の公式$\left(\sin\frac{\theta}{2}\right)^2=\frac{1-\cos\theta}{2}$を使いました。
 
 これで、無事に四元数による回転の式をロドリゲスの回転公式に帰着させて証明することができました。
+
+\end{document}
