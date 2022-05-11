@@ -1,6 +1,9 @@
 {
   "private": true,
   "dependencies": {
-    "textlint": "*"
+    "textlint": "*",
+    "textlint-plugin-latex2e": "*",
+    "textlint-rule-preset-ja-spacing": "*",
+    "textlint-rule-preset-ja-technical-writing": "*"
   }
 }

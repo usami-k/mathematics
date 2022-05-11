@@ -1,25 +1,52 @@
-3次元の回転変換をベクトルで記述する、ロドリゲスの回転公式を紹介します。なお、この内容は先日開催された[第3回すうがく徒のつどい](https://tsudoionline.netlify.app/03/)の「四元数と回転」で話した内容の一部です。その際の[講演資料](https://github.com/usami-k/mathematics/blob/master/2022/QuaternionRotationTsudoi/QuaternionRotationTsudoi.pdf)には画像がありませんでしたが、今回は画像を作成しました。
+\documentclass{jlreq}
+\usepackage[pdfusetitle]{hyperref}
+\hypersetup{colorlinks}
+\usepackage{luatexja-fontspec}
+\setmainjfont{YuKyo_Yoko-Medium}[BoldFont=YuKyo_Yoko-Bold]
+\setsansjfont{YuGo-Medium}[BoldFont=YuGo-Bold]
+\usepackage{stix2}
+\usepackage[scaled]{helvet}
+\usepackage{inconsolata}
+\usepackage{mathtools}
+\mathtoolsset{showonlyrefs=true}
+\numberwithin{equation}{section}
+\usepackage{amsthm,thmtools}
+\declaretheoremstyle[thmbox={style=M,bodystyle=\upshape}]{usmstyle}
+\declaretheoremstyle[qed=\qedsymbol,bodyfont=\upshape]{usmproofstyle}
+\declaretheorem[style=usmstyle,numberwithin=section,name=Definition]{definition}
+\declaretheorem[style=usmstyle,sibling=definition,name=Theorem]{theorem}
+\declaretheorem[style=usmstyle,sibling=definition,name=Lemma]{lemma}
+\declaretheorem[style=usmstyle,sibling=definition,name=Example]{example}
+\declaretheorem[style=usmproofstyle,numbered=no,name=Proof]{usmproof}
+\renewenvironment{proof}{\begin{usmproof}}{\end{usmproof}}
+\title{ロドリゲスの回転公式}
+\author{宇佐見 公輔}
+\date{2022年5月5日}
+\begin{document}
+\maketitle
 
-## ロドリゲスの回転公式
+3次元の回転変換をベクトルで記述する、ロドリゲスの回転公式を紹介します。なお、この内容は先日開催された\href{https://tsudoionline.netlify.app/03/}{第3回すうがく徒のつどい}の「四元数と回転」で話した内容の一部です。その際の\href{https://github.com/usami-k/mathematics/blob/master/2022/QuaternionRotationTsudoi/QuaternionRotationTsudoi.pdf}{講演資料}には画像がありませんでしたが、今回は画像を作成しました。
+
+\section{ロドリゲスの回転公式}
 
 以下、3次元ベクトル空間$\mathbb{R}^3$で考えます。ベクトル$\vec{x}$と$\vec{y}$の内積を$\langle\vec{x}|\vec{y}\rangle$と、外積を$\vec{x}\times\vec{y}$と書くことにします。
 
 3次元空間のなかで、原点を通る回転軸の周りに回転角$\theta$だけ回転するという変換は、次のように記述できます。
 
-&&&thm ロドリゲスの回転公式
-大きさ$1$のベクトル$\vec{n}$があるとします。点$X$を$\vec{n}$の周りに角$\theta$だけ回転した点を$X'$とします。$X$の位置ベクトルを$\vec{x}$、$X'$の位置ベクトルを$\vec{x'}$とするとき、次が成り立ちます。
-\begin{equation}
-    \vec{x'}=\cos\theta\vec{x}+(1-\cos\theta)\langle\vec{n}|\vec{x}\rangle\vec{n}+\sin\theta(\vec{n}\times\vec{x})
-\end{equation}
-&&&
+\begin{theorem}[ロドリゲスの回転公式]
+    大きさ$1$のベクトル$\vec{n}$があるとします。点$X$を$\vec{n}$の周りに角$\theta$だけ回転した点を$X'$とします。$X$の位置ベクトルを$\vec{x}$、$X'$の位置ベクトルを$\vec{x'}$とするとき、次が成り立ちます。
+    \begin{equation}
+        \vec{x'}=\cos\theta\vec{x}+(1-\cos\theta)\langle\vec{n}|\vec{x}\rangle\vec{n}+\sin\theta(\vec{n}\times\vec{x})
+    \end{equation}
+\end{theorem}
 
 $\vec{n}$は回転軸に沿う単位ベクトルです。$\vec{n}$の周りに角$\theta$だけ回転するという操作を図で示すと、次のようになります。
 
-![回転軸の周りの回転](/uploads/image/20220505154815.png =600)
+\href{https://mathlog.info/uploads/image/20220505154815.png}{回転軸の周りの回転}
 
 ロドリゲスの回転公式は、回転後のベクトル$\vec{x'}$を、$\vec{x}$、$\vec{n}$、$\vec{n}\times\vec{x}$の3つのベクトルの和の形で記述しています。
 
-## ロドリゲスの回転公式の証明
+\section{ロドリゲスの回転公式の証明}
 
 以下、ロドリゲスの回転公式を証明します。
 
@@ -35,7 +62,7 @@ $\vec{x'}$も同様に分解します。
 \end{equation}
 このとき、点$X'$は点$X$を$\vec{n}$の周りに回転した点であることから、$\vec{x}$と$\vec{x'}$について、$\vec{n}$と平行な方向の成分は等しくなります。つまり$\vec{x'}_\parallel=\vec{x}_\parallel$です。
 
-![位置ベクトルの分解](/uploads/image/20220505161632.png =600)
+\href{https://mathlog.info/uploads/image/20220505161632.png}{位置ベクトルの分解}
 
 よって、$\vec{x'}_\parallel$は$\vec{x}$と$\vec{n}$であらわせることが分かりました。次に、$\vec{x'}_\perp$を$\vec{x}$と$\vec{n}$であらわすことを考えます。
 
@@ -47,7 +74,7 @@ $\vec{n}$と$\vec{x}_\perp$は直交していることから、次が成り立�
 \end{equation}
 よって、$\vec{x}_\perp$、$\vec{x'}_\perp$、$\vec{n}\times\vec{x}_\perp$はすべて同じ大きさです。
 
-![外積ベクトル](/uploads/image/20220505162203.png =600)
+\href{https://mathlog.info/uploads/image/20220505162203.png}{外積ベクトル}
 
 $\vec{x'}_\perp$を$\vec{x}_\perp$方向と$\vec{n}\times\vec{x}_\perp$方向に分解します。
 $\vec{x}_\perp$と$\vec{x'}_\perp$のなす角は$\theta$なので、次のようになります。
@@ -55,7 +82,7 @@ $\vec{x}_\perp$と$\vec{x'}_\perp$のなす角は$\theta$なので、次のよ�
     \vec{x'}_\perp=\cos\theta\vec{x}_\perp+\sin\theta(\vec{n}\times\vec{x}_\perp)
 \end{equation}
 
-![ベクトルの分解](/uploads/image/20220505162643.png =600)
+\href{https://mathlog.info/uploads/image/20220505162643.png}{ベクトルの分解}
 
 これで、$\vec{x'}_\perp$を$\vec{x}$と$\vec{n}$であらわすことができました。したがって、次が成り立ちます。
 \begin{align}
@@ -67,3 +94,5 @@ $\vec{x}_\perp$と$\vec{x'}_\perp$のなす角は$\theta$なので、次のよ�
 \end{align}
 
 以上でロドリゲスの回転公式が証明できました。
+
+\end{document}

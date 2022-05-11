@@ -1,0 +1,12 @@
+{
+  "plugins": [
+    "latex2e"
+  ],
+  "rules": {
+    "preset-ja-spacing": {},
+    "preset-ja-technical-writing": {
+      "max-comma": false,
+      "sentence-length": false
+    }
+  }
+}
