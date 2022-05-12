@@ -19,6 +19,9 @@
 \declaretheorem[style=usmstyle,sibling=definition,name=Example]{example}
 \declaretheorem[style=usmproofstyle,numbered=no,name=Proof]{usmproof}
 \renewenvironment{proof}{\begin{usmproof}}{\end{usmproof}}
+\usepackage{tikz}
+\usepackage{tikz-3dplot}
+\usepackage{preview}
 \title{ロドリゲスの回転公式}
 \author{宇佐見 公輔}
 \date{2022年5月5日}
@@ -42,6 +45,39 @@
 
 $\vec{n}$は回転軸に沿う単位ベクトルです。$\vec{n}$の周りに角$\theta$だけ回転するという操作を図で示すと、次のようになります。
 
+\begin{preview}
+    \tdplotsetmaincoords{70}{-10}
+    \begin{tikzpicture}[tdplot_main_coords,scale=4]
+        % 座標軸
+        \draw[dashed] (-0.6,0,0)--(0.8,0,0);
+        \draw[dashed] (0,-0.6,0)--(0,0.8,0);
+        \draw[dashed] (0,0,-0.2)--(0,0,1.2);
+        % 座標定義
+        \coordinate (O) at (0,0,0);
+        \coordinate (N) at (0,0,1);
+        \pgfmathsetmacro{\xx}{0.5};
+        \pgfmathsetmacro{\xy}{0};
+        \pgfmathsetmacro{\xz}{0.7};
+        \coordinate (X) at (\xx,\xy,\xz);
+        \pgfmathsetmacro{\rot}{60};
+        \tdplotsetrotatedcoords{-\rot}{0}{0};
+        \tdplottransformmainrot{\xx}{\xy}{\xz};
+        \pgfmathsetmacro{\rx}{\tdplotresx};
+        \pgfmathsetmacro{\ry}{\tdplotresy};
+        \pgfmathsetmacro{\rz}{\tdplotresz};
+        \coordinate (R) at (\rx,\ry,\rz);
+        % 補助線
+        \draw[dashed] (0,0,\xz) circle[radius=\xx];
+        \tdplotdrawarc[red,-to]{(0,0,\xz)}{\xx}{0}{\rot}{}{};
+        \draw[red] (0,0,\xz)--(X);
+        \draw[red] (0,0,\rz)--(R);
+        \tdplotdrawarc[red]{(0,0,\xz)}{0.15}{0}{\rot}{below}{\(\theta\)};
+        % ベクトル
+        \draw[thick,-stealth] (O)--(N) node[left]{$\vec{n}$};
+        \draw[thick,-stealth] (O)--(X) node[above right]{$\vec{x}$};
+        \draw[thick,-stealth] (O)--(R) node[above right]{$\vec{x'}$};
+    \end{tikzpicture}
+\end{preview}
 \href{https://mathlog.info/uploads/image/20220505154815.png}{回転軸の周りの回転}
 
 ロドリゲスの回転公式は、回転後のベクトル$\vec{x'}$を、$\vec{x}$、$\vec{n}$、$\vec{n}\times\vec{x}$の3つのベクトルの和の形で記述しています。
@@ -62,6 +98,44 @@ $\vec{x'}$も同様に分解します。
 \end{equation}
 このとき、点$X'$は点$X$を$\vec{n}$の周りに回転した点であることから、$\vec{x}$と$\vec{x'}$について、$\vec{n}$と平行な方向の成分は等しくなります。つまり$\vec{x'}_\parallel=\vec{x}_\parallel$です。
 
+\begin{preview}
+    \tdplotsetmaincoords{70}{-10}
+    \begin{tikzpicture}[tdplot_main_coords,scale=4]
+        % 座標軸
+        \draw[dashed] (-0.6,0,0)--(0.8,0,0);
+        \draw[dashed] (0,-0.6,0)--(0,0.8,0);
+        \draw[dashed] (0,0,-0.2)--(0,0,1.2);
+        % 定義
+        \coordinate (O) at (0,0,0);
+        \coordinate (N) at (0,0,1);
+        \pgfmathsetmacro{\xx}{0.5};
+        \pgfmathsetmacro{\xy}{0};
+        \pgfmathsetmacro{\xz}{0.7};
+        \coordinate (X) at (\xx,\xy,\xz);
+        \pgfmathsetmacro{\rot}{60};
+        \tdplotsetrotatedcoords{-\rot}{0}{0};
+        \tdplottransformmainrot{\xx}{\xy}{\xz};
+        \pgfmathsetmacro{\rx}{\tdplotresx};
+        \pgfmathsetmacro{\ry}{\tdplotresy};
+        \pgfmathsetmacro{\rz}{\tdplotresz};
+        \coordinate (R) at (\rx,\ry,\rz);
+        % 補助線
+        \draw[dashed] (O) circle[radius=\xx];
+        \tdplotdrawarc[red,-to]{(0,0,\xz)}{\xx}{0}{\rot}{}{};
+        \draw[red,dashed] (0,0,\xz)--(X);
+        \draw[red,dashed] (\xx,\xy,0)--(X);
+        \draw[red,dashed] (0,0,\rz)--(R);
+        \draw[red,dashed] (\rx,\ry,0)--(R);
+        \tdplotdrawarc[red]{(O)}{0.15}{0}{\rot}{below}{\(\theta\)};
+        % ベクトル
+        \draw[thick,-stealth] (O)--(N) node[left]{$\vec{n}$};
+        \draw[thick,-stealth] (O)--(X) node[above right]{$\vec{x}$};
+        \draw[thick,-stealth] (O)--(R) node[above right]{$\vec{x'}$};
+        \draw[thick,-stealth] (O)--(0,0,\xz) node[left]{$\vec{x}_\parallel$};
+        \draw[thick,-stealth] (O)--(\xx,0,0) node[below]{$\vec{x}_\perp$};
+        \draw[thick,-stealth] (O)--(\rx,\ry,0) node[right]{$\vec{x'}_\perp$};
+    \end{tikzpicture}
+\end{preview}
 \href{https://mathlog.info/uploads/image/20220505161632.png}{位置ベクトルの分解}
 
 よって、$\vec{x'}_\parallel$は$\vec{x}$と$\vec{n}$であらわせることが分かりました。次に、$\vec{x'}_\perp$を$\vec{x}$と$\vec{n}$であらわすことを考えます。
@@ -74,6 +148,47 @@ $\vec{n}$と$\vec{x}_\perp$は直交していることから、次が成り立�
 \end{equation}
 よって、$\vec{x}_\perp$、$\vec{x'}_\perp$、$\vec{n}\times\vec{x}_\perp$はすべて同じ大きさです。
 
+\begin{preview}
+    \tdplotsetmaincoords{70}{-10}
+    \begin{tikzpicture}[tdplot_main_coords,scale=4]
+        % 座標軸
+        \draw[dashed] (-0.6,0,0)--(0.8,0,0);
+        \draw[dashed] (0,-0.6,0)--(0,0.8,0);
+        \draw[dashed] (0,0,-0.2)--(0,0,1.2);
+        % 定義
+        \coordinate (O) at (0,0,0);
+        \coordinate (N) at (0,0,1);
+        \pgfmathsetmacro{\xx}{0.5};
+        \pgfmathsetmacro{\xy}{0};
+        \pgfmathsetmacro{\xz}{0.7};
+        \coordinate (X) at (\xx,\xy,\xz);
+        \pgfmathsetmacro{\rot}{60};
+        \tdplotsetrotatedcoords{-\rot}{0}{0};
+        \tdplottransformmainrot{\xx}{\xy}{\xz};
+        \pgfmathsetmacro{\rx}{\tdplotresx};
+        \pgfmathsetmacro{\ry}{\tdplotresy};
+        \pgfmathsetmacro{\rz}{\tdplotresz};
+        \coordinate (R) at (\rx,\ry,\rz);
+        \tdplotcrossprod(0,0,1)(\xx,\xy,\xz);
+        \pgfmathsetmacro{\nxx}{\tdplotresx};
+        \pgfmathsetmacro{\nxy}{\tdplotresy};
+        \pgfmathsetmacro{\nxz}{\tdplotresz};
+        \coordinate (NX) at (\nxx,\nxy,\nxz);
+        % 補助線
+        \draw[dashed] (O) circle[radius=\xx];
+        \tdplotdrawarc[red,-to]{(0,0,\xz)}{\xx}{0}{\rot}{}{};
+        \draw[red,dashed] (\xx,\xy,0)--(X);
+        \draw[red,dashed] (\rx,\ry,0)--(R);
+        \tdplotdrawarc[red]{(O)}{0.15}{0}{\rot}{below}{\(\theta\)};
+        % ベクトル
+        \draw[thick,-stealth] (O)--(N) node[left]{$\vec{n}$};
+        \draw[thick,-stealth] (O)--(X) node[above right]{$\vec{x}$};
+        \draw[thick,-stealth] (O)--(R) node[above right]{$\vec{x'}$};
+        \draw[thick,-stealth] (O)--(\xx,0,0) node[below]{$\vec{x}_\perp$};
+        \draw[thick,-stealth] (O)--(\rx,\ry,0) node[right]{$\vec{x'}_\perp$};
+        \draw[thick,-stealth] (O)--(NX) node[left]{$\vec{n}\times\vec{x}_\perp$};
+    \end{tikzpicture}
+\end{preview}
 \href{https://mathlog.info/uploads/image/20220505162203.png}{外積ベクトル}
 
 $\vec{x'}_\perp$を$\vec{x}_\perp$方向と$\vec{n}\times\vec{x}_\perp$方向に分解します。
@@ -82,6 +197,43 @@ $\vec{x}_\perp$と$\vec{x'}_\perp$のなす角は$\theta$なので、次のよ�
     \vec{x'}_\perp=\cos\theta\vec{x}_\perp+\sin\theta(\vec{n}\times\vec{x}_\perp)
 \end{equation}
 
+\begin{preview}
+    \tdplotsetmaincoords{0}{0}
+    \begin{tikzpicture}[tdplot_main_coords,scale=4]
+        % 座標軸
+        \draw[dashed] (-0.6,0,0)--(0.8,0,0);
+        \draw[dashed] (0,-0.6,0)--(0,0.8,0);
+        % 定義
+        \coordinate (O) at (0,0,0);
+        \pgfmathsetmacro{\xx}{0.5};
+        \pgfmathsetmacro{\xy}{0};
+        \pgfmathsetmacro{\xz}{0.7};
+        \coordinate (X) at (\xx,\xy,\xz);
+        \pgfmathsetmacro{\rot}{60};
+        \tdplotsetrotatedcoords{-\rot}{0}{0};
+        \tdplottransformmainrot{\xx}{\xy}{\xz};
+        \pgfmathsetmacro{\rx}{\tdplotresx};
+        \pgfmathsetmacro{\ry}{\tdplotresy};
+        \pgfmathsetmacro{\rz}{\tdplotresz};
+        \coordinate (R) at (\rx,\ry,\rz);
+        \tdplotcrossprod(0,0,1)(\xx,\xy,\xz);
+        \pgfmathsetmacro{\nxx}{\tdplotresx};
+        \pgfmathsetmacro{\nxy}{\tdplotresy};
+        \pgfmathsetmacro{\nxz}{\tdplotresz};
+        \coordinate (NX) at (\nxx,\nxy,\nxz);
+        % 補助線
+        \draw[dashed] (O) circle[radius=\xx];
+        \draw[red,dashed] (\rx,0,0)--(\rx,\ry,0);
+        \draw[red,dashed] (0,\ry,0)--(\rx,\ry,0);
+        \tdplotdrawarc[red]{(O)}{0.15}{0}{\rot}{right}{\(\theta\)};
+        % ベクトル
+        \draw[thick,-stealth] (O)--(\xx,0,0) node[below]{$\vec{x}_\perp$};
+        \draw[thick,-stealth] (O)--(\rx,\ry,0) node[right]{$\vec{x'}_\perp$};
+        \draw[thick,-stealth] (O)--(NX) node[left]{$\vec{n}\times\vec{x}_\perp$};
+        \draw[thick,-stealth] (O)--(\rx,0,0);
+        \draw[thick,-stealth] (O)--(0,\ry,0);
+    \end{tikzpicture}
+\end{preview}
 \href{https://mathlog.info/uploads/image/20220505162643.png}{ベクトルの分解}
 
 これで、$\vec{x'}_\perp$を$\vec{x}$と$\vec{n}$であらわすことができました。したがって、次が成り立ちます。
