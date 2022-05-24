@@ -6,14 +6,14 @@
 
 - [四元数による回転の記述](https://mathlog.info/articles/3197)（Mathlog / 2022-05-06）（[2022/mathlog_QuaternionRotation](2022/mathlog_QuaternionRotation)）
 - [ロドリゲスの回転公式](https://mathlog.info/articles/3190)（Mathlog / 2022-05-05）（[2022/mathlog_RodriguesRotationFormula](2022/mathlog_RodriguesRotationFormula)）
-- [四元数と回転](https://github.com/usami-k/mathematics/blob/master/2022/QuaternionRotationTsudoi/QuaternionRotationTsudoi.pdf)（[第三回すうがく徒のつどい＠オンライン](https://tsudoionline.netlify.app/03/) / 2022-04-30）（[2022/QuaternionRotationTsudoi](2022/QuaternionRotationTsudoi)）
+- [四元数と回転](https://www.youtube.com/watch?v=lzPFo-DsGSo)（第3回すうがく徒のつどい＠オンライン / 2022-04-30）（[2022/QuaternionRotationTsudoi](2022/QuaternionRotationTsudoi)）
 - [四元数と回転](https://speakerdeck.com/usamik26/quaternion-rotation)（第23回日曜数学会 / 2022-01-22）（[2022/QuaternionRotation](2022/QuaternionRotation)）
 
 ### 2021
 
 - [八元数のはなし](https://speakerdeck.com/usamik26/octonion)（第22回日曜数学会 / 2021-10-23）（[2021/Octonion](2021/Octonion)）
 - [差分：離散的な世界の微分](https://speakerdeck.com/usamik26/finite-difference-method)（第21回日曜数学会 / 2021-06-13）（[2021/FiniteDifferenceMethod](2021/FiniteDifferenceMethod)）
-- [ルート系とディンキン図形](https://speakerdeck.com/usamik26/root-system-and-dynkin-diagram)（すうがく徒のつどい＠オンライン / 2021-03-20）（[2021/RootSystemAndDynkinDiagram](2021/RootSystemAndDynkinDiagram)）
+- [ルート系とディンキン図形](https://speakerdeck.com/usamik26/root-system-and-dynkin-diagram)（第1回すうがく徒のつどい＠オンライン / 2021-03-20）（[2021/RootSystemAndDynkinDiagram](2021/RootSystemAndDynkinDiagram)）
 - [ペントミノ牧場パズル](https://speakerdeck.com/usamik26/pentomino-farm)（第20回日曜数学会 / 2021-01-24）（[2021/PentominoFarm](2021/PentominoFarm)）
 
 ### 2020
