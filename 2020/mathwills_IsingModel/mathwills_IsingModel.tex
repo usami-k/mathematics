@@ -1,0 +1,109 @@
+\documentclass{jlreq}
+\usepackage[pdfusetitle]{hyperref}
+\hypersetup{colorlinks,allcolors=blue}
+\usepackage{luatexja-fontspec}
+\setmainjfont{YuKyo_Yoko-Medium}[BoldFont=YuKyo_Yoko-Bold]
+\setsansjfont{YuGo-Medium}[BoldFont=YuGo-Bold]
+\usepackage{stix2}
+\usepackage[scaled]{helvet}
+\usepackage{inconsolata}
+\usepackage{mathtools}
+\mathtoolsset{showonlyrefs=true}
+\numberwithin{equation}{section}
+\usepackage{amsthm,thmtools}
+\declaretheoremstyle[thmbox={style=M,bodystyle=\upshape}]{usmstyle}
+\declaretheoremstyle[qed=\qedsymbol,bodyfont=\upshape]{usmproofstyle}
+\declaretheorem[style=usmstyle,numberwithin=section,name=Definition]{definition}
+\declaretheorem[style=usmstyle,sibling=definition,name=Theorem]{theorem}
+\declaretheorem[style=usmstyle,sibling=definition,name=Lemma]{lemma}
+\declaretheorem[style=usmstyle,sibling=definition,name=Example]{example}
+\declaretheorem[style=usmproofstyle,numbered=no,name=Proof]{usmproof}
+\renewenvironment{proof}{\begin{usmproof}}{\end{usmproof}}
+\usepackage{svg}
+\title{イジング模型の定義}
+\author{宇佐見 公輔}
+\date{2020年10月16日}
+\begin{document}
+\maketitle
+
+イジング模型（Ising model）は統計力学で扱われる数理模型のひとつです。強磁性体や格子気体の模型として用いられます。1 次元と 2 次元のイジング模型は、数学的に厳密解を求めることができる可解格子模型です。
+
+ここでは、2 次元イジング模型の定義と、それを解くとはどういうことを指すのかを述べます。
+
+\section*{2 次元イジング模型の定義}
+
+$m$ 行 $n$ 列の格子（lattice）を考えます。次の図は $5 \times 6$ の格子の例です。
+
+\begin{figure}
+    \includesvg{lattice.svg}
+\end{figure}
+
+格子点を座標 $(i, j)$ であらわすことにします。例えば上の図で赤い格子点は $(3, 4)$ であらわします。また、$m \times n$ の格子点全体の集合を $L$ とします。
+
+それぞれの格子点 $(i, j) \in L$ に対して $+1$ または $-1$ の値を指定することを、配置（configuration）と呼びます。つまり配置とは、写像
+\begin{equation}
+    \begin{aligned}
+        L      & \to     \{\pm 1\} \\
+        (i, j) & \mapsto s_{ij}
+    \end{aligned}
+\end{equation}
+のことです。また、$s_{ij}$ を格子点 $(i, j)$ のスピン（spin）と呼びます。配置 $s : L \to \{\pm 1\}$ と写像で書く代わりに、$s = (s_{ij})_{1 \leq i \leq m,\, 1 \leq j \leq n}$ という書き方もします。
+
+配置 $s = (s_{ij})$ が与えられたとき、$s_{i+m,\,j} = s_{ij}$ および $s_{i,\,j+n} = s_{ij}$ という規則を追加することで、$i, j \in \mathbb{Z}$ に定義を拡張しておきます。この規則を周期境界条件と呼びます。
+
+配置 $s = (s_{ij})$ に対して、実数値 $E(s)$ を次で定義します。
+\begin{equation}
+    E(s) := - E_1 \sum_{i,\,j} s_{ij} s_{i+1,\,j} - E_2 \sum_{i,\,j} s_{ij} s_{i,\,j+1}
+\end{equation}
+ここで、$E_1$ と $E_2$ は正の定数、$\displaystyle \sum_{i,\,j}$ は $\displaystyle \sum_{i=1}^m \sum_{j=1}^n$ の略記です。$E(s)$ を配置 $s$ のエネルギー（energy）と呼びます。
+
+このように、格子点集合 $L$ の配置 $s$ に対するエネルギー $E(s)$ を設定した模型をイジング模型（Ising model）と呼びます。今は $L$ を 2 次元の格子としているため、特に 2 次元イジング模型と呼びます。
+
+補足 1：模型（model）という言葉は数理物理の用語です。
+
+補足 2：イジング模型は、より一般には、磁場を考えたり相互作用が最近接に限らなかったりします。上述の定義は、最も狭い意味の定義となっています。
+
+\section*{分配関数}
+
+統計力学の一般論によれば、ある系が絶対温度 $T$ の平衡状態にあるとき、エネルギー $E(s)$ を持つ配置 $s$ が出現する確率は
+\begin{equation}
+    p(s) = \frac{1}{Z} \exp \left( - \frac{E(s)}{k_B T} \right)
+\end{equation}
+です。ここで $k_B$ は Boltzmann 定数です。$Z$ は全確率を $1$ に規格化する定数で、
+\begin{equation}
+    Z = \sum_{s} \exp \left( - \frac{E(s)}{k_B T} \right)
+\end{equation}
+です。$\displaystyle \sum_{s}$ は全ての配置 $s$ についての和をとるという意味です。$Z$ は $T$ によって決まる値ですので、$T$ についての関数と見ることができます。$Z(T)$ は分配関数（partition function）と呼ばれます。
+
+2 次元イジング模型の分配関数は、
+\begin{equation}
+    \begin{aligned}
+        Z(T) & = \sum_{s} \exp \left( - \frac{E(s)}{k_B T} \right) \\
+             & = \sum_{s} \exp \left(
+        \frac{E_1}{k_B T} \sum_{i,\,j} s_{ij} s_{i+1,\,j} +
+        \frac{E_2}{k_B T} \sum_{i,\,j} s_{ij} s_{i,\,j+1}
+        \right)                                                    \\
+             & = \sum_{s} \exp \left(
+        K_1 \sum_{i,\,j} s_{ij} s_{i+1,\,j} +
+        K_2 \sum_{i,\,j} s_{ij} s_{i,\,j+1}
+        \right)
+    \end{aligned}
+\end{equation}
+と書けます。ここで $K_1 := \frac{E_1}{k_B T}$、$K_2 := \frac{E_2}{k_B T}$ とおきました。
+
+いま、格子 $L$ は $m \times n$ の有限のサイズとしていました。統計力学の模型として本当に考えたいのは、$m,\,n \to \infty$ の場合です。その場合の分配関数 $Z(T)$ を記述するのがひとつの目標となります。
+
+\section*{模型が「解ける」とは}
+
+統計力学と熱力学の一般論によれば、ある系の自由エネルギー $F(T)$ と分配関数 $Z(T)$ との間に次の関係があります。
+\begin{equation}
+    F(T) = - k_B T \log Z(T)
+\end{equation}
+
+$F(T)$ は熱力学において最も基本的な物理量であり、他の熱力学量を導くことができます。したがって、分配関数を記述することができれば、模型が「解ける」といえます。
+
+そして、2 次元イジング模型はこの意味で「解ける」模型です。
+
+補足：一般には模型が「解ける」という言葉はこの意味に限りません。
+
+\end{document}
