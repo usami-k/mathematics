@@ -4,6 +4,7 @@
 
 ### 2022
 
+- [正規表現のはなし](https://speakerdeck.com/usamik26/regex-theory)（第25回日曜数学会 / 2022-10-15）（[2022/regex-theory](2022/regex-theory)）
 - [四元数による回転の記述](https://mathlog.info/articles/3197)（Mathlog / 2022-05-06）（[2022/mathlog_QuaternionRotation](2022/mathlog_QuaternionRotation)）
 - [ロドリゲスの回転公式](https://mathlog.info/articles/3190)（Mathlog / 2022-05-05）（[2022/mathlog_RodriguesRotationFormula](2022/mathlog_RodriguesRotationFormula)）
 - [四元数と回転](https://www.youtube.com/watch?v=lzPFo-DsGSo)（第3回すうがく徒のつどい＠オンライン / 2022-04-30）（[2022/QuaternionRotationTsudoi](2022/QuaternionRotationTsudoi)）
