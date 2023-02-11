@@ -2,6 +2,10 @@
 
 ## 講演・プレゼン資料
 
+### 2023
+
+- [ソリトンとリー代数](https://speakerdeck.com/usamik26/soliton-history)（第26回日曜数学会 / 2023-02-11）（[2023/soliton-history](2023/soliton-history)）
+
 ### 2022
 
 - [正規表現のはなし](https://speakerdeck.com/usamik26/regex-theory)（第25回日曜数学会 / 2022-10-15）（[2022/regex-theory](2022/regex-theory)）
