@@ -1,0 +1,60 @@
+\documentclass{jlreq}
+\usepackage{luatexja-fontspec}
+\setmainfont{STIX Two Text}
+\setsansfont{Helvetica}
+\setmonofont{Inconsolata}
+\setmainjfont{YuKyo_Yoko-Medium}[BoldFont=YuKyo_Yoko-Bold]
+\setsansjfont{YuGo-Medium}[BoldFont=YuGo-Bold]
+\usepackage{mathtools}
+\usepackage[warnings-off={mathtools-colon,mathtools-overbracket}]{unicode-math}
+\unimathsetup{math-style=ISO,bold-style=ISO}
+\setmathfont{STIX Two Math}
+\mathtoolsset{showonlyrefs=true}
+
+\title{Onsager代数とその周辺}
+\author{宇佐見 公輔}
+\date{第4回 すうがく徒のつどい}
+\begin{document}
+\maketitle
+
+\section*{Ising模型とOnsager代数}
+
+Ising模型は統計力学で扱われる数理模型のひとつです。強磁性体などの模型として用いられます。1次元と2次元のIsing模型は、数学的に厳密解を求めることができる可解格子模型です。2次元Ising模型は、統計力学における相転移の研究において重要な役割を果たしています。
+
+2次元Ising模型の厳密解は、1944年にOnsagerによってはじめて導かれました。その際に、現在ではOnsager代数と呼ばれる代数構造が導入されました。
+
+なお2次元Ising模型の厳密解を導出する方法については、その後に別の手法がいくつか発見されています。Onsager代数の手法は複雑であるため、統計力学においては。より簡単なそれらの手法が紹介されることが多いです。
+
+\section*{Onsager代数とその同型}
+
+Onsager代数は、$\mathbb{C}$ 上の無限次元Lie代数です。
+
+$\{A_k,G_m\}$（$k\in\mathbb{Z}$、$m\in\mathbb{Z}_{>0}$）を基底とし、ブラケット積を以下で定義したLie代数をOnsager代数と呼びます（ここで便宜上 $G_{-m}:=-G_m$、$G_0:=0$ とします）。
+\begin{align}
+    [A_k,A_l] & =4G_{k-l}          \\
+    [G_m,A_k] & =2A_{k+m}-2A_{k-m} \\
+    [G_m,G_n] & =0
+\end{align}
+
+このように定義したOnsager代数は、生成元 $\{A_0,A_1\}$ と以下の関係式（Dolan-Grady関係式）で生成されるLie代数と同型です。
+\begin{align}
+    [A_0,[A_0,[A_0,A_1]]] & =16[A_0,A_1] \\
+    [A_1,[A_1,[A_1,A_0]]] & =16[A_1,A_0]
+\end{align}
+
+またOnsager代数は、$\mathbb{C}[t,t^{-1}]\otimes\mathfrak{sl}(2,\mathbb{C})$ の部分Lie代数
+\begin{equation}
+    \{ x \in \mathbb{C}[t,t^{-1}] \otimes \mathfrak{sl}(2,\mathbb{C}) \mid \omega(x) = x \}
+\end{equation}
+（ここで $\omega$ は $\mathfrak{sl}(2,\mathbb{C})$ のある自己同型写像）と同型です。
+これはOnsager代数が $A_1^{(1)}$ 型のアフィンLie代数の部分Lie代数になっていることを意味します。
+このことから、さらに $A_1^{(1)}$ 型以外への一般化も考えられています。
+
+今回の話では、Onsager代数とその同型について紹介します。
+
+\section*{前提知識など}
+
+線型代数やLie代数の基本的な知識があると望ましいです。
+ただ、それほど知識がなくても伝わるように話をしたいと考えています。
+
+\end{document}
