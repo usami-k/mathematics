@@ -4,8 +4,8 @@
 
 ### 2023
 
-- [Onsager代数とその周辺](https://speakerdeck.com/usamik26/onsager-algebra-tsudoi)（第4回すうがく徒のつどい＠オンライン / 2023-09-17）（[2023/onsager-algebra-tsudoi](2023/onsager-algebra-tsudoi)）
-- [ソリトンとリー代数](https://speakerdeck.com/usamik26/soliton-history)（第26回日曜数学会 / 2023-02-11）（[2023/soliton-history](2023/soliton-history)）
+- [Onsager代数とその周辺](https://www.docswell.com/s/usami-k/Z9892J-onsager-algebra-tsudoi)（第4回すうがく徒のつどい＠オンライン / 2023-09-17）（[2023/onsager-algebra-tsudoi](2023/onsager-algebra-tsudoi)）
+- [ソリトンとリー代数](https://www.docswell.com/s/usami-k/5JLENN-soliton-history)（第26回日曜数学会 / 2023-02-11）（[2023/soliton-history](2023/soliton-history)）
 
 ### 2022
 
