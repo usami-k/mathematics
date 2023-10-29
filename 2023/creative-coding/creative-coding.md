@@ -70,9 +70,19 @@ Rust言語のクリエイティブコーディング向けツールキット
 
 # 座標系の違い
 
-![height:400](images/coordinate.png)
+![height:500](images/coordinate.png)
 
-Processingやp5.jsは左の座標系を採用。Nannouは右の座標系を採用。
+# 座標系の違い
+
+![bg right:40% fit](images/coordinate.png)
+
+コンピューター画面の座標系：
+・画面に横書きの文章がある場合、左から右、上から下に向かっていくのが自然。
+
+数学の座標系：
+・地面にXY平面があって自分が原点に立っている場合、Y軸が自分から前に向かっていくのが自然。
+
+※ Processingやp5.jsは左の座標系を採用。Nannouは右の座標系を採用。
 
 # 例1
 
