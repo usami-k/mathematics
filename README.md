@@ -27,25 +27,25 @@
 
 - [ルービックキューブ群を SageMath で見る](https://www.docswell.com/s/usami-k/5P97GG-rubiks-cube-and-sagemath)（第19回日曜数学会 / 2020-10-31）（[2020/RubiksCubeAndSageMath](2020/RubiksCubeAndSageMath)）
 - [イジング模型の定義](https://www.mathwills.com/posts/94)（MathWills / 2020-10-16）（[2020/mathwills_IsingModel](2020/mathwills_IsingModel)）
-- [ルービックキューブと群論](https://www.docswell.com/s/usami-k/5XYV62-rubik-cube-and-group-theory)（第7回 関西日曜数学 友の会 / 2020-10-03）（[2020/RubiksCubeAndGroupTheory](2020/RubiksCubeAndGroupTheory)）
+- [ルービックキューブと群論](https://www.docswell.com/s/usami-k/5XYV62-rubik-cube-and-group-theory)（第7回関西日曜数学友の会 / 2020-10-03）（[2020/RubiksCubeAndGroupTheory](2020/RubiksCubeAndGroupTheory)）
 - [平面の敷き詰めとルート系](https://www.docswell.com/s/usami-k/KDE4W9-tiling-and-root-system)（第18回日曜数学会 / 2020-06-28）（[2020/TilingAndRootSystem](2020/TilingAndRootSystem)）
-- [四元数のはなし](https://www.docswell.com/s/usami-k/ZW16MG-quaternion)（第6.5回 関西日曜数学 友の会 / 2020-05-02）（[2020/Quaternion](2020/Quaternion)）
+- [四元数のはなし](https://www.docswell.com/s/usami-k/ZW16MG-quaternion)（第6.5回関西日曜数学友の会 / 2020-05-02）（[2020/Quaternion](2020/Quaternion)）
 - [Onsager algebra](https://www.docswell.com/s/usami-k/5RX4EW-onsager-algebra)（数学カフェ関西 / 2020-03-22）（[2020/OnsagerAlgebra](2020/OnsagerAlgebra)）
 
 ### 2019
 
-- [回転群のはなし](https://www.docswell.com/s/usami-k/K6Y4NM-rotation-group)（第6回 関西日曜数学 友の会 / 2019-11-02）（[2019/RotationGroup](2019/RotationGroup)）
-- [行列の指数関数](https://www.docswell.com/s/usami-k/KVVNJV-matrix-exponential)（第12回 関西すうがく徒のつどい / 2019-10-26）（[2019/MatrixExponential](2019/MatrixExponential)）
-- [リー代数の計算の楽しみ](https://www.docswell.com/s/usami-k/K1J8QR-lie-algebra-calculation)（日曜数学会 in マスパーティ / 2019-10-19）（[2019/LieAlgebraCalculation](2019/LieAlgebraCalculation)）
-- [Onsager代数の話（Generalized Onsager algebras）](https://www.docswell.com/s/usami-k/ZGXYNL-generalized-onsager-algebras)（第５回 関西日曜数学 友の会 / 2019-08-03）（[2019/OnsagerAlgebra](2019/OnsagerAlgebra)）
-- [ディンキン図形を知る（ルート系とディンキン図形）](https://www.docswell.com/s/usami-k/598YNW-dynkin-diagrams)（第４回 関西日曜数学 友の会 / 2019-04-13）（[2019/DynkinDiagrams](2019/DynkinDiagrams)）
-- [リー代数の話 (2)](https://www.docswell.com/s/usami-k/ZP97RG-mathdayosaka-liealgebra-2)（第19回 数学デー in 大阪 / 2019-04-05）（[2019/MathDayOsaka_LieAlgebra_2](2019/MathDayOsaka_LieAlgebra_2)）
-- [リー代数の話 (1)](https://www.docswell.com/s/usami-k/KLL23Q-mathdayosaka-liealgebra-1)（第18回 数学デー in 大阪 / 2019-04-03）（[2019/MathDayOsaka_LieAlgebra_1](2019/MathDayOsaka_LieAlgebra_1)）
+- [回転群のはなし](https://www.docswell.com/s/usami-k/K6Y4NM-rotation-group)（第6回関西日曜数学友の会 / 2019-11-02）（[2019/RotationGroup](2019/RotationGroup)）
+- [行列の指数関数](https://www.docswell.com/s/usami-k/KVVNJV-matrix-exponential)（第12回関西すうがく徒のつどい / 2019-10-26）（[2019/MatrixExponential](2019/MatrixExponential)）
+- [リー代数の計算の楽しみ](https://www.docswell.com/s/usami-k/K1J8QR-lie-algebra-calculation)（日曜数学会inマスパーティ / 2019-10-19）（[2019/LieAlgebraCalculation](2019/LieAlgebraCalculation)）
+- [Onsager代数の話（Generalized Onsager algebras）](https://www.docswell.com/s/usami-k/ZGXYNL-generalized-onsager-algebras)（第5回関西日曜数学友の会 / 2019-08-03）（[2019/OnsagerAlgebra](2019/OnsagerAlgebra)）
+- [ディンキン図形を知る（ルート系とディンキン図形）](https://www.docswell.com/s/usami-k/598YNW-dynkin-diagrams)（第4回関西日曜数学友の会 / 2019-04-13）（[2019/DynkinDiagrams](2019/DynkinDiagrams)）
+- [リー代数の話 (2)](https://www.docswell.com/s/usami-k/ZP97RG-mathdayosaka-liealgebra-2)（第19回数学デーin大阪 / 2019-04-05）（[2019/MathDayOsaka_LieAlgebra_2](2019/MathDayOsaka_LieAlgebra_2)）
+- [リー代数の話 (1)](https://www.docswell.com/s/usami-k/KLL23Q-mathdayosaka-liealgebra-1)（第18回数学デーin大阪 / 2019-04-03）（[2019/MathDayOsaka_LieAlgebra_1](2019/MathDayOsaka_LieAlgebra_1)）
 
 ### 2018
 
-- [ラムダ計算の話](https://www.docswell.com/s/usami-k/5DE4M9-lambda-calculus)（第３回 関西日曜数学 友の会 / 2018-11-03）（[2018/LambdaCalculus](2018/LambdaCalculus)）
-- [圏論とHaskell](https://www.docswell.com/s/usami-k/ZXYV22-category-theory-and-haskell)（第2回 関西日曜数学 友の会 / 2018-08-04）（[2018/CategoryTheoryAndHaskell](2018/CategoryTheoryAndHaskell)）
+- [ラムダ計算の話](https://www.docswell.com/s/usami-k/5DE4M9-lambda-calculus)（第3回関西日曜数学友の会 / 2018-11-03）（[2018/LambdaCalculus](2018/LambdaCalculus)）
+- [圏論とHaskell](https://www.docswell.com/s/usami-k/ZXYV22-category-theory-and-haskell)（第2回関西日曜数学友の会 / 2018-08-04）（[2018/CategoryTheoryAndHaskell](2018/CategoryTheoryAndHaskell)）
 
 ## ライセンス
 
