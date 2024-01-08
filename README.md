@@ -42,6 +42,11 @@
 - [リー代数の話 (2)](https://www.docswell.com/s/usami-k/ZP97RG-mathdayosaka-liealgebra-2)（第19回 数学デー in 大阪 / 2019-04-05）（[2019/MathDayOsaka_LieAlgebra_2](2019/MathDayOsaka_LieAlgebra_2)）
 - [リー代数の話 (1)](https://www.docswell.com/s/usami-k/KLL23Q-mathdayosaka-liealgebra-1)（第18回 数学デー in 大阪 / 2019-04-03）（[2019/MathDayOsaka_LieAlgebra_1](2019/MathDayOsaka_LieAlgebra_1)）
 
+### 2018
+
+- [ラムダ計算の話](https://www.docswell.com/s/usami-k/5DE4M9-lambda-calculus)（第３回 関西日曜数学 友の会 / 2018-11-03）（[2018/LambdaCalculus](2018/LambdaCalculus)）
+- [圏論とHaskell](https://www.docswell.com/s/usami-k/ZXYV22-category-theory-and-haskell)（第2回 関西日曜数学 友の会 / 2018-08-04）（[2018/CategoryTheoryAndHaskell](2018/CategoryTheoryAndHaskell)）
+
 ## ライセンス
 
 このリポジトリの文書のライセンスは [CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/deed.ja) です。
