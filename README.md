@@ -25,12 +25,12 @@
 
 ### 2020
 
-- [ルービックキューブ群を SageMath で見る](https://speakerdeck.com/usamik26/rubiks-cube-and-sagemath)（第19回日曜数学会 / 2020-10-31）（[2020/RubiksCubeAndSageMath](2020/RubiksCubeAndSageMath)）
+- [ルービックキューブ群を SageMath で見る](https://www.docswell.com/s/usami-k/5P97GG-rubiks-cube-and-sagemath)（第19回日曜数学会 / 2020-10-31）（[2020/RubiksCubeAndSageMath](2020/RubiksCubeAndSageMath)）
 - [イジング模型の定義](https://www.mathwills.com/posts/94)（MathWills / 2020-10-16）（[2020/mathwills_IsingModel](2020/mathwills_IsingModel)）
-- [ルービックキューブと群論](https://speakerdeck.com/usamik26/rubik-cube-and-group-theory)（第7回 関西日曜数学 友の会 / 2020-10-03）（[2020/RubiksCubeAndGroupTheory](2020/RubiksCubeAndGroupTheory)）
-- [平面の敷き詰めとルート系](https://speakerdeck.com/usamik26/tiling-and-root-system)（第18回日曜数学会 / 2020-06-28）（[2020/TilingAndRootSystem](2020/TilingAndRootSystem)）
-- [四元数のはなし](https://speakerdeck.com/usamik26/quaternion)（第6.5回 関西日曜数学 友の会 / 2020-05-02）（[2020/Quaternion](2020/Quaternion)）
-- [Onsager algebra](2020/OnsagerAlgebra/Onsager%20algebra.pdf)（[数学カフェ関西](https://usami-k.hatenadiary.jp/entry/2020/03/22/215921) / 2020-03-22）（[2020/OnsagerAlgebra](2020/OnsagerAlgebra)）
+- [ルービックキューブと群論](https://www.docswell.com/s/usami-k/5XYV62-rubik-cube-and-group-theory)（第7回 関西日曜数学 友の会 / 2020-10-03）（[2020/RubiksCubeAndGroupTheory](2020/RubiksCubeAndGroupTheory)）
+- [平面の敷き詰めとルート系](https://www.docswell.com/s/usami-k/KDE4W9-tiling-and-root-system)（第18回日曜数学会 / 2020-06-28）（[2020/TilingAndRootSystem](2020/TilingAndRootSystem)）
+- [四元数のはなし](https://www.docswell.com/s/usami-k/ZW16MG-quaternion)（第6.5回 関西日曜数学 友の会 / 2020-05-02）（[2020/Quaternion](2020/Quaternion)）
+- [Onsager algebra](https://www.docswell.com/s/usami-k/5RX4EW-onsager-algebra)（[数学カフェ関西](https://usami-k.hatenadiary.jp/entry/2020/03/22/215921) / 2020-03-22）（[2020/OnsagerAlgebra](2020/OnsagerAlgebra)）
 
 ### 2019
 
