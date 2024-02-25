@@ -2,6 +2,10 @@
 
 ## 講演・プレゼン資料
 
+### 2024
+
+- [パズルキューブSquare-1の紹介](https://www.docswell.com/s/usami-k/5JLMWX-intro-square-1)（第29回日曜数学会 / 2024-02-25）（[2024/intro-square-1](2024/intro-square-1)）
+
 ### 2023
 
 - [クリエイティブコーディングのはなし](https://www.docswell.com/s/usami-k/5RXMW9-creative-coding)（第28回日曜数学会 / 2023-10-29）（[2023/creative-coding](2023/creative-coding)）
