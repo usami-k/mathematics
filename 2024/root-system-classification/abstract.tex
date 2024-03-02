@@ -1,0 +1,57 @@
+\documentclass{jlreq}
+\usepackage{luatexja-fontspec}
+\setmainfont{STIX Two Text}
+\setsansfont{Helvetica}
+\setmonofont{Inconsolata}
+\setmainjfont{YuKyo_Yoko-Medium}[BoldFont=YuKyo_Yoko-Bold]
+\setsansjfont{YuGo-Medium}[BoldFont=YuGo-Bold]
+\usepackage{mathtools}
+\usepackage[warnings-off={mathtools-colon,mathtools-overbracket}]{unicode-math}
+\unimathsetup{math-style=ISO,bold-style=ISO}
+\setmathfont{STIX Two Math}
+\mathtoolsset{showonlyrefs=true}
+\pagestyle{empty}
+\usepackage[mark=o]{dynkin-diagrams}
+
+\title{既約ルート系の分類定理の証明}
+\author{宇佐見公輔}
+\date{第5回 すうがく徒のつどい}
+\begin{document}
+\maketitle
+
+\section*{ルート系}
+
+ルート系（root system）は、リー代数（Lie algebra）を分類する研究の中であらわれました。
+
+複素数体上の有限次元単純リー代数は、ルート分解という直和分解ができます。そこに出てくるルート（root）というベクトルの集合は、ある一定の性質を持っています。そこで、この性質を定義として採用し、抽象的なルート系という概念を導入します。
+
+そして、ルート系の分類をすることでリー代数の分類ができます。既約ルート系（それ以上分解できないルート系）が、単純リー代数と対応しています。
+
+\section*{ディンキン図形}
+
+ルート系は一般には高次元の実ベクトル空間の部分集合であるため、直接的な図解はしづらいです。しかし、ルート系の情報を視覚的に表現するための道具として、ディンキン図形（Dynkin diagram）というグラフがあります。
+
+既約ルート系の分類は、連結なディンキン図形を分類することで行えます。
+
+\section*{分類定理}
+
+複素数体上の有限次元単純リー代数の分類は、既約ルート系を通じて、連結ディンキン図形の分類に帰着します。連結ディンキン図形は、$A$型、$B$型、$C$型、$D$型、$E$型、$F$型、$G$型の7種類しかないことが知られています。この分類の結果はとても興味深いもので、リー代数の教科書には必ずといっていいほど載っています。
+
+この分類定理の証明については、教科書に書いてはありますがあまりきちんと学ばない場合も多いかもしれません。しかし実のところ、短い証明ではないものの、それほど難しい知識を必要とせずに証明できます。今回は、その証明を丁寧に追ってみたいと思います。
+
+\begin{figure}
+    \centering
+    \begin{tabular}{cc}
+        $A_n$ & \scalebox{4}{\dynkin{A}{}}  \\
+        $B_n$ & \scalebox{4}{\dynkin{B}{}}  \\
+        $C_n$ & \scalebox{4}{\dynkin{C}{}}  \\
+        $D_n$ & \scalebox{4}{\dynkin{D}{}}  \\
+        $E_6$ & \scalebox{4}{\dynkin{E}{6}} \\
+        $E_7$ & \scalebox{4}{\dynkin{E}{7}} \\
+        $E_8$ & \scalebox{4}{\dynkin{E}{8}} \\
+        $F_4$ & \scalebox{4}{\dynkin{F}{4}} \\
+        $G_2$ & \scalebox{4}{\dynkin{G}{2}}
+    \end{tabular}
+\end{figure}
+
+\end{document}
