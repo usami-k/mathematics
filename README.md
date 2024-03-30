@@ -4,6 +4,7 @@
 
 ### 2024
 
+- [既約ルート系の分類定理の証明](https://www.docswell.com/s/usami-k/ZRX1XE-root-system-classification)（第5回すうがく徒のつどい / 2024-03-30）([2024/root-system-classification](2024/root-system-classification))
 - [パズルキューブSquare-1の紹介](https://www.docswell.com/s/usami-k/5JLMWX-intro-square-1)（第29回日曜数学会 / 2024-02-25）（[2024/intro-square-1](2024/intro-square-1)）
 
 ### 2023
