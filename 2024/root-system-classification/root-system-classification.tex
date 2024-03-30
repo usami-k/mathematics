@@ -1,0 +1,819 @@
+\documentclass{beamer}
+\usetheme{Luebeck}
+\usecolortheme{seahorse}
+\usefonttheme{structurebold,serif}
+\setbeamertemplate{navigation symbols}{\usebeamerfont{footline}\insertframenumber/\inserttotalframenumber}
+\setlength{\parskip}{\bigskipamount}
+\usepackage{luatexja-fontspec}
+\setmainfont{STIX Two Text}
+\setsansfont{Helvetica}
+\setmonofont{Inconsolata}
+\setmainjfont{YuKyo_Yoko-Medium}[BoldFont=YuKyo_Yoko-Bold]
+\setsansjfont{YuGo-Medium}[BoldFont=YuGo-Bold]
+\usepackage{mathtools}
+\usepackage[warnings-off={mathtools-colon,mathtools-overbracket}]{unicode-math}
+\unimathsetup{math-style=ISO,bold-style=ISO}
+\setmathfont{STIX Two Math}
+\mathtoolsset{showonlyrefs=true}
+\DeclarePairedDelimiterX{\set}[1]{\lbrace}{\rbrace}{\,#1\,}
+\DeclarePairedDelimiterX{\Set}[2]{\lbrace}{\rbrace}{\,#1\;\delimsize|\;#2\,}
+\usepackage{tikz}
+\usepackage{tikz-3dplot}
+\usepackage[mark=o]{dynkin-diagrams}
+
+\title{既約ルート系の分類定理の証明}
+\author{宇佐見 公輔}
+\date{第5回 すうがく徒のつどい}
+\begin{document}
+\maketitle
+
+\begin{frame}
+    \frametitle{自己紹介}
+
+    \begin{itemize}
+        \item 宇佐見 公輔（うさみ こうすけ）
+        \item 本業はプログラマー
+        \item 大学院で数学専攻、修士卒業後は趣味としてやっている
+        \item Lie代数やその周辺を好む
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{今日の話}
+
+    今回はタイトルにあるように既約ルート系の分類定理について話します。
+
+    予定では完全な証明を述べるつもりでしたが、準備と分量の都合上、証明のさわりを述べる程度になってしまいました。
+    すみません・・・。
+
+    ルート系の定義から丁寧に説明できればと思います（以前のすうがく徒のつどい＠オンラインで話したことがある内容に近くなります）。
+\end{frame}
+
+\begin{frame}
+    \frametitle{ユークリッド空間}
+
+    \begin{definition}[ユークリッド空間]
+        $ℝ$上の有限次元ベクトル空間で、内積（正定値対称形式）が定義されているものをユークリッド空間と呼びます。
+    \end{definition}
+
+    $E$をユークリッド空間とするとき、$α∈E$と$β∈E$の内積を$⟨α∣β⟩$と書くことにします。
+\end{frame}
+
+\begin{frame}
+    \frametitle{超平面}
+
+    \begin{definition}[超平面]
+        $E$をユークリッド空間とします。$α∈E$に対して、超平面$P_α$を
+        \begin{equation}
+            P_α:=\Set{β∈E}{⟨α∣β⟩=0}
+        \end{equation}
+        と定義します。
+    \end{definition}
+
+    \begin{figure}
+        \centering
+        \tdplotsetmaincoords{70}{-10}
+        \begin{tikzpicture}[tdplot_main_coords]
+            \filldraw[fill=gray!20, opacity=0.5] (-3,-3,0)--(3,-3,0)--(3,3,0)--(-3,3,0)--cycle;
+            \node at (-2,2,0) {$P_α$};
+            \draw[->,thick] (0,0,0)--(0,0,1) node[midway,right]{$α$};
+            \draw[dashed] (-3,0,0)--(3,0,0);
+            \draw[dashed] (0,-3,0)--(0,3,0);
+        \end{tikzpicture}
+    \end{figure}
+\end{frame}
+
+\begin{frame}
+    \frametitle{鏡映を考える}
+
+    超平面$P_α$に関する鏡映$σ_α$を考えます。
+
+    \begin{figure}
+        \centering
+        \tdplotsetmaincoords{70}{-10}
+        \begin{tikzpicture}[tdplot_main_coords]
+            \filldraw[fill=gray!20, opacity=0.5] (-3,-3,0)--(3,-3,0)--(3,3,0)--(-3,3,0)--cycle;
+            \node at (-2,2,0) {$P_α$};
+            \draw[->,thick] (0,0,0)--(0,0,1) node[midway,left]{$α$};
+            \draw[->,thick] (0,0,0)--(2,0,2) node[midway,above]{$β$};
+            \draw[->,thick] (0,0,0)--(2,0,-2) node[midway,below]{$σ_α(β)$};
+            \draw[dashed] (0,0,0)--(2,0,0);
+            \draw[dashed] (2,0,2)--(2,0,-2);
+        \end{tikzpicture}
+    \end{figure}
+\end{frame}
+
+\begin{frame}
+    \frametitle{鏡映の計算}
+
+    \begin{figure}
+        \centering
+        \tdplotsetmaincoords{70}{-10}
+        \begin{tikzpicture}[tdplot_main_coords,scale=0.8]
+            \filldraw[fill=gray!20, opacity=0.5] (-3,-3,0)--(3,-3,0)--(3,3,0)--(-3,3,0)--cycle;
+            \node at (-2,2,0) {$P_α$};
+            \draw[->,thick] (0,0,0)--(0,0,1) node[midway,left]{$α$};
+            \draw[->,thick] (0,0,0)--(2,0,2) node[midway,above]{$β$};
+            \draw[->,thick] (0,0,0)--(2,0,-2) node[midway,below]{$σ_α(β)$};
+            \draw[dashed] (0,0,0)--(2,0,0);
+            \draw[dashed] (2,0,2)--(2,0,-2);
+            \draw[->,thick] (2,0,2)--(2,0,0) node[midway,right]{$tα$};
+        \end{tikzpicture}
+    \end{figure}
+
+    \begin{equation}
+        ⟨β+tα∣α⟩=0\;⇔\;⟨β∣α⟩+t⟨α∣α⟩=0\;⇔\;t=-\frac{⟨β∣α⟩}{⟨α∣α⟩}
+    \end{equation}
+    したがって、
+    \begin{equation}
+        σ_α(β)=β-\frac{2⟨β∣α⟩}{⟨α∣α⟩}α
+    \end{equation}
+\end{frame}
+
+\begin{frame}
+    \frametitle{鏡映の定義}
+
+    定義として改めて述べると、次のようになります。
+
+    \begin{definition}[鏡映]
+        $E$をユークリッド空間とします。$α∈E$に対して、写像$σ_α$を
+        \begin{equation}
+            σ_α:
+            \begin{aligned}[t]
+                E & \to E             \\
+                β & \mapsto β-c(β,α)α
+            \end{aligned}
+        \end{equation}
+        と定義し、超平面$P_α$に関する鏡映と呼びます。
+        ここで、$c(β,α)$は次のように定義します。
+        \begin{equation}
+            c(β,α):=\frac{2⟨β∣α⟩}{⟨α∣α⟩}
+        \end{equation}
+    \end{definition}
+\end{frame}
+
+\begin{frame}
+    \frametitle{ルート系の定義}
+
+    \begin{definition}[ルート系]
+        $E$をユークリッド空間とします。$E$の部分集合$Δ$がルート系であるとは、次の条件を満たすことです。
+        \begin{enumerate}
+            \item $Δ$は$0$を含まない有限集合で、$E$を張る。
+            \item\label{def:root:scalar} $t∈ℝ$、$α∈Δ$、$tα∈Δ$ならば、$t=±1$。
+            \item\label{def:root:reflection} $α∈Δ$ならば、$σ_α(Δ)=Δ$。
+            \item\label{def:root:integer} $α,β∈Δ$ならば、$c(β,α)∈ℤ$。
+        \end{enumerate}
+    \end{definition}
+
+    定義の\autoref{def:root:scalar}では$α∈Δ$に対して$-α∈Δ$であることを含みません。
+
+    しかし、$σ_α(α)=α-c(α,α)α=α-2α=-α$ですから、定義の\autoref{def:root:reflection}から、$α∈Δ$ならば$-α∈Δ$となります。
+\end{frame}
+
+\begin{frame}
+    \frametitle{ルート系の例}
+
+    2次元ユークリッド空間のルート系の例を挙げます。
+
+    \begin{figure}
+        \begin{tikzpicture}
+            \draw[->] (0,0) -- (1,0);
+            \draw[->] (0,0) -- (0,1);
+            \draw[->] (0,0) -- (-1,0);
+            \draw[->] (0,0) -- (0,-1);
+        \end{tikzpicture}
+        \quad
+        \begin{tikzpicture}
+            \draw[->] (0,0) -- (0:1.2);
+            \draw[->] (0,0) -- (60:1.2);
+            \draw[->] (0,0) -- (120:1.2);
+            \draw[->] (0,0) -- (180:1.2);
+            \draw[->] (0,0) -- (240:1.2);
+            \draw[->] (0,0) -- (300:1.2);
+        \end{tikzpicture}
+        \quad
+        \begin{tikzpicture}
+            \draw[->] (0,0) -- (1,0);
+            \draw[->] (0,0) -- (1,1);
+            \draw[->] (0,0) -- (0,1);
+            \draw[->] (0,0) -- (-1,1);
+            \draw[->] (0,0) -- (-1,0);
+            \draw[->] (0,0) -- (-1,-1);
+            \draw[->] (0,0) -- (0,-1);
+            \draw[->] (0,0) -- (1,-1);
+        \end{tikzpicture}
+        \quad
+        \begin{tikzpicture}
+            \draw[->] (0,0) -- (0:0.6);
+            \draw[->] (0,0) -- ($ (0:0.6) + (60:0.6) $);
+            \draw[->] (0,0) -- (60:0.6);
+            \draw[->] (0,0) -- ($ (60:0.6) + (120:0.6) $);
+            \draw[->] (0,0) -- (120:0.6);
+            \draw[->] (0,0) -- ($ (120:0.6) + (180:0.6) $);
+            \draw[->] (0,0) -- (180:0.6);
+            \draw[->] (0,0) -- ($ (180:0.6) + (240:0.6) $);
+            \draw[->] (0,0) -- (240:0.6);
+            \draw[->] (0,0) -- ($ (240:0.6) + (300:0.6) $);
+            \draw[->] (0,0) -- (300:0.6);
+            \draw[->] (0,0) -- ($ (300:0.6) + (0:0.6) $);
+        \end{tikzpicture}
+    \end{figure}
+\end{frame}
+
+\begin{frame}
+    \frametitle{ルート系の同型}
+
+    \begin{definition}[ルート系の同型]
+        $Δ$を$E$のルート系、$Δ'$を$E'$のルート系とします。
+        $Δ$と$Δ'$が同型であるとは、次の条件を満たす線型同型写像$ϕ:E→E'$が存在することです。
+        \begin{equation}
+            c(β,α)=c(ϕ(β),ϕ(α))
+        \end{equation}
+    \end{definition}
+
+    なお、ルート系の同型写像では内積が保たれている必要はありません。
+\end{frame}
+
+\begin{frame}
+    \frametitle{2つのルートのなす角}
+
+    ここから、2つのルートの関係を考えていきます。
+
+    $Δ$を$E$のルート系とし、$α,β∈Δ$、$α$と$β$は線型独立とします。
+
+    $α$と$β$がなす角を$θ$とします（$0≤θ≤π$）。定義から$⟨α∣β⟩=|α||β|\cosθ$です。したがって、
+    \begin{equation}
+        c(β,α)=\frac{2⟨β∣α⟩}{⟨α∣α⟩}=\frac{2|β||α|\cosθ}{|α|^2}=\frac{2|β|}{|α|}\cosθ
+    \end{equation}
+    となるので、
+    \begin{equation}
+        c(α,β)c(β,α)=\frac{2|α|}{|β|}\cosθ\frac{2|β|}{|α|}\cosθ=4\cos^2θ
+    \end{equation}
+    となります。
+\end{frame}
+
+\begin{frame}
+    \frametitle{2つのルートのなす角}
+
+    \begin{equation}
+        c(α,β)c(β,α)=4\cos^2θ
+    \end{equation}
+    ですが、ルート系の定義\autoref{def:root:integer}から$c(α,β)∈ℤ$、$c(β,α)∈ℤ$です。
+    したがって、$c(α,β)c(β,α)∈\set{0,1,2,3,4}$です。
+
+    $c(α,β)c(β,α)=4$の場合は$\cos^2θ=1$より、$θ=0$または$θ=π$です。
+    どちらの場合も$α$と$β$が線型独立ではないので除外します。
+
+    $c(α,β)c(β,α)=0,1,2,3$の場合、それぞれなす角が求まります。
+    \begin{itemize}
+        \item $c(α,β)c(β,α)=0$のとき、$θ=\frac{1}{2}π$。
+        \item $c(α,β)c(β,α)=1$のとき、$θ=\frac{1}{3}π$、$θ=\frac{2}{3}π$。
+        \item $c(α,β)c(β,α)=2$のとき、$θ=\frac{1}{4}π$、$θ=\frac{3}{4}π$。
+        \item $c(α,β)c(β,α)=3$のとき、$θ=\frac{1}{6}π$、$θ=\frac{5}{6}π$。
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{2つのルートの可能な組み合わせ}
+
+    \begin{table}
+        \renewcommand{\arraystretch}{1.8}
+        \centering
+        \begin{tabular}{cccccc}
+            $c(α,β)c(β,α)$ & $\cos^2θ$     & $θ$            & $c(α,β)$ & $c(β,α)$ & $\frac{|β|}{|α|}$ \\
+            \hline
+            $0$            & $0$           & $\frac{1}{2}π$ & $0$      & $0$      & 任意                \\
+            $1$            & $\frac{1}{4}$ & $\frac{1}{3}π$ & $1$      & $1$      & $1$               \\
+            $1$            & $\frac{1}{4}$ & $\frac{2}{3}π$ & $-1$     & $-1$     & $1$               \\
+            $2$            & $\frac{1}{2}$ & $\frac{1}{4}π$ & $1$      & $2$      & $\sqrt{2}$        \\
+            $2$            & $\frac{1}{2}$ & $\frac{3}{4}π$ & $-1$     & $-2$     & $\sqrt{2}$        \\
+            $3$            & $\frac{3}{4}$ & $\frac{1}{6}π$ & $1$      & $3$      & $\sqrt{3}$        \\
+            $3$            & $\frac{3}{4}$ & $\frac{5}{6}π$ & $-1$     & $-3$     & $\sqrt{3}$
+        \end{tabular}
+    \end{table}
+\end{frame}
+
+\begin{frame}
+    \frametitle{ルートの和と差}
+
+    \begin{theorem}
+        $Δ$を$E$のルート系とします。$α,β∈Δ$、$α$と$β$は線型独立とします。このとき、次が成り立ちます。
+        \begin{enumerate}
+            \item $⟨β∣α⟩>0$ならば、$β-α∈Δ$。
+            \item $⟨β∣α⟩<0$ならば、$β+α∈Δ$。
+        \end{enumerate}
+    \end{theorem}
+
+    \begin{figure}
+        \begin{tikzpicture}
+            \draw[->,blue,thick] (0,0) -- (0:1.2) node[right]{$α$};
+            \draw[->,blue,thick] (0,0) -- (60:1.2) node[above right]{$β$};
+            \draw[->] (0,0) -- (120:1.2) node[above]{$β-α$};
+        \end{tikzpicture}
+        \quad
+        \begin{tikzpicture}
+            \draw[->,red,thick] (0,0) -- (0:1.2) node[right]{$α$};
+            \draw[->] (0,0) -- (60:1.2) node[above right]{$β+α$};
+            \draw[->,red,thick] (0,0) -- (120:1.2) node[above]{$β$};
+        \end{tikzpicture}
+    \end{figure}
+\end{frame}
+
+\begin{frame}
+    \frametitle{ルートの和と差}
+
+    \begin{proof}
+        $⟨β∣α⟩>0$の場合を示します。
+        先ほどの表から、$c(α,β)=1$または$c(β,α)=1$です。
+        $c(β,α)=1$のとき
+        \begin{equation}
+            σ_α(β)=β-c(β,α)α=β-α
+        \end{equation}
+        となりますが、ルート系の定義\autoref{def:root:reflection}から$σ_α(β)∈Δ$です。したがって、$β-α∈Δ$です。
+
+        同様に$c(α,β)=1$のとき、$σ_β(α)=α-β$から$α-β∈Δ$です。よって、$β-α=-(α-β)∈Δ$です。
+
+        $⟨β∣α⟩<0$の場合も同様です。$c(α,β)=-1$または$c(β,α)=-1$であることから示せます。
+    \end{proof}
+\end{frame}
+
+\begin{frame}
+    \frametitle{ルート列}
+
+    \begin{theorem}
+        $Δ$を$E$のルート系とします。$α,β∈Δ$、$α$と$β$は線型独立とします。
+        \begin{equation}
+            p:=\max\Set{k∈ℕ}{β+kα∈Δ}\quad q:=\min\Set{k∈ℕ}{β+kα∈Δ}
+        \end{equation}
+        とするとき、次が成り立ちます。
+        \begin{enumerate}
+            \item $q≤k≤p$ならば、$β+kα∈Δ$。
+            \item $\Set{β+kα}{q≤k≤p}$は$σ_α$で不変。
+        \end{enumerate}
+    \end{theorem}
+
+    \begin{figure}
+        \begin{tikzpicture}
+            \draw[->,red,thick] (0,0) -- (1,0) node[right]{$α$};
+            \draw[->] (0,0) -- (1,1) node[above right]{$β+α$};
+            \draw[->,red,thick] (0,0) -- (0,1) node[above]{$β$};
+            \draw[->] (0,0) -- (-1,1) node[above left]{$β-α$};
+        \end{tikzpicture}
+    \end{figure}
+\end{frame}
+
+\begin{frame}
+    \frametitle{ルート系の底}
+
+    \begin{theorem}
+        $Δ$を$E$のルート系とします。$Δ$の部分集合$Π$で、次の条件を満たすものが存在します。
+        \begin{enumerate}
+            \item $Π$は$E$の基底。
+            \item $β∈Δ$を$β=∑_{α∈Π}k_αα$と表すとき、各$k_α$は整数で、すべて$0$以上またはすべて$0$以下。
+        \end{enumerate}
+    \end{theorem}
+
+    \begin{definition}
+        この$Π$を$Δ$の底と呼びます。
+    \end{definition}
+
+    また、$β=∑_{α∈Π}k_αα$の各$k_α$が$0$以上のとき$β$を正のルート、$0$以下のとき$β$を負のルートと呼びます。
+\end{frame}
+
+\begin{frame}
+    \frametitle{ルート系の底}
+
+    底の例を挙げます。
+
+    \begin{figure}
+        \begin{tikzpicture}
+            \draw[->,red,thick] (0,0) -- (1,0) node[right]{$α_1$};
+            \draw[->,red] (0,0) -- (1,1) node[above right]{$α_2+2α_1$};
+            \draw[->,red] (0,0) -- (0,1) node[above]{$α_2+α_1$};
+            \draw[->,red,thick] (0,0) -- (-1,1) node[above left]{$α_2$};
+            \draw[->,blue] (0,0) -- (-1,0) node[left]{$-α_1$};
+            \draw[->,blue] (0,0) -- (-1,-1) node[below left]{$-α_2-2α_1$};
+            \draw[->,blue] (0,0) -- (0,-1) node[below]{$-α_2-α_1$};
+            \draw[->,blue] (0,0) -- (1,-1) node[below right]{$-α_2$};
+            \draw[dashed] (2,-1)--(-2,1);
+        \end{tikzpicture}
+    \end{figure}
+
+    $\set{α_1,α_2}$がルート系の底になっており、図の中で赤いものが正のルート、青いものが負のルートです。
+\end{frame}
+
+\begin{frame}
+    \frametitle{ルート系の同型と底}
+
+    \begin{theorem}
+        $Δ$と$Δ'$を$E$のルート系とします。$Δ$の底を$Π=(α_1,\dots,α_n)$、$Δ'$の底を$Π'=(α'_1,\dots,α'_n)$とします。
+        また、$c_{ij}:=c(α_j,α_i)$、$c'_{ij}:=c(α'_j,α'_i)$とします。このとき、次は同値です。
+        \begin{enumerate}
+            \item $Δ$と$Δ'$は同型。
+            \item 底の番号づけをうまく入れ替えると、任意の$i,j$に対して$c_{ij}=c'_{ij}$。
+        \end{enumerate}
+    \end{theorem}
+\end{frame}
+
+\begin{frame}
+    \frametitle{カルタン行列}
+
+    \begin{definition}[カルタン行列]
+        $Δ$を$E$のルート系とします。$Δ$の底を$Π=(α_1,\dots,α_n)$とします。$c_{ij}$を次のように定義します。
+        \begin{equation}
+            c_{ij}:=c(α_j,α_i)
+        \end{equation}
+        このとき、$n$次正方行列$C=(c_{ij})$を$Δ$のカルタン行列と呼びます。
+    \end{definition}
+
+    先ほどの定理から、ルート系が同型であるとき、底の番号づけをうまく入れ替えるとカルタン行列が一致します。
+\end{frame}
+
+\begin{frame}
+    \frametitle{カルタン行列の例}
+
+    \begin{figure}
+        \begin{tikzpicture}
+            \draw[->,red,thick] (0,0) -- (1,0);
+            \draw[->,red,thick] (0,0) -- (0,1);
+            \draw[->] (0,0) -- (-1,0);
+            \draw[->] (0,0) -- (0,-1);
+        \end{tikzpicture}
+        \quad
+        \begin{tikzpicture}
+            \draw[->,red,thick] (0,0) -- (0:1.2);
+            \draw[->] (0,0) -- (60:1.2);
+            \draw[->,red,thick] (0,0) -- (120:1.2);
+            \draw[->] (0,0) -- (180:1.2);
+            \draw[->] (0,0) -- (240:1.2);
+            \draw[->] (0,0) -- (300:1.2);
+        \end{tikzpicture}
+        \quad
+        \begin{tikzpicture}
+            \draw[->,red,thick] (0,0) -- (1,0);
+            \draw[->] (0,0) -- (1,1);
+            \draw[->] (0,0) -- (0,1);
+            \draw[->,red,thick] (0,0) -- (-1,1);
+            \draw[->] (0,0) -- (-1,0);
+            \draw[->] (0,0) -- (-1,-1);
+            \draw[->] (0,0) -- (0,-1);
+            \draw[->] (0,0) -- (1,-1);
+        \end{tikzpicture}
+        \quad
+        \begin{tikzpicture}
+            \draw[->,red,thick] (0,0) -- (0:0.6);
+            \draw[->] (0,0) -- ($ (0:0.6) + (60:0.6) $);
+            \draw[->] (0,0) -- (60:0.6);
+            \draw[->] (0,0) -- ($ (60:0.6) + (120:0.6) $);
+            \draw[->] (0,0) -- (120:0.6);
+            \draw[->,red,thick] (0,0) -- ($ (120:0.6) + (180:0.6) $);
+            \draw[->] (0,0) -- (180:0.6);
+            \draw[->] (0,0) -- ($ (180:0.6) + (240:0.6) $);
+            \draw[->] (0,0) -- (240:0.6);
+            \draw[->] (0,0) -- ($ (240:0.6) + (300:0.6) $);
+            \draw[->] (0,0) -- (300:0.6);
+            \draw[->] (0,0) -- ($ (300:0.6) + (0:0.6) $);
+        \end{tikzpicture}
+    \end{figure}
+
+    \begin{equation}
+        \begin{pmatrix}
+            2 & 0 \\
+            0 & 2
+        \end{pmatrix}
+        \qquad
+        \begin{pmatrix}
+            2  & -1 \\
+            -1 & 2
+        \end{pmatrix}
+        \qquad
+        \begin{pmatrix}
+            2  & -2 \\
+            -1 & 2
+        \end{pmatrix}
+        \qquad
+        \begin{pmatrix}
+            2  & -3 \\
+            -1 & 2
+        \end{pmatrix}
+    \end{equation}
+\end{frame}
+
+\begin{frame}
+    \frametitle{コクセターグラフ}
+
+    \begin{definition}
+        $Δ$を$E$のルート系とします。$Δ$のカルタン行列を$C=(c_{ij})$とします。$Δ$のコクセターグラフを次のように定義します。
+        \begin{enumerate}
+            \item 頂点は$n$個とします。
+            \item 頂点$i$と$j$を、$c_{ij}c_{ji}∈\set{0,1,2,3}$本の辺で結びます。
+        \end{enumerate}
+    \end{definition}
+
+    \begin{figure}
+        \centering
+        \scalebox{3}{
+            \dynkins{A1|A1}
+            \dynkin{A}{2}
+            \dynkin[arrows=false]{B}{2}
+            \dynkin[arrows=false]{G}{2}
+        }
+    \end{figure}
+\end{frame}
+
+\begin{frame}
+    \frametitle{ディンキン図形}
+
+    \begin{definition}
+        $Δ$を$E$のルート系とします。$Δ$のカルタン行列を$C=(c_{ij})$とします。$Δ$のディンキン図形を次のように定義します。
+        \begin{enumerate}
+            \item 頂点は$n$個とします。
+            \item 頂点$i$と$j$を、$c_{ij}c_{ji}∈\set{0,1,2,3}$本の辺で結びます。
+            \item $|c_{ij}|<|c_{ji}|$のとき、頂点$i$から頂点$j$に向きをつけます。
+        \end{enumerate}
+    \end{definition}
+
+    \begin{figure}
+        \centering
+        \scalebox{3}{
+            \dynkins{A1|A1}
+            \dynkin{A}{2}
+            \dynkin{B}{2}
+            \dynkin{G}{2}
+        }
+    \end{figure}
+\end{frame}
+
+\begin{frame}
+    \frametitle{ディンキン図形からカルタン行列を復元する}
+
+    \begin{figure}
+        \centering
+        \scalebox{3}{\dynkin{D}{4}}
+    \end{figure}
+
+    \begin{equation}
+        \begin{pmatrix}
+            2  & -1 & 0  & 0  \\
+            -1 & 2  & -1 & -1 \\
+            0  & -1 & 2  & 0  \\
+            0  & -1 & 0  & 2
+        \end{pmatrix}
+    \end{equation}
+\end{frame}
+
+\begin{frame}
+    \frametitle{ディンキン図形を分類する}
+
+    連結なディンキン図形のなかで可能なものを調べます。
+
+    そのために、次のような$ϵ$系を考えます（一般的には呼び名がついていませんが、便宜上名前をつけておきます）。
+
+    ユークリッド空間$E$の部分集合$A$が$ϵ$系であるとは、次の条件を満たすことです。
+    \begin{enumerate}
+        \item $A=\set{e_1,\dots,e_n}$の元は単位ベクトルで、線型独立。
+        \item $⟨e_i∣e_j⟩≤0$（$i≠j$）。
+        \item $4⟨e_i∣e_j⟩^2∈\set{0,1,2,3}$。
+    \end{enumerate}
+
+    ルート系の底のそれぞれを正規化して単位ベクトルにすると、$ϵ$系になります。
+\end{frame}
+
+\begin{frame}
+    \frametitle{$ϵ$系のコクセターグラフ}
+
+    $ϵ$系のコクセターグラフを考えます。
+
+    $A=\set{e_1,\dots,e_n}$を$ϵ$系とします。$A$のコクセターグラフを次のように定義します。
+    \begin{enumerate}
+        \item 頂点は$n$個とします。
+        \item 頂点$i$と$j$を、$4⟨e_i∣e_j⟩^2∈\set{0,1,2,3}$本の辺で結びます。
+    \end{enumerate}
+
+    $ϵ$系のコクセターグラフをすべて求めることができれば、ディンキン図形をすべて求めることができます。
+\end{frame}
+
+\begin{frame}
+    \frametitle{$ϵ$系の性質}
+
+    $ϵ$系は基底であるという条件がないため、次が言えます。
+
+    \begin{lemma}
+        $ϵ$系から元を取り除いても$ϵ$系になります。
+    \end{lemma}
+
+    \begin{proof}
+        $ϵ$系の定義の中には、元を取り除くことで満たさなくなる条件はありません。
+    \end{proof}
+
+    コクセターグラフで言えば、頂点を取り除いても$ϵ$系のコクセターグラフになります。
+\end{frame}
+
+\begin{frame}
+    \frametitle{$ϵ$系の性質}
+
+    \begin{lemma}
+        $A=\set{e_1,\dots,e_n}$を$ϵ$系とします。
+        $⟨e_i∣e_j⟩≠0$（$i<j$）となる$i$と$j$の組の個数は$n$より小さいです。
+    \end{lemma}
+
+    コクセターグラフで言えば、辺でつながる頂点の組の数（＝重複度を除いた辺の数）は頂点の数より小さいです。
+\end{frame}
+
+\begin{frame}
+    \frametitle{$ϵ$系の性質}
+
+    \begin{proof}
+        $e:=∑_{i=1}^ne_i$とします。
+        $ϵ$系の元の線型独立性から、$⟨e∣e⟩>0$です。$⟨e∣e⟩$を考えると次のようになります。
+        \begin{equation}
+            ⟨e∣e⟩=∑_{i=1}^n⟨e_i∣e_i⟩+∑_{i≠j}⟨e_i∣e_j⟩=n+∑_{i<j}2⟨e_i∣e_j⟩
+        \end{equation}
+        ここで、$⟨e_i∣e_j⟩≠0$となる組を考えます。
+        このとき、$⟨e_i∣e_j⟩≤0$と$4⟨e_i∣e_j⟩^2∈\set{0,1,2,3}$より、$2⟨e_i∣e_j⟩≤-1$です。
+
+        $2⟨e_i∣e_j⟩≤-1$となる$i$と$j$の組が$n$個以上あるとすると、$⟨e∣e⟩>0$に反します。
+        したがって、$⟨e_i∣e_j⟩≠0$となる組の個数は$n$より小さいです。
+    \end{proof}
+\end{frame}
+
+\begin{frame}
+    \frametitle{$ϵ$系の性質}
+
+    \begin{lemma}
+        $ϵ$系のコクセターグラフはサイクルを含みません。
+    \end{lemma}
+
+    \begin{figure}
+        \centering
+        \scalebox{3}{
+            \dynkin[extended]{A}{}
+        }
+    \end{figure}
+
+    \begin{proof}
+        サイクルをなす$k$個の頂点を考えます。これは辺が$k$本必要です。
+        このため、サイクルは$ϵ$系になりません。
+
+        $ϵ$系から元を取り除いても$ϵ$系にならなくてはならないため、
+        $ϵ$系のコクセターグラフはサイクルを含むことができません。
+    \end{proof}
+\end{frame}
+
+\begin{frame}
+    \frametitle{$ϵ$系の性質}
+
+    \begin{lemma}
+        $ϵ$系のある頂点から出る辺の本数は、重複を含めて$3$本以下です。
+    \end{lemma}
+
+    これにより、頂点のまわりのパターンがかなり限定されます。
+
+    とくに次がわかります。これにより、以降は頂点を結ぶ辺の本数は$2$本以下のみ考えれば十分です。
+
+    \begin{lemma}
+        3本の辺で結ばれた頂点の組を含む$ϵ$系のコクセターグラフは、次のひとつしかありません。
+        \begin{figure}
+            \centering
+            \scalebox{3}{
+                \dynkin[arrows=false]{G}{2}
+            }
+        \end{figure}
+    \end{lemma}
+\end{frame}
+
+\begin{frame}
+    \frametitle{$ϵ$系の性質}
+
+    \begin{lemma}
+        次のように1本の辺で結ばれた頂点のグループを、ひとつの頂点に置き換えても$ϵ$系になります。
+        \begin{figure}
+            \centering
+            \scalebox{3}{
+                \dynkin{A}{}
+            }
+        \end{figure}
+    \end{lemma}
+
+    これと先ほどの補題から、2本の辺で結ばれた頂点の組はひとつしかないこと、分岐はひとつしかないこと、その両方を含むものはないこと、がわかります。
+\end{frame}
+
+\begin{frame}
+    \frametitle{$ϵ$系の性質}
+
+    2本の辺で結ばれた頂点の組があるとき、グラフの長さが限定されます。
+
+    \begin{lemma}
+        2本の辺で結ばれた頂点の組を含む$ϵ$系のコクセターグラフは、次のふたつしかありません。
+        \begin{figure}
+            \centering
+            \scalebox{3}{
+                \dynkin[arrows=false]{B}{}
+            }
+
+            \scalebox{3}{
+                \dynkin[arrows=false]{F}{4}
+            }
+        \end{figure}
+    \end{lemma}
+\end{frame}
+
+\begin{frame}
+    \frametitle{$ϵ$系の性質}
+
+    分岐があるとき、グラフの長さが限定されます。
+
+    \begin{lemma}
+        分岐を含む$ϵ$系のコクセターグラフは、次のものしかありません。
+        \begin{figure}
+            \centering
+            \scalebox{2}{
+                \dynkin{D}{}
+            }
+
+            \scalebox{2}{
+                \dynkin{E}{6}
+                \dynkin{E}{7}
+            }
+
+            \scalebox{2}{
+                \dynkin{E}{8}
+            }
+        \end{figure}
+    \end{lemma}
+\end{frame}
+
+\begin{frame}
+    \frametitle{$ϵ$系のコクセターグラフの分類}
+
+    \begin{theorem}
+        $ϵ$系のコクセターグラフは次のものしかありません。
+        \begin{figure}
+            \centering
+            \scalebox{2}{
+                \dynkin{A}{}
+            }
+
+            \scalebox{2}{
+                \dynkin[arrows=false]{B}{}
+            }
+
+            \scalebox{2}{
+                \dynkin{D}{}
+            }
+
+            \scalebox{2}{
+                \dynkin{E}{6}
+                \dynkin{E}{7}
+            }
+
+            \scalebox{2}{
+                \dynkin{E}{8}
+            }
+
+            \scalebox{2}{
+                \dynkin[arrows=false]{F}{4}
+            }
+            \scalebox{2}{
+                \dynkin[arrows=false]{G}{2}
+            }
+        \end{figure}
+    \end{theorem}
+\end{frame}
+
+\begin{frame}
+    \frametitle{ディンキン図形の分類}
+
+    $ϵ$系のコクセターグラフそれぞれに対して、同じコクセターグラフを持つルート系が存在することは、別途確かめることができます。
+    これは実際にカルタン行列を復元してみればわかります。
+
+    これにより、ディンキン図形の分類も導くことができます。
+
+    \begin{theorem}
+        ディンキン図形は次のものしかありません。
+        \begin{itemize}
+            \item $A_n$（$n≥1$）
+            \item $B_n$（$n≥2$）
+            \item $C_n$（$n≥3$）
+            \item $D_n$（$n≥4$）
+            \item $E_6,E_7,E_8$
+            \item $F_4$
+            \item $G_2$
+        \end{itemize}
+    \end{theorem}
+\end{frame}
+
+\begin{frame}
+    \frametitle{参考文献}
+
+    \begin{itemize}
+        \item Introduction to Lie Algebras and Representation Theory, James E. Humphreys, 1972
+        \item リー環の話, 佐武一郎, 1987
+        \item はじめて学ぶリー環, 井ノ口順一, 2018
+    \end{itemize}
+
+    Humphreysの本や佐武の本には分類定理の証明が書いてあります。
+    井ノ口の本は分類定理の証明はありませんが、ルート系の説明が丁寧です。
+\end{frame}
+
+\end{document}
