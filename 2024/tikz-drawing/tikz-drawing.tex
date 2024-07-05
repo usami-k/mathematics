@@ -1,0 +1,531 @@
+\documentclass{beamer}
+\usetheme{Luebeck}
+\usecolortheme{seahorse}
+\usefonttheme{structurebold,serif}
+\setbeamertemplate{navigation symbols}{\usebeamerfont{footline}\insertframenumber/\inserttotalframenumber}
+\setlength{\parskip}{\bigskipamount}
+\usepackage{luatexja-fontspec}
+\setmainfont{STIX Two Text}
+\setsansfont{DejaVu Sans}
+\setmonofont{0xProto}[BoldFont=0xProto Italic]
+\setmainjfont{YuKyo_Yoko-Medium}[BoldFont=YuKyo_Yoko-Bold]
+\setsansjfont{YuGo-Medium}[BoldFont=YuGo-Bold]
+\usepackage{mathtools}
+\usepackage[warnings-off={mathtools-colon,mathtools-overbracket}]{unicode-math}
+\unimathsetup{math-style=ISO,bold-style=ISO}
+\setmathfont{STIX Two Math}
+\mathtoolsset{showonlyrefs=true}
+\usepackage{subcaption}
+\usepackage{minted}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{angles,quotes}
+\def\lpiece{-- ([turn]180:1) -- ([turn]-120:1) -- ([turn]-75:0.707) -- cycle}
+\def\spiece{-- ([turn]180:1) -- ([turn]-150:1) -- cycle}
+
+\title{TikZでいろいろ作図した話}
+\author{宇佐見 公輔}
+\date{2024年6月29日}
+\begin{document}
+\maketitle
+
+\begin{frame}[fragile=singleslide]
+    \frametitle{TikZとは}
+
+    TikZは、LaTeXで図を描画するためのパッケージです。
+
+    \tikz \draw[thick,rounded corners=8pt]
+    (0,0) -- (0,2) -- (1,3.25) -- (2,2) -- (2,0)
+    -- (0,2) -- (2,2) -- (0,0) -- (2,0);
+
+    \begin{minted}{latex}
+\tikz \draw[thick,rounded corners=8pt]
+(0,0) -- (0,2) -- (1,3.25) -- (2,2) -- (2,0)
+-- (0,2) -- (2,2) -- (0,0) -- (2,0);
+    \end{minted}
+\end{frame}
+
+\begin{frame}
+    \frametitle{作図例1}
+
+    実際の技術記事で描いた図の例を挙げます。
+
+    TikZのコード：
+    \url{https://github.com/usami-k/qiita-contents/tree/main/images/2024-rust-nannou-2}
+
+    \begin{figure}
+        \begin{tikzpicture}
+            \coordinate (O) at (0,0);
+            \coordinate (P) at (2,2);
+            \coordinate (Q) at (-3,3);
+            \fill (O) circle (2pt) node[below]{$O$};
+            \fill (P) circle (2pt) node[right]{$P$};
+            \fill (Q) circle (2pt) node[left]{$Q$};
+            \draw[thick,-{Stealth}] (O)--(P) node[midway,below right]{$\vec{OP}$};
+            \draw[dashed,-{Stealth}] (O)--(Q) node[midway,below left]{$\vec{OQ}$};
+            \draw[thick,-{Stealth}] (P)--(Q) node[midway,above]{$\vec{PQ}$};
+            \path (P)--(Q) coordinate[pos=0.2] (P2);
+            \fill (P2) circle (2pt);
+            \draw[thick,-{Stealth}] (P)--(P2) node[midway,above right]{$\vec{PQ}*0.1$};
+        \end{tikzpicture}
+    \end{figure}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]
+    \frametitle{作図例1：コード（1/4）}
+
+    \begin{figure}
+        \begin{tikzpicture}
+            \coordinate (O) at (0,0);
+            \coordinate (P) at (2,2);
+            \coordinate (Q) at (-3,3);
+            \draw (O) circle (2pt);
+            \draw (P) circle (2pt);
+            \draw (Q) circle (2pt);
+        \end{tikzpicture}
+    \end{figure}
+
+    \begin{minted}[fontsize={\fontsize{9.5pt}{11pt}}]{latex}
+\begin{tikzpicture}
+
+%%% 座標の定義
+\coordinate (O) at (0,0);
+\coordinate (P) at (2,2);
+\coordinate (Q) at (-3,3);
+    \end{minted}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]
+    \frametitle{作図例1：コード（2/4）}
+
+    \begin{figure}
+        \begin{tikzpicture}
+            \coordinate (O) at (0,0);
+            \coordinate (P) at (2,2);
+            \coordinate (Q) at (-3,3);
+            \fill (O) circle (2pt) node[below]{$O$};
+            \fill (P) circle (2pt) node[right]{$P$};
+            \fill (Q) circle (2pt) node[left]{$Q$};
+        \end{tikzpicture}
+    \end{figure}
+
+    \begin{minted}[fontsize={\fontsize{9.5pt}{11pt}}]{latex}
+%%% 点の描画
+\fill (O) circle (2pt) node[below]{$O$};
+\fill (P) circle (2pt) node[right]{$P$};
+\fill (Q) circle (2pt) node[left]{$Q$};
+    \end{minted}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]
+    \frametitle{作図例1：コード（3/4）}
+
+    \begin{figure}
+        \begin{tikzpicture}
+            \coordinate (O) at (0,0);
+            \coordinate (P) at (2,2);
+            \coordinate (Q) at (-3,3);
+            \fill (O) circle (2pt) node[below]{$O$};
+            \fill (P) circle (2pt) node[right]{$P$};
+            \fill (Q) circle (2pt) node[left]{$Q$};
+            \draw[thick,-{Stealth}] (O)--(P) node[midway,below right]{$\vec{OP}$};
+            \draw[dashed,-{Stealth}] (O)--(Q) node[midway,below left]{$\vec{OQ}$};
+            \draw[thick,-{Stealth}] (P)--(Q) node[midway,above]{$\vec{PQ}$};
+        \end{tikzpicture}
+    \end{figure}
+
+    \begin{minted}[fontsize={\fontsize{9.5pt}{11pt}}]{latex}
+%%% ベクトルの描画
+\draw[thick,-{Stealth}] (O)--(P) node[...]{$\vec{OP}$};
+\draw[dashed,-{Stealth}] (O)--(Q) node[...]{$\vec{OQ}$};
+\draw[thick,-{Stealth}] (P)--(Q) node[...]{$\vec{PQ}$};
+    \end{minted}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]
+    \frametitle{作図例1：コード（4/4）}
+
+    \begin{figure}
+        \begin{tikzpicture}
+            \coordinate (O) at (0,0);
+            \coordinate (P) at (2,2);
+            \coordinate (Q) at (-3,3);
+            \fill (O) circle (2pt) node[below]{$O$};
+            \fill (P) circle (2pt) node[right]{$P$};
+            \fill (Q) circle (2pt) node[left]{$Q$};
+            \draw[thick,-{Stealth}] (O)--(P) node[midway,below right]{$\vec{OP}$};
+            \draw[dashed,-{Stealth}] (O)--(Q) node[midway,below left]{$\vec{OQ}$};
+            \draw[thick,-{Stealth}] (P)--(Q) node[midway,above]{$\vec{PQ}$};
+            \path (P)--(Q) coordinate[pos=0.2] (P2);
+            \fill (P2) circle (2pt);
+            \draw[thick,-{Stealth}] (P)--(P2) node[midway,above right]{$\vec{PQ}*0.1$};
+        \end{tikzpicture}
+    \end{figure}
+
+    \begin{minted}[fontsize={\fontsize{9.5pt}{11pt}}]{latex}
+%%% 内分点の描画（TikZの座標計算の機能を使う）
+\path (P)--(Q) coordinate[pos=0.2] (P2);
+\fill (P2) circle (2pt);
+\draw[thick,...] (P)--(P2) node[...]{$\vec{PQ}*0.1$};
+
+\end{tikzpicture}
+    \end{minted}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]
+    \frametitle{作図例2：極座標での指定}
+
+    \begin{figure}
+        \begin{tikzpicture}
+            \coordinate (O) at (0,0);
+            \coordinate (P0) at (0:3);
+            \coordinate (P1) at (40:3);
+            \coordinate (P2) at (80:3);
+            \coordinate (P3) at (120:3);
+            \coordinate (P4) at (160:3);
+            \fill (P0) circle (2pt);
+            \fill (P1) circle (2pt);
+            \fill (P2) circle (2pt);
+            \fill (P3) circle (2pt);
+            \draw[thick] (P0)--(P1)--(P2)--(P3)--(P4);
+            \draw[dashed] (O)--(P0);
+            \draw[dashed] (O)--(P1);
+            \draw[dashed] (O)--(P2);
+            \draw[dashed] (O)--(P3);
+        \end{tikzpicture}
+    \end{figure}
+
+    \begin{minted}[fontsize={\fontsize{9.5pt}{11pt}}]{latex}
+%%% 極座標での指定 (角度:半径)
+\coordinate (P0) at (0:3);
+\coordinate (P1) at (40:3);
+\coordinate (P2) at (80:3);
+\coordinate (P3) at (120:3);
+\coordinate (P4) at (160:3);
+    \end{minted}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]
+    \frametitle{作図例2：角の図示}
+
+    \begin{figure}
+        \begin{tikzpicture}
+            \coordinate (O) at (0,0);
+            \coordinate (P0) at (0:3);
+            \coordinate (P1) at (40:3);
+            \coordinate (P2) at (80:3);
+            \coordinate (P3) at (120:3);
+            \coordinate (P4) at (160:3);
+            \fill (P0) circle (2pt);
+            \fill (P1) circle (2pt);
+            \fill (P2) circle (2pt);
+            \fill (P3) circle (2pt);
+            \draw[thick] (P0)--(P1)--(P2)--(P3)--(P4);
+            \draw[dashed] (O)--(P0);
+            \draw[dashed] (O)--(P1);
+            \draw[dashed] (O)--(P2);
+            \draw[dashed] (O)--(P3);
+            \draw pic[draw,"$\frac{2\pi}{n}$",angle eccentricity=2] {angle=P0--O--P1};
+            \draw pic[draw,"$\frac{2\pi}{n}$",angle eccentricity=2] {angle=P1--O--P2};
+            \draw pic[draw,"$\frac{2\pi}{n}$",angle eccentricity=2] {angle=P2--O--P3};
+        \end{tikzpicture}
+    \end{figure}
+
+    \begin{minted}[fontsize={\fontsize{9.5pt}{11pt}}]{latex}
+%%% 角の図示
+\draw pic[draw,"$\frac{2\pi}{n}$",
+               angle eccentricity=2] {angle=P0--O--P1};
+\draw pic[draw,"$\frac{2\pi}{n}$",
+               angle eccentricity=2] {angle=P1--O--P2};
+\draw pic[draw,"$\frac{2\pi}{n}$",
+               angle eccentricity=2] {angle=P2--O--P3};
+    \end{minted}
+\end{frame}
+
+\begin{frame}
+    \frametitle{作図例3：Square-1の作図}
+
+    前回の日曜数学会でSquare-1の話をしたときも、TikZで描いていました。
+
+    \begin{figure}
+        \centering
+        \begin{subfigure}{0.28\columnwidth}
+            \centering
+            \begin{tikzpicture}[scale=0.8]
+                \draw (-90:1) \spiece;
+                \draw (-60:1) \spiece;
+                \draw (-30:1) \lpiece;
+                \draw ( 30:1) \lpiece;
+                \draw ( 90:1) \lpiece;
+                \draw (150:1) \lpiece;
+                \draw (210:1) \lpiece;
+            \end{tikzpicture}
+        \end{subfigure}
+        \begin{subfigure}{0.28\columnwidth}
+            \centering
+            \begin{tikzpicture}[scale=0.8]
+                \draw (-90:1) \spiece;
+                \draw (-60:1) \lpiece;
+                \draw (  0:1) \spiece;
+                \draw ( 30:1) \lpiece;
+                \draw ( 90:1) \lpiece;
+                \draw (150:1) \lpiece;
+                \draw (210:1) \lpiece;
+            \end{tikzpicture}
+        \end{subfigure}
+        \begin{subfigure}{0.28\columnwidth}
+            \centering
+            \begin{tikzpicture}[scale=0.8]
+                \draw (-90:1) \spiece;
+                \draw (-60:1) \lpiece;
+                \draw (  0:1) \lpiece;
+                \draw ( 60:1) \spiece;
+                \draw ( 90:1) \lpiece;
+                \draw (150:1) \lpiece;
+                \draw (210:1) \lpiece;
+            \end{tikzpicture}
+        \end{subfigure}
+    \end{figure}
+
+    \begin{figure}
+        \centering
+        \begin{subfigure}{0.18\columnwidth}
+            \centering
+            \begin{tikzpicture}[scale=0.7]
+                \draw (-90:1) \lpiece;
+                \draw (-30:1) \spiece;
+                \draw (  0:1) \spiece;
+                \draw ( 30:1) \spiece;
+                \draw ( 60:1) \spiece;
+                \draw ( 90:1) \spiece;
+                \draw (120:1) \spiece;
+                \draw (150:1) \spiece;
+                \draw (180:1) \spiece;
+                \draw (210:1) \lpiece;
+            \end{tikzpicture}
+        \end{subfigure}
+        \begin{subfigure}{0.18\columnwidth}
+            \centering
+            \begin{tikzpicture}[scale=0.7]
+                \draw (-90:1) \lpiece;
+                \draw (-30:1) \spiece;
+                \draw (  0:1) \spiece;
+                \draw ( 30:1) \spiece;
+                \draw ( 60:1) \spiece;
+                \draw ( 90:1) \spiece;
+                \draw (120:1) \spiece;
+                \draw (150:1) \spiece;
+                \draw (180:1) \lpiece;
+                \draw (240:1) \spiece;
+            \end{tikzpicture}
+        \end{subfigure}
+        \begin{subfigure}{0.18\columnwidth}
+            \centering
+            \begin{tikzpicture}[scale=0.7]
+                \draw (-90:1) \lpiece;
+                \draw (-30:1) \spiece;
+                \draw (  0:1) \spiece;
+                \draw ( 30:1) \spiece;
+                \draw ( 60:1) \spiece;
+                \draw ( 90:1) \spiece;
+                \draw (120:1) \spiece;
+                \draw (150:1) \lpiece;
+                \draw (210:1) \spiece;
+                \draw (240:1) \spiece;
+            \end{tikzpicture}
+        \end{subfigure}
+        \begin{subfigure}{0.18\columnwidth}
+            \centering
+            \begin{tikzpicture}[scale=0.7]
+                \draw (-90:1) \lpiece;
+                \draw (-30:1) \spiece;
+                \draw (  0:1) \spiece;
+                \draw ( 30:1) \spiece;
+                \draw ( 60:1) \spiece;
+                \draw ( 90:1) \spiece;
+                \draw (120:1) \lpiece;
+                \draw (180:1) \spiece;
+                \draw (210:1) \spiece;
+                \draw (240:1) \spiece;
+            \end{tikzpicture}
+        \end{subfigure}
+        \begin{subfigure}{0.18\columnwidth}
+            \centering
+            \begin{tikzpicture}[scale=0.7]
+                \draw (-90:1) \lpiece;
+                \draw (-30:1) \spiece;
+                \draw (  0:1) \spiece;
+                \draw ( 30:1) \spiece;
+                \draw ( 60:1) \spiece;
+                \draw ( 90:1) \lpiece;
+                \draw (150:1) \spiece;
+                \draw (180:1) \spiece;
+                \draw (210:1) \spiece;
+                \draw (240:1) \spiece;
+            \end{tikzpicture}
+        \end{subfigure}
+    \end{figure}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]
+    \frametitle{作図例3：小ピースと大ピース}
+
+    \begin{figure}
+        \begin{subfigure}{0.28\columnwidth}
+            \centering
+            \caption{小ピース}
+            \begin{tikzpicture}[scale=2.0]
+                \draw (0:1) \spiece;
+            \end{tikzpicture}
+        \end{subfigure}
+        \begin{subfigure}{0.28\columnwidth}
+            \centering
+            \caption{大ピース}
+            \begin{tikzpicture}[scale=2.0]
+                \draw (0:1) \lpiece;
+            \end{tikzpicture}
+        \end{subfigure}
+    \end{figure}
+
+    \begin{minted}[fontsize={\fontsize{9.5pt}{11pt}}]{latex}
+%%% 小ピース
+\draw (0:1) -- ([turn]180:1)
+            -- ([turn]-150:1) -- cycle;
+
+%%% 大ピース
+\draw (0:1) -- ([turn]180:1) -- ([turn]-120:1)
+            -- ([turn]-75:0.707) -- cycle;
+    \end{minted}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]
+    \frametitle{作図例3：相対座標による小ピースの描画}
+
+    \begin{figure}
+        \begin{subfigure}{0.28\columnwidth}
+            \centering
+            \caption{小ピース}
+            \begin{tikzpicture}[scale=2.0]
+                \draw[thick,-{Stealth}] (0:1) -- ([turn]180:1) -- ([turn]-150:1);
+                \draw[dashed] (0:1) \spiece;
+            \end{tikzpicture}
+        \end{subfigure}
+        \begin{subfigure}{0.28\columnwidth}
+            \centering
+            \caption{始点の変更}
+            \begin{tikzpicture}[scale=2.0]
+                \draw[thick,-{Stealth}] (120:1) -- ([turn]180:1) -- ([turn]-150:1);
+                \draw[dashed] (120:1) \spiece;
+            \end{tikzpicture}
+        \end{subfigure}
+    \end{figure}
+
+    \begin{minted}[fontsize={\fontsize{9.5pt}{11pt}}]{latex}
+%%% 小ピース
+\draw (0:1) -- ([turn]180:1)
+            -- ([turn]-150:1) -- cycle;
+
+%%% 始点の変更
+\draw (120:1) -- ([turn]180:1)
+              -- ([turn]-150:1) -- cycle;
+    \end{minted}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]
+    \frametitle{作図例3：相対座標による大ピースの描画}
+
+    \begin{figure}
+        \begin{subfigure}{0.28\columnwidth}
+            \centering
+            \caption{大ピース}
+            \begin{tikzpicture}[scale=2.0]
+                \draw[thick,-{Stealth}] (0:1) -- ([turn]180:1) -- ([turn]-120:1) -- ([turn]-75:0.707);
+                \draw[dashed] (0:1) \lpiece;
+            \end{tikzpicture}
+        \end{subfigure}
+        \begin{subfigure}{0.28\columnwidth}
+            \centering
+            \caption{始点の変更}
+            \begin{tikzpicture}[scale=2.0]
+                \draw[thick,-{Stealth}] (120:1) -- ([turn]180:1) -- ([turn]-120:1) -- ([turn]-75:0.707);
+                \draw[dashed] (120:1) \lpiece;
+            \end{tikzpicture}
+        \end{subfigure}
+    \end{figure}
+
+    \begin{minted}[fontsize={\fontsize{9.5pt}{11pt}}]{latex}
+%%% 大ピース
+\draw (0:1) -- ([turn]180:1) -- ([turn]-120:1)
+            -- ([turn]-75:0.707) -- cycle;
+
+%%% 始点の変更
+\draw (120:1) -- ([turn]180:1) -- ([turn]-120:1)
+              -- ([turn]-75:0.707) -- cycle;
+    \end{minted}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]
+    \frametitle{作図例3：マクロを活用してピースを並べる}
+
+    \begin{figure}
+        \begin{tikzpicture}[scale=0.8]
+            \draw (  0:1) \spiece;
+            \draw ( 30:1) \spiece;
+            \draw ( 60:1) \lpiece;
+            \draw (120:1) \spiece;
+            \draw (150:1) \spiece;
+            \draw (180:1) \lpiece;
+            \draw (240:1) \spiece;
+        \end{tikzpicture}
+    \end{figure}
+
+    \begin{minted}[fontsize={\fontsize{9.5pt}{11pt}}]{latex}
+%%% マクロ定義
+\def\spiece{-- ([turn]180:1) -- ([turn]-150:1) -- cycle}
+\def\lpiece{-- ([turn]180:1) -- ([turn]-120:1)
+            -- ([turn]-75:0.707) -- cycle}
+%%% ピースを並べる
+\draw (  0:1) \spiece;
+\draw ( 30:1) \spiece;
+\draw ( 60:1) \lpiece;
+\draw (120:1) \spiece;
+\draw (150:1) \spiece;
+\draw (180:1) \lpiece;
+\draw (240:1) \spiece;
+    \end{minted}
+\end{frame}
+
+\begin{frame}
+    \frametitle{作図のためにLaTeX＋TikZを使う}
+
+    TikZは普通、LaTeX文書上で図を描くために使います。
+
+    しかし使い方を覚えると、LaTeX以外でも活用したくなります。
+
+    そんなときも、次のようにすれば対応できます。
+    \begin{enumerate}
+        \item LaTeX＋TikZで図を描く
+        \item 描いた図をPDFにする（\mintinline{latex}{preview}パッケージが便利）
+        \item PDFを画像に変換する（各種変換ツールを利用）
+    \end{enumerate}
+
+    この方法で、TikZを作図ツールとして使って技術記事などで使いました。
+\end{frame}
+
+\begin{frame}
+    \frametitle{まとめ}
+
+    TikZのテクニック：
+
+    \begin{itemize}
+        \item 座標計算（内分点）
+        \item 極座標での指定
+        \item 角の図示
+        \item 相対座標での指定
+        \item マクロの活用
+    \end{itemize}
+
+    ほかにもいろいろな機能があります（TikZのマニュアルはなかなかに膨大な量です）。
+\end{frame}
+
+\end{document}
