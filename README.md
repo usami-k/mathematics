@@ -2,6 +2,10 @@
 
 ## 講演・プレゼン資料
 
+### 2025
+
+- [ルービックキューブをコンピュータで解く考え方](https://www.docswell.com/s/usami-k/K9V2X7-group-theory-solve-rubiks)（第32回日曜数学会 / 2025-02-16）（[2025/20250216_group-theory-solve-rubiks](2025/20250216_group-theory-solve-rubiks)）
+
 ### 2024
 
 - [TikZでいろいろ作図した話](https://www.docswell.com/s/usami-k/K38PYV-tikz-drawing)（第30回日曜数学会 / 2024-06-29）([2024/tikz-drawing](2024/tikz-drawing))
